@@ -14,4 +14,9 @@ class Documentos extends Model
 
     const CREATED_AT = 'doc_created';
     const UPDATED_AT = 'doc_updated';
+
+    public function necesidad()
+    {
+        return $this->belongsTo(Necesidades::class, 'nec_id', 'nec_id');
+    }
 }

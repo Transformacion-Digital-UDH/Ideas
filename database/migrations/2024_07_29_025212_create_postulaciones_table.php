@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('pos_seccion', 20)->nullable();
             $table->enum('pos_asignado', [0, 1])->default(0);
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('pro_id')->references('pro_id')->on('propuestas');
             $table->foreignId('equ_id')->nullable()->constrained('equipos', 'equ_id');
             $table->tinyInteger('pos_estado')->unsigned()->default(1);
             $table->timestamp('pos_created')->useCurrent();

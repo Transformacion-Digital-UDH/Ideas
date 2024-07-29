@@ -14,4 +14,9 @@ class Equipos extends Model
 
     const CREATED_AT = 'equ_created';
     const UPDATED_AT = 'equ_updated';
+
+    public function postulaciones()
+    {
+        return $this->hasMany(Postulaciones::class, 'equ_id', 'equ_id');
+    }
 }

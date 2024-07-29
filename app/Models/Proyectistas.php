@@ -14,4 +14,9 @@ class Proyectistas extends Model
 
     const CREATED_AT = 'proy_created';
     const UPDATED_AT = 'proy_updated';
+
+    public function propuestas()
+    {
+        return $this->hasMany(propuestas::class, 'proyectista_id', 'proy_id');
+    }
 }
