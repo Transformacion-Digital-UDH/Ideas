@@ -13,6 +13,6 @@ class NecesidadesSeeder extends Seeder
      */
     public function run(): void
     {
-        Necesidades::factory(5)->create();
+        Necesidades::factory(15)->create();
     }
 }
