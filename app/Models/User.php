@@ -29,7 +29,30 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'telefono',
+        'estado'
     ];
+
+    public function curaciones()
+    {
+        return $this->hasMany(propuestas::class, 'curador_id', 'id');
+    }
+
+    public function res_necesidades()
+    {
+        return $this->hasMany(Necesidades::class, 'responsable_id', 'id');
+    }
+
+    public function necesidades()
+    {
+        return $this->hasMany(Necesidades::class, 'user_id', 'id');
+    }
+
+    public function postulaciones()
+    {
+        return $this->belongsToMany(Propuestas::class, 'postulaciones', 'user_id', 'pro_id')
+            ->withPivot('pos_id', 'pos_semestre', 'pos_seccion', 'pos_asignado', 'equ_id', 'pos_estado', 'pos_created', 'pos_updated');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
