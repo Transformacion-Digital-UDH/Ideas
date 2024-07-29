@@ -14,4 +14,9 @@ class Mensajes extends Model
 
     const CREATED_AT = 'men_created';
     const UPDATED_AT = 'men_updated';
+
+    public function necesidades()
+    {
+        return $this->belongsToMany(Necesidades::class, 'notificars', 'men_id', 'nec_id');
+    }
 }
