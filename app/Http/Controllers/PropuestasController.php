@@ -17,9 +17,9 @@ class PropuestasController extends Controller
     public function getPropuestas()
     {
         if (User::esRol('ESTUDIANTE')) {
-            $propuestas = Propuestas::where('pro_estado', 1)->get();
+            $propuestas = Propuestas::where('pro_estado', 1)->orderBy('pro_created', 'desc')->get();
         } else {
-            $propuestas = Propuestas::where('pro_estado', 1)->get();
+            $propuestas = Propuestas::where('pro_estado', 1)->orderBy('pro_created', 'desc')->get();
         }
         return $propuestas ?? [];
     }
