@@ -24,13 +24,13 @@ class RolesSeeder extends Seeder
         $vri = Role::create(['name' => 'VRI']);
 
 
-        Permission::create(['name' => 'necesidades.crear'])->syncRoles($sociedad);
-        Permission::create(['name' => 'necesidades.ver'])->syncRoles($sociedad, $admin, $asistente, $escuela, $vri);
+        Permission::create(['name' => 'necesidades.ver'])->syncRoles($admin, $asistente, $escuela, $vri);
+        Permission::create(['name' => 'necesidades.crear'])->syncRoles($sociedad, $admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'necesidades.editar'])->syncRoles($sociedad, $admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'necesidades.eliminar'])->syncRoles($sociedad, $admin, $asistente);
         Permission::create(['name' => 'necesidades.curar'])->syncRoles($admin, $asistente, $escuela, $vri);
 
-        Permission::create(['name' => 'propuestas.ver'])->syncRoles($admin, $asistente, $escuela, $vri, $sociedad, $estudiante);
+        Permission::create(['name' => 'propuestas.ver'])->syncRoles($admin, $asistente, $escuela, $vri, $estudiante, $docente);
         Permission::create(['name' => 'propuestas.editar'])->syncRoles($admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'propuestas.eliminar'])->syncRoles($admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'propuestas.postular'])->syncRoles($estudiante, $docente);
@@ -38,8 +38,20 @@ class RolesSeeder extends Seeder
         Permission::create(['name' => 'notificaciones.crear'])->syncRoles($admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'notificaciones.ver'])->syncRoles($admin, $asistente, $escuela, $vri, $sociedad);
 
-        Permission::create(['name' => 'postulaciones.ver'])->syncRoles($admin, $asistente, $escuela, $vri, $sociedad, $estudiante);
-        Permission::create(['name' => 'postulaciones.eliminar'])->syncRoles($admin, $asistente, $escuela, $vri);
-        Permission::create(['name' => 'postulaciones.asignar'])->syncRoles($admin, $asistente, $escuela, $vri);
+        Permission::create(['name' => 'postulaciones.ver'])->syncRoles($admin, $asistente, $escuela, $docente, $estudiante);
+        Permission::create(['name' => 'postulaciones.eliminar'])->syncRoles($admin, $asistente, $escuela);
+        Permission::create(['name' => 'postulaciones.asignar'])->syncRoles($admin, $asistente, $escuela);
+
+        Permission::create(['name' => 'mis-necesidades.ver'])->syncRoles($sociedad);
+
+        Permission::create(['name' => 'proyectistas.ver'])->syncRoles($admin, $asistente, $vri);
+        Permission::create(['name' => 'proyectistas.crear'])->syncRoles($admin, $asistente, $vri);
+        Permission::create(['name' => 'proyectistas.editar'])->syncRoles($admin, $asistente, $vri);
+        Permission::create(['name' => 'proyectistas.eliminar'])->syncRoles($admin, $asistente, $vri);
+
+        Permission::create(['name' => 'equipos.ver'])->syncRoles($admin, $asistente, $escuela);
+        Permission::create(['name' => 'equipos.crear'])->syncRoles($admin, $asistente, $escuela);
+        Permission::create(['name' => 'equipos.editar'])->syncRoles($admin, $asistente, $escuela);
+        Permission::create(['name' => 'equipos.eliminar'])->syncRoles($admin, $asistente, $escuela);
     }
 }
