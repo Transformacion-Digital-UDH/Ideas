@@ -29,7 +29,7 @@ class PropuestasFactory extends Factory
             'problematicas' => $this->faker->paragraph,
             'variable_1' => $this->faker->word,
             'variable_2' => $this->faker->word,
-            'pro_tipo' => $this->faker->word,
+            'pro_tipo' => $this->faker->randomElement(['Curso', 'Tesis', 'Proyecto']),
             'pro_proceso' => $this->faker->randomElement(Propuestas::estados()),
             'curador_id' => \App\Models\User::factory(),
             'proyectista_id' => $this->faker->boolean ? \App\Models\Proyectistas::factory() : null,
