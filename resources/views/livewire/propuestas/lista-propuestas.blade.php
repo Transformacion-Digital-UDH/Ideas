@@ -5,7 +5,7 @@
                 <div class="w-full">
                     <h3 class="text-lg font-medium mb-2 text-blue-950">{{ $propuesta->pro_titulo }}</h3>
                     <p class="text-gray-500 mb-4 line-clamp-3">{{ $propuesta->pro_descripcion }}</p>
-                    <div class="flex justify-between items-end">
+                    <div class="flex justify-between items-end mt-2">
                         <p class="text-gray-400 text-sm font-bold">Publicado el
                             {{ $propuesta->pro_created->format('Y-m-d') ?? '' }}</p>
                         <div>

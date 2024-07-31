@@ -30,6 +30,12 @@ class VerDetalles extends Component
         $this->showModal = false;
     }
 
+    public function abrirModalPostular($id)
+    {
+        $this->showModal = false;
+        $this->dispatch('postular', $id);
+    }
+
     public function render()
     {
         return view('livewire.propuestas.ver-detalles');
