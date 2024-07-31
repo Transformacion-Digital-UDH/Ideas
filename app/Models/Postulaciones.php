@@ -19,4 +19,9 @@ class Postulaciones extends Model
     {
         return $this->belongsTo(Equipos::class, 'equ_id', 'equ_id');
     }
+
+    public function propuesta()
+    {
+        return $this->belongsTo(Propuestas::class, 'pro_id', 'pro_id');
+    }
 }
