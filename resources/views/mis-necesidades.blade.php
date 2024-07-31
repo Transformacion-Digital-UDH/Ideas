@@ -18,7 +18,7 @@
 
     <div class="py-12 space-y-4">
         <div class="">
-            @livewire('crear-necesidad')
+            @livewire('necesidades.crear-necesidad')
         </div>
            
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
