@@ -1,17 +1,35 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Livewire\Propuestas;
 
+use Livewire\Component;
 use App\Models\Propuestas;
 use App\Models\User;
-use Illuminate\Http\Request;
 
-class PropuestasController extends Controller
+class ListaPropuestas extends Component
 {
-    public function index()
+    public $propuestas;
+
+    protected $listeners = ['guardado' => 'getPropuestas'];
+
+    public function mount()
     {
-        $propuestas = $this->getPropuestas();
-        return view('propuestas', compact('propuestas'));
+        $this->propuestas = $this->getPropuestas();
+    }
+
+    public function render()
+    {
+        return view('livewire.propuestas.lista-propuestas');
+    }
+
+    public function abrirModalVer($id)
+    {
+        $this->dispatch('ver', $id);
+    }
+
+    public function abrirModalPostular($id)
+    {
+        $this->dispatch('postular', $id);
     }
 
     public function getPropuestas()
