@@ -6,10 +6,6 @@
         </button>
     </div>
     <x-dialog-modal wire:model="showModal">
-        <x-slot name="title">
-            Agregar Necesidad
-        </x-slot>
-
         <x-slot name="content">
             <section>
                 <h2 class="text-2xl font-bold text-center text-sky-700 mb-4">Información General</h2>
@@ -28,59 +24,19 @@
                             <option value="Instituto">Instituto</option>
                             <option value="Ciudadano">Ciudadano</option>
                         </select>
-                        <div class="text-red-500 text-xs mt-1">@error('nec_tipo') {{ $message }} @enderror</div>
                     </div>
-            
-                    @if ($nec_tipo !== 'Ciudadano')
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
-                            <div class="sm:w-2/4 px-1">
-                                <input type="text" wire:model="nec_entidad" placeholder="Nombre de la institución" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                                <div class="text-red-500 text-xs mt-1">@error('nec_entidad') {{ $message }} @enderror</div>
-                            </div>
-                            <div class="sm:w-2/4 px-1">
-                                <div id="rucMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
-                                    Ingrese 11 dígitos
-                                </div>
-                                <input type="text" wire:model="nec_documento" id="ruc" placeholder="RUC" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                                <div class="text-red-500 text-xs mt-1">@error('nec_documento') {{ $message }} @enderror</div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
-                            <div class="sm:w-2/4 px-1">
-                                <input type="text" wire:model="nec_entidad" placeholder="Nombres completos" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                                <div class="text-red-500 text-xs mt-1">@error('nec_entidad') {{ $message }} @enderror</div>
-                            </div>
-                            <div class="sm:w-2/4 px-1">
-                                <div id="dniMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
-                                    Ingrese 8 dígitos
-                                </div>
-                                <input type="text" wire:model="nec_documento" id="dni" placeholder="DNI" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                                <div class="text-red-500 text-xs mt-1">@error('nec_documento') {{ $message }} @enderror</div>
-                            </div>
-                        </div>
-                    @endif
             
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                         <div class="sm:w-2/4 px-1">
-                            <div id="emailMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
-                                Ingrese un correo válido
-                            </div>
                             <input type="email" wire:model="nec_email" id="email" placeholder="Correo electrónico" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                            <div class="text-red-500 text-xs mt-1">@error('nec_email') {{ $message }} @enderror</div>
                         </div>
                         <div class="sm:w-2/4 px-1">
-                            <div id="telefonoMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
-                                Ingrese 9 dígitos
-                            </div>
                             <input type="text" wire:model="nec_telefono" id="telefono" placeholder="Número de teléfono" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                            <div class="text-red-500 text-xs mt-1">@error('nec_telefono') {{ $message }} @enderror</div>
                         </div>
                     </div>
             
                     <div class="mb-4">
-                        <input type="text" wire:model="nec_dirección" placeholder="Dirección de la institución" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                        <div class="text-red-500 text-xs mt-1">@error('nec_dirección') {{ $message }} @enderror</div>
+                        <input type="text" wire:model="nec_direccion" placeholder="Dirección de la institución" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
                     </div>
             
                     <div class="rounded-lg shadow-lg p-8 space-y-6 bg-gray-100 mb-8">
@@ -94,11 +50,9 @@
             
                         <div class="mb-2">
                             <input type="text" wire:model="nec_titulo" placeholder="Breve título del problema" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
-                            <div class="text-red-500 text-xs mt-1">@error('nec_titulo') {{ $message }} @enderror</div>
                         </div>
                         <div class="mb-2">
                             <textarea wire:model="nec_descripcion" placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema." class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"></textarea>
-                            <div class="text-red-500 text-xs mt-1">@error('nec_descripcion') {{ $message }} @enderror</div>
                         </div>
             
                         <div class="mb-2">
@@ -113,7 +67,6 @@
                                     <span class="pl-2">NO</span>
                                 </label>
                             </div>
-                            <div class="text-red-500 text-xs mt-1 text-center">@error('es_financiado') {{ $message }} @enderror</div>
                         </div>
                     </div>
             
@@ -124,16 +77,14 @@
                         </p>
             
                         <input type="file" wire:model="doc_nombre" class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
-                        <div class="text-red-500 text-xs mt-1">@error('doc_nombre') {{ $message }} @enderror</div>
                     </div>
                 </form>
             </section>
         </x-slot>
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
+            <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-            <!--PROBAR-->
             <x-button class="ml-2" wire:click="guardarNecesidad" wire:loading.attr="disabled">
                 Guardar
             </x-button>
