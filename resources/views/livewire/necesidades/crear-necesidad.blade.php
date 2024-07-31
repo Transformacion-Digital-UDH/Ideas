@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_entidad" placeholder="Entidad" class="block mt-1" />
+                        <x-input type="text" wire:model="nec_entidad" placeholder="Nombre" class="block mt-1" />
                         <x-input-error for="nec_entidad" class="mt-2" />
                     </div>
 
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Indique su dirección"
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección"
                                 class="block mt-1" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
@@ -82,13 +82,13 @@
                             <div class="flex items-center justify-center">
                                 <label for="es_financiado" class="pr-4 font-normal">¿Desea financiarlo?</label>
                                 <label class="flex items-center pl-2">
-                                    <input type="radio" value="1" wire:model="es_financiado" name="es_financiado"
+                                    <input type="radio" value="SI" wire:model="es_financiado" name="es_financiado"
                                         id="es_financiado"
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2 pr-6">SI</span>
                                 </label>
                                 <label class="flex items-center">
-                                    <input type="radio" value="0" wire:model="es_financiado" name="es_financiado"
+                                    <input type="radio" value="NO" wire:model="es_financiado" name="es_financiado" id="es_financiado"
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2">NO</span>
                                 </label>
