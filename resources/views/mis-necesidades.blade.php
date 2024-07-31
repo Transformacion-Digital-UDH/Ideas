@@ -3,14 +3,23 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Mis necesidades') }} 
         </h2>
+        @livewire('crear-necesidad')
+           <div class="relative mt-6 p-1 border border-gray-200 rounded-lg w-full max-w-lg">
+                    <div class="relative flex items-center">
+                        <input data-table="table_id" type="text" placeholder="Buscar..."
+                            class="light-table-filter block w-full py-1.5 pr-5
+                                text-gray-700 bg-white border border-gray-200 rounded-lg placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5
+                                focus:border-sky-400 focus:ring-sky-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                    </div>
+             </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4">
                 <div class="relative overflow-x-auto">
-                    <table
-                        class="w-full text-sm text-left rtl:text-right bg-white dark:bg-gray-800 overflow-hidden shadow-xl">
+                
+                    <table class="table_id w-full text-sm text-left rtl:text-right bg-white dark:bg-gray-800 overflow-hidden shadow-xl">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">N°</th>
@@ -62,4 +71,5 @@
             </div>
         </div>
     </div>
+    @livewire('necesidades.buscar-necesidad')
 </x-app-layout>
