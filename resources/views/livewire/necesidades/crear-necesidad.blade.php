@@ -28,11 +28,22 @@
                         <x-input-error for="nec_tipo" class="mt-2" />
                     </div>
 
+                    <div class="mb-4">
+                        <x-input type="text" wire:model="nec_documento" placeholder="Documento de Identidad"
+                            class="block mt-1" />
+                        <x-input-error for="nec_documento" class="mt-2" />
+                    </div>
+
+                    <div class="mb-4">
+                        <x-input type="text" wire:model="nec_entidad" placeholder="Entidad" class="block mt-1" />
+                        <x-input-error for="nec_entidad" class="mt-2" />
+                    </div>
+
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                         <div class="sm:w-2/4 px-1">
                             <x-input type="email" wire:model="nec_email" placeholder="Correo electrónico"
                                 class="block mt-1" />
-                            <x-input-error for="email" class="mt-2" />
+                            <x-input-error for="nec_email" class="mt-2" />
                         </div>
                         <div class="sm:w-2/4 px-1">
                             <x-input wire:model="nec_telefono" placeholder="Número de teléfono"
@@ -57,12 +68,14 @@
                         </p>
 
                         <div class="mb-2">
-                            <input type="text" wire:model="nec_titulo" placeholder="Breve título del problema"
-                                class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
+                            <x-input type="text" wire:model="nec_titulo" placeholder="Breve título del problema"
+                                    class="block mt-1" />
+                            <x-input-error for="nec_titulo" class="mt-2" />
                         </div>
                         <div class="mb-2">
-                            <textarea wire:model="nec_descripcion" placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
-                                class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"></textarea>
+                            <x-textarea wire:model="nec_descripcion" placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
+                                    class="block mt-1" />
+                            <x-input-error for="nec_descripcion" class="mt-2" />
                         </div>
 
                         <div class="mb-2">
@@ -92,6 +105,7 @@
 
                         <input type="file" wire:model="doc_nombre"
                             class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
+                        <x-input-error for="doc_nombre" class="mt-2" />
                     </div>
                 </form>
             </section>
