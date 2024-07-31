@@ -42,12 +42,12 @@
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                         <div class="sm:w-2/4 px-1">
                             <x-input type="email" wire:model="nec_email" placeholder="Correo electrónico"
-                                class="block mt-1" />
+                                class="block mt-1 text-center" />
                             <x-input-error for="nec_email" class="mt-2" />
                         </div>
                         <div class="sm:w-2/4 px-1">
                             <x-input wire:model="nec_telefono" placeholder="Número de teléfono"
-                                class="block mt-1" />
+                                class="block mt-1 text-center" />
                             <x-input-error for="nec_telefono" class="mt-2" />
                         </div>
                     </div>
@@ -69,12 +69,12 @@
 
                         <div class="mb-2">
                             <x-input type="text" wire:model="nec_titulo" placeholder="Breve título del problema"
-                                    class="block mt-1" />
+                                    class="block mt-1 text-center" />
                             <x-input-error for="nec_titulo" class="mt-2" />
                         </div>
                         <div class="mb-2">
                             <x-textarea wire:model="nec_descripcion" placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
-                                    class="block mt-1" />
+                                    class="block mt-1 w-full text-center" />
                             <x-input-error for="nec_descripcion" class="mt-2" />
                         </div>
 
