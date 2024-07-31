@@ -3,14 +3,29 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Mis necesidades') }} 
         </h2>
+        <div class="flex justify-center items-center mt-6">
+            <div class="relative justify-center items-center FL p-1 border border-gray-200 rounded-lg w-full max-w-lg">
+                <div class="relative flex items-center">
+                    <input data-table="table_id" type="text" placeholder="Buscar..."
+                        class="light-table-filter block w-full py-1.5 pr-5
+                            text-gray-700 bg-white border border-gray-200 rounded-lg placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5
+                            focus:border-sky-400 focus:ring-sky-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                </div>
+            </div>
+        </div> 
     </x-slot>
 
-    <div class="py-12">
+
+    <div class="py-12 space-y-4">
+        <div class="">
+            @livewire('necesidades.crear-necesidad')
+        </div>
+           
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4">
                 <div class="relative overflow-x-auto">
-                    <table
-                        class="w-full text-sm text-left rtl:text-right bg-white dark:bg-gray-800 overflow-hidden shadow-xl">
+                
+                    <table class="table_id w-full text-sm text-left rtl:text-right bg-white dark:bg-gray-800 overflow-hidden shadow-xl">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">N°</th>
@@ -48,9 +63,10 @@
                                         <x-com_proceso :status="$necesidad->nec_proceso" />
                                     </td>
                                     <td class="px-6 py-4 text-center whitespace-nowrap">
-                                        <button
-                                            class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                            <i class="fas fa-eye text-white"></i>
+                                        <!--TODAVIA NO FUNCIONA PARA ABRIR EL MODAL Y EDITAR-->
+                                        <button wire:click="abrirModal"
+                                        class="middle px-4 py-2 bg-cyan-500 hover:bg-cyan-700 text-white rounded-lg mr-4 text-lg font-bold shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50">
+                                        editar
                                         </button>
                                     </td>
                                 </tr>
@@ -62,4 +78,5 @@
             </div>
         </div>
     </div>
+    @livewire('componentes.buscar-necesidad-js')
 </x-app-layout>

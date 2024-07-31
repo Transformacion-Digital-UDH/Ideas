@@ -4,6 +4,7 @@ use App\Http\Controllers\DocentesController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\EstudiantesController;
 use App\Http\Controllers\MisNecesidadesController;
+use App\Http\Controllers\MisPostulaciones;
 use App\Http\Controllers\NecesidadesController;
 use App\Http\Controllers\PaisiController;
 use App\Http\Controllers\PanelController;
@@ -50,11 +51,16 @@ Route::middleware([
         Route::put('/equipos', 'actualizar')->name('equipos.actualizar');
         Route::delete('/equipos', 'eliminar')->name('equipos.eliminar');
     });
+
     Route::controller(PostulacionesController::class)->group(function () {
         Route::get('/postulaciones', 'index')->name('postulaciones');
         Route::post('/postulaciones', 'guardar')->name('postulaciones.guardar');
         Route::put('/postulaciones', 'actualizar')->name('postulaciones.actualizar');
         Route::delete('/postulaciones', 'eliminar')->name('postulaciones.eliminar');
+    });
+
+    Route::controller(MisPostulaciones::class)->group(function () {
+        Route::get('/mis-postulaciones', 'index')->name('mis-postulaciones');
     });
 
     Route::controller(PaisiController::class)->group(function () {
@@ -66,14 +72,5 @@ Route::middleware([
         Route::get('/vri/necesidades', 'necesidades')->name('vri.necesidades');
         Route::get('/vri/propuestas', 'propuestas')->name('vri.propuestas');
     });
-
-    Route::controller(EstudiantesController::class)->group(function () {
-        Route::get('/estudiantes/propuestas', 'propuestas')->name('estudiantes.propuestas');
-    });
-
-    Route::controller(DocentesController::class)->group(function () {
-        Route::get('/docentes/propuestas', 'propuestas')->name('docentes.propuestas');
-    });
-
 
 });
