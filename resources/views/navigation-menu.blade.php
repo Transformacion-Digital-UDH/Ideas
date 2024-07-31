@@ -30,6 +30,11 @@
                             {{ __('Propuestas') }}
                         </x-nav-link>
                     @endcan
+                    @can('mis-postulaciones.ver')
+                        <x-nav-link href="{{ route('mis-postulaciones') }}" :active="request()->routeIs('mis-postulaciones')">
+                            {{ __('Mis postulaciones') }}
+                        </x-nav-link>
+                    @endcan
                     @can('proyectistas.ver')
                         <x-nav-link href="{{ route('proyectistas') }}" :active="request()->routeIs('proyectistas')">
                             {{ __('Proyectistas') }}

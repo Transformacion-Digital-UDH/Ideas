@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'name' => 'Estudiante',
             'email' => 'estudiante@udh.edu.pe',
             'telefono' => '123456789',
-        ])->assignRole('DOCENTE');
+        ])->assignRole('ESTUDIANTE');
 
         // User::factory(10)->create();
     }
