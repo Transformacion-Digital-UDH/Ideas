@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -52,6 +53,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Propuestas::class, 'postulaciones', 'user_id', 'pro_id')
             ->withPivot('pos_id', 'pos_semestre', 'pos_seccion', 'pos_asignado', 'equ_id', 'pos_estado', 'pos_created', 'pos_updated');
+    }
+
+    public static function esRol($rol)
+    {
+        $user = Auth::user();
+        return $user && $user->roles->contains('name', $rol);
     }
 
     /**
