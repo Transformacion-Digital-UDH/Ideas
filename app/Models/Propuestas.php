@@ -40,10 +40,8 @@ class Propuestas extends Model
     {
         return [
             'En Espera',
-            'En Desarrollo',
-            'En Revisión',
             'Aprobada',
-            'Rechazada',
+            'En Desarrollo',
             'Implementación',
             'Completada',
             'Cancelada'

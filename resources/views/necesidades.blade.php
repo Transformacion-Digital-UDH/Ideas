@@ -12,6 +12,6 @@
             </div>
         </div>
     </div>
-    
-    @livewire('necesidades.editar-necesidades')
+    {{-- @livewire('necesidades.editar-necesidades') --}}
+    @livewire('necesidades.curar-necesidad')
 </x-app-layout>

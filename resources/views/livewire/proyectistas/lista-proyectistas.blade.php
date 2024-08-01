@@ -36,8 +36,8 @@
                         </td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">
                             <button wire:click="abrirModal({{ $proyectista->proy_id }})"
-                                class="middle px-2 py-1 bg-transparent border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                Curar
+                                class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                <i class="fas fa-edit text-white"></i>
                             </button>
                             <button
                                 class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
