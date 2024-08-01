@@ -73,8 +73,8 @@
                 'user_id' => $this->user_id, 
             ]);
 
+            $this->dispatch('guardado');
             $this->reset();
-            $this->closeModal();
         }
 
 
