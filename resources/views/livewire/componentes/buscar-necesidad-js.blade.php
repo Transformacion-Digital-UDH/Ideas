@@ -6,45 +6,19 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     
     <script type="text/javascript">
-    (function(document) {
-        'buscador';
-    
-        var LightTableFilter = (function(Arr) {
-    
-          var _input;
-    
-          function _onInputEvent(e) {
-            _input = e.target;
-            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-            Arr.forEach.call(tables, function(table) {
-              Arr.forEach.call(table.tBodies, function(tbody) {
-                Arr.forEach.call(tbody.rows, _filter);
-              });
-            });
-          }
-    
-          function _filter(row) {
-            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-          }
-    
-          return {
-            init: function() {
-              var inputs = document.getElementsByClassName('light-table-filter');
-              Arr.forEach.call(inputs, function(input) {
-                input.oninput = _onInputEvent;
-              });
-            }
-          };
-        })(Array.prototype);
-    
-        document.addEventListener('readystatechange', function() {
-          if (document.readyState === 'complete') {
-            LightTableFilter.init();
-          }
+    $(document).ready(function () {
+    // Maneja el evento de entrada en el campo de búsqueda
+    $('.light-table-filter').on('input', function () {
+        // Obtiene el valor del campo de búsqueda y lo convierte a minúsculas
+        var value = $(this).val().toLowerCase();
+        
+        // Filtra las tarjetas basadas en el texto
+        $('.card-item').filter(function () {
+            // Muestra u oculta la tarjeta basándose en si el texto contiene el valor de búsqueda
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
-    
-    })(document);
+    });
+});
     </script>
     
 </div>
