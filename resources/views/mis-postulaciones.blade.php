@@ -7,9 +7,10 @@
 
     <div class="py-12">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-            @role('DOCENTE|ESTUDIANTE')
+            <!-- @role('DOCENTE|ESTUDIANTEA')
                 @livewire('postulaciones.lista-postulaciones')
-            @endrole
+            @endrole -->
+            @livewire('postulaciones.lista-postulaciones')
         </div>
     </div>
 
