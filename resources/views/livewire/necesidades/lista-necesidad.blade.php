@@ -36,8 +36,8 @@
                     <x-com_proceso :status="$necesidad->nec_proceso" />
                 </td>
                 <td class="px-6 py-4 text-center whitespace-nowrap">
-                <!--###-->
-                    <button wire:click="verNecesidad({{ $necesidad->nec_id }})">Ver Necesidad</button>
+                <!--
+                    <button wire:click="verNecesidad({{ $necesidad->nec_id }})">Ver Necesidad</button>-->
                 </td>
             </tr>
         @endforeach
