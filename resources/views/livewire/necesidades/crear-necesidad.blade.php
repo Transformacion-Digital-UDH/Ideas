@@ -28,21 +28,32 @@
                         <x-input-error for="nec_tipo" class="mt-2" />
                     </div>
 
+                    <div class="mb-4">
+                        <x-input type="text" wire:model="nec_documento" placeholder="Documento de Identidad"
+                            class="block mt-1" />
+                        <x-input-error for="nec_documento" class="mt-2" />
+                    </div>
+
+                    <div class="mb-4">
+                        <x-input type="text" wire:model="nec_entidad" placeholder="Nombre" class="block mt-1" />
+                        <x-input-error for="nec_entidad" class="mt-2" />
+                    </div>
+
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                         <div class="sm:w-2/4 px-1">
                             <x-input type="email" wire:model="nec_email" placeholder="Correo electrónico"
-                                class="block mt-1" />
-                            <x-input-error for="email" class="mt-2" />
+                                class="block mt-1 text-center" />
+                            <x-input-error for="nec_email" class="mt-2" />
                         </div>
                         <div class="sm:w-2/4 px-1">
                             <x-input wire:model="nec_telefono" placeholder="Número de teléfono"
-                                class="block mt-1" />
+                                class="block mt-1 text-center" />
                             <x-input-error for="nec_telefono" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Indique su dirección"
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección"
                                 class="block mt-1" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
@@ -57,25 +68,27 @@
                         </p>
 
                         <div class="mb-2">
-                            <input type="text" wire:model="nec_titulo" placeholder="Breve título del problema"
-                                class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 text-center" />
+                            <x-input type="text" wire:model="nec_titulo" placeholder="Breve título del problema"
+                                    class="block mt-1 text-center" />
+                            <x-input-error for="nec_titulo" class="mt-2" />
                         </div>
                         <div class="mb-2">
-                            <textarea wire:model="nec_descripcion" placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
-                                class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"></textarea>
+                            <x-textarea wire:model="nec_descripcion" placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
+                                    class="block mt-1 w-full text-center" />
+                            <x-input-error for="nec_descripcion" class="mt-2" />
                         </div>
 
                         <div class="mb-2">
                             <div class="flex items-center justify-center">
                                 <label for="es_financiado" class="pr-4 font-normal">¿Desea financiarlo?</label>
                                 <label class="flex items-center pl-2">
-                                    <input type="radio" value="1" wire:model="es_financiado" name="es_financiado"
+                                    <input type="radio" value="SI" wire:model="es_financiado" name="es_financiado"
                                         id="es_financiado"
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2 pr-6">SI</span>
                                 </label>
                                 <label class="flex items-center">
-                                    <input type="radio" value="0" wire:model="es_financiado" name="es_financiado"
+                                    <input type="radio" value="NO" wire:model="es_financiado" name="es_financiado" id="es_financiado"
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2">NO</span>
                                 </label>
@@ -92,6 +105,7 @@
 
                         <input type="file" wire:model="doc_nombre"
                             class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
+                        <x-input-error for="doc_nombre" class="mt-2" />
                     </div>
                 </form>
             </section>

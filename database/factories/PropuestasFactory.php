@@ -31,6 +31,7 @@ class PropuestasFactory extends Factory
             'variable_2' => $this->faker->word,
             'pro_tipo' => $this->faker->randomElement(['Curso', 'Tesis', 'Proyecto']),
             'pro_proceso' => $this->faker->randomElement(Propuestas::estados()),
+            'nec_id' => \App\Models\Necesidades::factory(),
             'curador_id' => \App\Models\User::factory(),
             'proyectista_id' => $this->faker->boolean ? \App\Models\Proyectistas::factory() : null,
             'pro_estado' => 1,

@@ -34,7 +34,9 @@
             <div class="mt-6">
                 <x-label for="pos_justificar" value="{{ __('Justificación') }}" />
                 <x-textarea id="pos_justificar" class="block mt-1 w-full" type="text"
-                    wire:model.defer="pos_justificar" placeholder="Por que te eligirian a ti, justificar." required />
+                    wire:model.defer="pos_justificar"
+                    placeholder="¿Por qué te eligirian a ti? Justifica." required
+                />
                 <x-input-error for="pos_justificar" class="mt-2" />
             </div>
 
