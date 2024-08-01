@@ -14,9 +14,9 @@
                     identificado un problema.
                 </p>
 
-                <form enctype="multipart/form-data">
+                <form wire:submit.prevent="submitForm" enctype="multipart/form-data">
                     <div class="mb-4">
-                        <x-select wire:model="nec_tipo" class="block w-full">   
+                        <x-select wire:model="nec_tipo" class="block w-full">
                             <option value="" selected hidden>Seleccione tipo de entidad...</option>
                             <option value="Empresa privada">Empresa privada</option>
                             <option value="Institución pública">Institución pública</option>
@@ -28,7 +28,39 @@
                         <x-input-error for="nec_tipo" class="mt-2" />
                     </div>
 
-                    <div class="mb-4">
+                    @if ($es_institucion)
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                            <div class="sm:w-2/4 px-1">
+                                <x-input wire:model="nombre_entidad" placeholder="Nombre de la institución"
+                                    class="text-center" />
+                                <x-input-error for="nombre_entidad" />
+                            </div>
+                            <div class="sm:w-2/4 px-1">
+                                <div id="rucMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
+                                    Ingrese 11 dígitos
+                                </div>
+                                <x-input wire:model="ruc" id="ruc" placeholder="RUC" class="text-center" />
+                                <x-input-error for="ruc" />
+                            </div>
+                        </div>
+                    @else
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                            <div class="sm:w-2/4 px-1">
+                                <x-input wire:model="nombre_persona" placeholder="Nombres completos"
+                                    class="text-center" />
+                                <x-input-error for="nombre_persona" />
+                            </div>
+                            <div class="sm:w-2/4 px-1">
+                                <div id="dniMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
+                                    Ingrese 8 dígitos
+                                </div>
+                                <x-input wire:model="dni" id="dni" placeholder="DNI" class="text-center" />
+                                <x-input-error for="dni" />
+                            </div>
+                        </div>
+                    @endif
+
+                    {{-- <div class="mb-4">
                         <x-input type="text" wire:model="nec_documento" placeholder="Documento de Identidad"
                             class="block mt-1" />
                         <x-input-error for="nec_documento" class="mt-2" />
@@ -37,7 +69,7 @@
                     <div class="mb-4">
                         <x-input type="text" wire:model="nec_entidad" placeholder="Nombre" class="block mt-1" />
                         <x-input-error for="nec_entidad" class="mt-2" />
-                    </div>
+                    </div> --}}
 
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                         <div class="sm:w-2/4 px-1">
@@ -53,8 +85,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección"
-                                class="block mt-1" />
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
 
@@ -69,12 +100,13 @@
 
                         <div class="mb-2">
                             <x-input type="text" wire:model="nec_titulo" placeholder="Breve título del problema"
-                                    class="block mt-1 text-center" />
+                                class="block mt-1 text-center" />
                             <x-input-error for="nec_titulo" class="mt-2" />
                         </div>
                         <div class="mb-2">
-                            <x-textarea wire:model="nec_descripcion" placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
-                                    class="block mt-1 w-full text-center" />
+                            <x-textarea wire:model="nec_descripcion"
+                                placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
+                                class="block mt-1 w-full text-center" />
                             <x-input-error for="nec_descripcion" class="mt-2" />
                         </div>
 
@@ -82,13 +114,14 @@
                             <div class="flex items-center justify-center">
                                 <label for="es_financiado" class="pr-4 font-normal">¿Desea financiarlo?</label>
                                 <label class="flex items-center pl-2">
-                                    <input type="radio" value="SI" wire:model="es_financiado" name="es_financiado"
-                                        id="es_financiado"
+                                    <input type="radio" value="SI" wire:model="es_financiado"
+                                        name="es_financiado" id="es_financiado"
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2 pr-6">SI</span>
                                 </label>
                                 <label class="flex items-center">
-                                    <input type="radio" value="NO" wire:model="es_financiado" name="es_financiado" id="es_financiado"
+                                    <input type="radio" value="NO" wire:model="es_financiado"
+                                        name="es_financiado" id="es_financiado"
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2">NO</span>
                                 </label>
