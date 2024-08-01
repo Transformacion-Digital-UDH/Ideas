@@ -1,19 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Livewire\Postulaciones;
 
+use Livewire\Component;
 use App\Models\Postulaciones;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 
-class MisPostulaciones extends Controller
+class ListaPostulaciones extends Component
 {
-    public function index()
-    {
-        $this->authorize('mis-postulaciones.ver');
+    public $postulaciones;
 
-        $postulaciones = $this->getPostulaciones();
-        return view('mis-postulaciones', compact('postulaciones'));
+    public function mount()
+    {
+       $this->postulaciones = $this->getPostulaciones();
+    }
+
+    public function render()
+    {
+        return view('livewire.postulaciones.lista-postulaciones');
+    }
+
+    public function abrirModalVer($id)
+    {
+        $this->dispatch('ver', $id);
     }
 
     public function getPostulaciones()
@@ -33,8 +43,6 @@ class MisPostulaciones extends Controller
 
         return $postulaciones;
     }
-
-    
 
     public function validarEstado($validar, $pos_estado)
     {

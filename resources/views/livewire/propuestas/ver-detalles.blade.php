@@ -14,31 +14,39 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Lugar</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_lugar }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_lugar }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Beneficiarios</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_beneficiarios }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ $propuesta->pro_beneficiarios }}</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problema a tratar</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_tratar }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problema a tratar
+                            </td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_tratar }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Causas</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_causas }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_causas }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Consecuencias</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_consecuencias }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ $propuesta->pro_consecuencias }}</td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Aportes</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_aportes }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_aportes }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problemáticas</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->problematicas }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ $propuesta->problematicas }}</td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Tipo</td>
@@ -50,15 +58,22 @@
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Curador</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->curador->name ?? 'N/A' }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ $propuesta->curador->name ?? 'N/A' }}</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Fecha de publicación</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ \Carbon\Carbon::parse($propuesta->pro_created)->format('d/m/Y \a \l\a\s H:i') }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Fecha de
+                                publicación</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ \Carbon\Carbon::parse($propuesta->pro_created)->format('d/m/Y \a \l\a\s H:i') }}
+                            </td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Última actualización</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ \Carbon\Carbon::parse($propuesta->pro_updated)->format('d/m/Y \a \l\a\s H:i') }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Última
+                                actualización</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ \Carbon\Carbon::parse($propuesta->pro_updated)->format('d/m/Y \a \l\a\s H:i') }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,7 +84,8 @@
             <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
                 Cerrar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})" wire:loading.attr="disabled">
+            <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})"
+                wire:loading.attr="disabled">
                 Postular
             </x-button>
         </x-slot>

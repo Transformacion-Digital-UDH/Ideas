@@ -1,5 +1,5 @@
 <div>
-    <x-dialog-modal wire:model="showModal" maxWidth="2xl">
+    <x-dialog-modal wire:model="showModal" maxWidth="5xl">
         <x-slot name="title">
             Curar necesidad
         </x-slot>
@@ -7,12 +7,13 @@
         <x-slot name="content">
             <div class="flex flex-wrap">
                 <!-- Columna izquierda (60%) -->
-                <div class="w-full lg:w-3/5 pt-4 lg:pr-5 lg:border-r">
+                <div class="w-full lg:w-3/6 pt-4 lg:pr-5 lg:border-r">
                     <div class="mb-6">
                         <h2 class="text-md font-bold text-sky-700">INFORMACIÓN DE SOLICITANTE</h2>
                         <ul class="mt-5 list-disc list-inside">
                             <li class="flex items-center">
-                                <div class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+                                <div
+                                    class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                                     <i class="fa fa-address-book" aria-hidden="true"></i>
                                 </div>
                                 <div class="text-md ml-3">
@@ -21,7 +22,8 @@
                                 </div>
                             </li>
                             <li class="flex items-center pt-6">
-                                <div class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+                                <div
+                                    class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                                     <i class="fa fa-mobile" aria-hidden="true"></i>
                                 </div>
                                 <div class="text-md ml-2">
@@ -30,15 +32,18 @@
                                 </div>
                             </li>
                             <li class="flex items-center pt-4">
-                                <div class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+                                <div
+                                    class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                                     <i class="fa fa-diamond" aria-hidden="true"></i>
                                 </div>
                                 <div class="text-md ml-3">
                                     <div class="py-4">
                                         @if ($necesidad->nec_financiar == 'NO')
-                                            <span class="inline-block mt-0 rounded-lg font-medium text-red-800 bg-red-100 px-1 relative">NO</span>
+                                            <span
+                                                class="inline-block mt-0 rounded-lg font-medium text-red-800 bg-red-100 px-1 relative">NO</span>
                                         @else
-                                            <span class="inline-block mt-0 rounded-lg font-medium text-green-800 bg-green-100 px-1 relative">SI</span>
+                                            <span
+                                                class="inline-block mt-0 rounded-lg font-medium text-green-800 bg-green-100 px-1 relative">SI</span>
                                         @endif
                                         deseo financiarlo.
                                     </div>
@@ -67,38 +72,38 @@
                 </div>
 
                 <!-- Columna derecha (40%) -->
-                <div class="w-full lg:w-2/5 lg:pl-5 mt-6 lg:mt-0">
+                <div class="w-full lg:w-3/6 lg:pl-5 mt-6 lg:mt-0">
                     <!-- Selección de Tipo -->
                     <div class="mb-4">
-                        <label for="tipo" class="block text-sm font-medium text-gray-700">Tipo</label>
-                        <select id="tipo" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="curso">Curso</option>
-                            <option value="tesis">Tesis</option>
-                            <option value="proyecto">Proyecto</option>
-                        </select>
+                        <div class="mt-1 flex justify-between gap-2 botones">
+                            <button id="btn-curso" onclick="selectOption('curso')"
+                                class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                Curso
+                            </button>
+                            <button id="btn-tesis" onclick="selectOption('tesis')"
+                                class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                Tesis
+                            </button>
+                            <button id="btn-proyecto" onclick="selectOption('proyecto')"
+                                class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                Proyecto
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Formulario -->
-                    <div id="form-container">
-                        <!-- Formulario dinámico basado en la selección -->
-                        <!-- Inicialmente se puede mostrar un formulario vacío o un mensaje -->
+                    <div class="w-100">
                         <form id="curso-form" class="hidden">
-                            <!-- Campos del formulario para Curso -->
-                            <h3 class="text-lg font-semibold mb-4">Formulario de Curso</h3>
-                            <!-- Agrega aquí los campos correspondientes -->
+                            @livewire('curaciones.guardar-curso')
                         </form>
 
-                        <form id="tesis-form" class="hidden">
-                            <!-- Campos del formulario para Tesis -->
-                            <h3 class="text-lg font-semibold mb-4">Formulario de Tesis</h3>
-                            <!-- Agrega aquí los campos correspondientes -->
-                        </form>
+                        <div id="tesis-form" class="hidden">
+                            @livewire('curaciones.guardar-tesis')
+                        </div>
 
-                        <form id="proyecto-form" class="hidden">
-                            <!-- Campos del formulario para Proyecto -->
-                            <h3 class="text-lg font-semibold mb-4">Formulario de Proyecto</h3>
-                            <!-- Agrega aquí los campos correspondientes -->
-                        </form>
+                        <div id="proyecto-form" class="hidden">
+                            @livewire('curaciones.guardar-proyecto')
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,28 +113,26 @@
             <x-secondary-button wire:click="$set('showModal', null)" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled">
-                Actualizar
-            </x-button>
         </x-slot>
     </x-dialog-modal>
 
     <script>
-        document.getElementById('tipo').addEventListener('change', function() {
-            // Ocultar todos los formularios
-            document.getElementById('curso-form').classList.add('hidden');
-            document.getElementById('tesis-form').classList.add('hidden');
-            document.getElementById('proyecto-form').classList.add('hidden');
+        function selectOption(value) {
+            const buttons = document.querySelectorAll('.botones button');
+            const forms = document.querySelectorAll('[id$="-form"]');
 
-            // Mostrar el formulario seleccionado
-            const selectedType = this.value;
-            if (selectedType === 'curso') {
-                document.getElementById('curso-form').classList.remove('hidden');
-            } else if (selectedType === 'tesis') {
-                document.getElementById('tesis-form').classList.remove('hidden');
-            } else if (selectedType === 'proyecto') {
-                document.getElementById('proyecto-form').classList.remove('hidden');
-            }
-        });
+            buttons.forEach(button => {
+                button.classList.remove('bg-blue-500', 'text-white');
+                button.classList.add('bg-white', 'text-gray-700');
+            });
+
+            forms.forEach(form => {
+                form.classList.add('hidden');
+            });
+
+            document.getElementById('btn-' + value).classList.remove('bg-white', 'text-gray-700');
+            document.getElementById('btn-' + value).classList.add('bg-blue-500', 'text-white');
+            document.getElementById(value + '-form').classList.remove('hidden');
+        }
     </script>
 </div>
