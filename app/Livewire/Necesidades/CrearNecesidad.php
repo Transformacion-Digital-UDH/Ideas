@@ -47,6 +47,15 @@
             $this->showModal = true;
         }
 
+        public function verNecesidad($id)
+        {
+            $necesidad = Necesidades::findOrFail($id);
+            // Lógica para ver la necesidad, por ejemplo, asignar valores a los atributos del componente
+            $this->nec_tipo = $necesidad->nec_tipo;
+            $this->nec_documento = $necesidad->nec_documento;
+            // Asignar otros atributos según sea necesario...
+        }
+
         public function guardarNecesidad()
         {
             $this->validate();
@@ -64,7 +73,6 @@
                 'user_id' => $this->user_id, 
             ]);
 
-            $this->emit('necesidadCreada');
             $this->reset();
             $this->closeModal();
         }
