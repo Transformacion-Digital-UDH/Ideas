@@ -39,7 +39,8 @@ class ListaPropuestas extends Component
         } else if (User::esRol('DOCENTE')) {
             $propuestas = Propuestas::where('pro_estado', 1)->orderBy('pro_id', 'desc')->where('pro_tipo', 'Curso')->get();
         } else {
-            $propuestas = Propuestas::where('pro_estado', 1)->orderBy('pro_id', 'desc')->get();
+            $propuestas = Propuestas::with('necesidad')
+                ->where('pro_estado', 1)->orderBy('pro_id', 'desc')->get();
         }
         return $propuestas ?? [];
     }

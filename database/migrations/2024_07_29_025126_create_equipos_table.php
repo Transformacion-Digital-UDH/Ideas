@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('equ_nombre', 150);
             $table->string('equ_descripcion', 255)->nullable();
             $table->string('equ_tipo', 50); // Curso - Semillero
-            $table->string('equ_seccion', 20)->nullable();
+            $table->string('equ_ciclo', 20)->nullable();
             $table->tinyInteger('equ_estado')->unsigned()->default(1);
             $table->timestamp('equ_created')->useCurrent();
             $table->timestamp('equ_updated')->useCurrent()->useCurrentOnUpdate();

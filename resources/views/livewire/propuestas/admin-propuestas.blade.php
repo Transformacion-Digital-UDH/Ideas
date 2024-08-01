@@ -5,10 +5,9 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">N°</th>
-                        <th scope="col" class="px-6 py-3">Propuesta</th>
-                        <th scope="col" class="px-6 py-3">Propuesta</th>
-                        <th scope="col" class="px-6 py-3">Registro</th>
-                        <th scope="col" class="px-6 py-3">Financiamiento</th>
+                        <th scope="col" class="px-6 py-3">Necesidad / Propuesta</th>
+                        <th scope="col" class="px-6 py-3">Curación</th>
+                        <th scope="col" class="px-6 py-3">Tipo</th>
                         <th scope="col" class="px-6 py-3 text-center">Estado</th>
                         <th scope="col" class="px-6 py-3 text-center">Acciones</th>
                     </tr>
@@ -21,27 +20,26 @@
                                 {{ $propuesta->pro_id }}
                             </th>
                             <td class="px-6 py-4">
-                                <strong class="text-gray-900">{{ $propuesta->nec_tipo }}</strong>
-                                <br>{{ $propuesta->nec_entidad }}
-                                {{ $propuesta->solicitante }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $propuesta->nec_titulo }}
+                                <strong class="text-gray-900">
+                                    {{ $propuesta->necesidad->nec_titulo }}
+                                </strong>
+                                <br>
+                                {{ $propuesta->pro_titulo }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $propuesta->pro_created->format('Y-m-d') }}<br>
                                 {{ $propuesta->pro_created->format('H:i') }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center">
-                                {{ $propuesta->es_financiado }}
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <b>{{ $propuesta->pro_tipo }}</b>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                <x-com_proceso :status="$propuesta->nec_proceso" />
+                                <x-estadoPropuesta :status="$propuesta->pro_proceso" />
                             </td>
                             <td class="px-6 py-4 text-center whitespace-nowrap">
                                 <button
-                                    class="middle px-2 py-1 bg-transparent border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                    Curar
+                                    class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                    <i class="fas fa-edit text-white"></i>
                                 </button>
                                 <button
                                     class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
