@@ -2,35 +2,43 @@
 
 namespace App\Livewire\Necesidades;
 
-use App\Models\Necesidades;
 use Livewire\Component;
+use App\Models\Necesidades;
+use Illuminate\Support\Facades\Auth;
 
-class ListaNecesidades extends Component
+
+class ListaNecesidad extends Component
 {
-    public $necesidades;
 
-    protected $listeners = ['guardado' => 'getNecesidades'];
+    public $necesidades;
+    public $showModal = false;
 
     public function mount()
     {
-        $this->necesidades = $this->getNecesidades();
+        $this->actualizarNecesidades();
+    }
+
+    public function abrirModal()
+    {
+        $this->showModal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->showModal = false;
+    }
+
+    public function actualizarNecesidades()
+    {
+        $this->necesidades = Necesidades::where('user_id', Auth::id())
+        ->orderBY('nec_created','desc')
+        ->get();
     }
 
     public function render()
     {
-        return view('livewire.necesidades.lista-necesidades');
+        return view('livewire.necesidades.lista-necesidad',[
+            'necesidades' => $this->necesidades,
+        ]);
     }
-
-
-    public function abrirEditar($id)
-    {
-        $this->dispatch('editar', $id);
-    }
-
-    public function getNecesidades()
-    {
-        $necesidades = Necesidades::where('es_financiado', 1)->get();
-        return $necesidades ?? [];
-    }
-
 }

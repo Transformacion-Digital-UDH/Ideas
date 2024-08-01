@@ -32,7 +32,7 @@
             'nec_direccion' => 'required|string|max:255',
             'nec_titulo' => 'required|string|max:255',
             'nec_descripcion' => 'required|string|max:255',
-            'es_financiado' => 'required|boolean',
+            'es_financiado' => 'required|string|in:SI,NO',
             'doc_nombre' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
         ];
 
@@ -45,6 +45,15 @@
         public function abrirModal()
         {
             $this->showModal = true;
+        }
+
+        public function verNecesidad($id)
+        {
+            $necesidad = Necesidades::findOrFail($id);
+            // Lógica para ver la necesidad, por ejemplo, asignar valores a los atributos del componente
+            $this->nec_tipo = $necesidad->nec_tipo;
+            $this->nec_documento = $necesidad->nec_documento;
+            // Asignar otros atributos según sea necesario...
         }
 
         public function guardarNecesidad()
@@ -60,7 +69,7 @@
                 'nec_email' => $this->nec_email,
                 'nec_telefono' => $this->nec_telefono,
                 'nec_direccion' => $this->nec_direccion,
-                'es_financiado' => $this->es_financiado ?? 'NO',
+                'es_financiado' => $this->es_financiado == '1' ? 'SI' : 'NO',
                 'user_id' => $this->user_id, 
             ]);
 
