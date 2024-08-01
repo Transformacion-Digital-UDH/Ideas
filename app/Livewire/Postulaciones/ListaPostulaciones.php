@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ListaPostulaciones extends Component
 {
-    public $postulaciones = [];
+    public $postulaciones;
 
     public function mount()
     {
-        $this->getPostulaciones();
+       $this->postulaciones = $this->getPostulaciones();
     }
 
     public function render()
