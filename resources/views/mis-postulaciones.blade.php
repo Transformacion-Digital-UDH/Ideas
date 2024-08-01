@@ -7,14 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-            <!-- @role('DOCENTE|ESTUDIANTEA')
-                @livewire('postulaciones.lista-postulaciones')
-            @endrole -->
             @livewire('postulaciones.lista-postulaciones')
         </div>
     </div>
 
     @livewire('propuestas.ver-detalles')
 </x-app-layout>
-
-
