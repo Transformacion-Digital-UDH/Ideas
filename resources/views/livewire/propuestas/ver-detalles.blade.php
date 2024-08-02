@@ -17,7 +17,7 @@
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_lugar }}
                             </td>
                         </tr>
-                        
+
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problema a tratar
                             </td>
@@ -77,10 +77,12 @@
             <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
                 Cerrar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})"
-                wire:loading.attr="disabled">
+
+            @if($mostrarBtnPostular)
+            <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})" wire:loading.attr="disabled">
                 Postular
             </x-button>
+            @endif
         </x-slot>
     </x-dialog-modal>
 </div>
