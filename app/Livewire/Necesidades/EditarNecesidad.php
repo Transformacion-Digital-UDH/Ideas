@@ -49,8 +49,9 @@ class EditarNecesidad extends Component
     public function editar($id)
     {
         $this->openModal(); // Abre el modal
-        $this->nec_tipo = $id;
+        
         $this->necesidad = Necesidades::find($id);
+        $this->nec_tipo = $this->necesidad->nec_tipo;
         $this->nec_entidad = $this->necesidad->nec_entidad;
         $this->nec_documento = $this->necesidad->nec_documento;
         $this->nec_email = $this->necesidad->nec_email;
