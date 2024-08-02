@@ -17,32 +17,32 @@
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_lugar }}
                             </td>
                         </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Beneficiarios</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                {{ $propuesta->pro_beneficiarios }}</td>
-                        </tr>
+
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problema a tratar
                             </td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_tratar }}
                             </td>
                         </tr>
+                        @if (Auth::user()->esRol('ESTUDIANTE'))
+                        <tr>
+                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Beneficiarios</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ $propuesta->pro_beneficiarios }}</td>
+                        </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Causas</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_causas }}
-                            </td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_causas }}</td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Consecuencias</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                {{ $propuesta->pro_consecuencias }}</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_consecuencias }}</td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Aportes</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_aportes }}
-                            </td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_aportes }}</td>
                         </tr>
+                        @endif
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problemáticas</td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
@@ -68,13 +68,6 @@
                                 {{ \Carbon\Carbon::parse($propuesta->pro_created)->format('d/m/Y \a \l\a\s H:i') }}
                             </td>
                         </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Última
-                                actualización</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                {{ \Carbon\Carbon::parse($propuesta->pro_updated)->format('d/m/Y \a \l\a\s H:i') }}
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -84,10 +77,12 @@
             <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
                 Cerrar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})"
-                wire:loading.attr="disabled">
+
+            @if($mostrarBtnPostular)
+            <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})" wire:loading.attr="disabled">
                 Postular
             </x-button>
+            @endif
         </x-slot>
     </x-dialog-modal>
 </div>

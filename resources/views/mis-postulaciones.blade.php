@@ -11,5 +11,5 @@
         </div>
     </div>
 
-    @livewire('propuestas.ver-detalles')
+    @livewire('propuestas.ver-detalles', ['mostrarBtnPostular' => false])
 </x-app-layout>
