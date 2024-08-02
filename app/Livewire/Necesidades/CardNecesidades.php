@@ -11,17 +11,18 @@ class CardNecesidades extends Component
 {
     public $necesidades;
 
-    protected $listeners = ['guardado' => 'getNecesidades'];
+    protected $listeners = ['guardado' => 'getNecesidades',  'necesidadActualizada' => 'getNecesidades'];
 
     public function mount()
     {
-        $this->necesidades = $this->getNecesidades();
+        $this->getNecesidades();
     }
     //visualizar la necesidad-modal
     public function verNecesidad($id)
     {
         $this->dispatch('ver', $id);
     }
+
     public function eliminarNecesidad($id)
     {
         // Encuentra la necesidad por ID
@@ -33,18 +34,20 @@ class CardNecesidades extends Component
 
             // Actualiza la lista de necesidades después de la eliminación
             $this->getNecesidades();
-
-            // mensaje de éxito
-            Session::flash('message', 'Necesidad eliminada correctamente.');
         } 
+    }
+
+    public function editarNecesidad($id)
+    {
+        $this->dispatch('editar', $id);
     }
 
     public function getNecesidades()
     {
-        $necesidades = Necesidades::where('user_id', Auth::id())
+        $this->necesidades = Necesidades::where('user_id', Auth::id())
             ->orderBY('nec_created', 'desc')
             ->get();
-        return $necesidades ?? [];
+        
     }
 
     public function render()

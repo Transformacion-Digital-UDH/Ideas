@@ -16,7 +16,7 @@
 
                 <form wire:submit.prevent="submitForm" enctype="multipart/form-data">
                     <div class="mb-4">
-                        <x-select wire:model="nec_tipo" class="block w-full">
+                        <x-select wire:model="nec_tipo" wire:change="ruc_dni" class="block w-full">
                             <option value="" selected hidden>Seleccione tipo de entidad...</option>
                             <option value="Empresa privada">Empresa privada</option>
                             <option value="Institución pública">Institución pública</option>
@@ -31,45 +31,34 @@
                     @if ($es_institucion)
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="nombre_entidad" placeholder="Nombre de la institución"
+                                <x-input wire:model="nec_entidad" placeholder="Nombre de la institución"
                                     class="text-center" />
-                                <x-input-error for="nombre_entidad" />
+                                <x-input-error for="nec_entidad" />
                             </div>
                             <div class="sm:w-2/4 px-1">
                                 <div id="rucMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
                                     Ingrese 11 dígitos
                                 </div>
-                                <x-input wire:model="ruc" id="ruc" placeholder="RUC" class="text-center" />
-                                <x-input-error for="ruc" />
+                                <x-input wire:model="nec_documento" id="ruc" placeholder="RUC" class="text-center" />
+                                <x-input-error for="nec_documento" />
                             </div>
                         </div>
                     @else
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="nombre_persona" placeholder="Nombres completos"
+                                <x-input wire:model="nec_entidad" placeholder="Nombres completos"
                                     class="text-center" />
-                                <x-input-error for="nombre_persona" />
+                                <x-input-error for="nec_entidad" />
                             </div>
                             <div class="sm:w-2/4 px-1">
                                 <div id="dniMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
                                     Ingrese 8 dígitos
                                 </div>
-                                <x-input wire:model="dni" id="dni" placeholder="DNI" class="text-center" />
-                                <x-input-error for="dni" />
+                                <x-input wire:model="nec_documento" id="dni" placeholder="DNI" class="text-center" />
+                                <x-input-error for="nec_documento" />
                             </div>
                         </div>
                     @endif
-
-                    {{-- <div class="mb-4">
-                        <x-input type="text" wire:model="nec_documento" placeholder="Documento de Identidad"
-                            class="block mt-1" />
-                        <x-input-error for="nec_documento" class="mt-2" />
-                    </div>
-
-                    <div class="mb-4">
-                        <x-input type="text" wire:model="nec_entidad" placeholder="Nombre" class="block mt-1" />
-                        <x-input-error for="nec_entidad" class="mt-2" />
-                    </div> --}}
 
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                         <div class="sm:w-2/4 px-1">
@@ -85,7 +74,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1" />
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1 text-center" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
 
@@ -133,7 +122,7 @@
                         <h2 class="text-2xl font-bold text-center text-sky-700">Adjuntar Archivos</h2>
                         <p class="text-sm text-gray-600 text-left my-2">
                             Opcionalmente, puede proporcionar más información sobre su problema para una mejor solución,
-                            puede adjuntar un archivo haciendo clic en el siguiente apartado.
+                            puede adjuntar un archivo haciendo click en el siguiente apartado.
                         </p>
 
                         <input type="file" wire:model="doc_nombre"

@@ -11,12 +11,14 @@ class VerDetalles extends Component
     use GestionarModal;
 
     public $propuesta;
+    public $mostrarBtnPostular;
 
     protected $listeners = ['ver'];
 
-    public function mount()
+    public function mount($mostrarBtnPostular = true)
     {
         $this->propuesta = new Propuestas();
+        $this->mostrarBtnPostular = $mostrarBtnPostular;
     }
 
     public function ver($id)

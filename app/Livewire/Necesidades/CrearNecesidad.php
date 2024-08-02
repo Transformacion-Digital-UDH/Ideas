@@ -5,6 +5,7 @@ namespace App\Livewire\Necesidades;
 use App\Models\Necesidades;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class CrearNecesidad extends Component
 {
@@ -27,21 +28,18 @@ class CrearNecesidad extends Component
 
 
     protected $rules = [
-        'tipo_institucion' => ['required', 'string'],
-        'nombre_entidad' => ['nullable', 'string'],
-        'ruc' => ['nullable', 'string', 'min:11', 'max:11'],
-        'nombre_persona' => ['nullable', 'string'],
-        'dni' => ['nullable', 'string', 'min:8', 'max:8'],
-        'email' => ['required', 'email'],
-        'telefono' => ['required', 'string', 'min:9', 'max:9'],
-        'direccion' => ['required', 'string', 'max:255'],
-        'problema' => ['required', 'string', 'min:10', 'max:100'],
-        'descripcion' => ['required', 'string', 'min:20'],
-        // 'es_financiado' => ['string', 'in:SI,NO'],
-        'file_1' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-        'file_2' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+        'nec_tipo' => ['required', 'string'],
+        'nec_entidad' => ['nullable', 'string'],
+        'nec_documento' => ['nullable', 'string', 'min:8', 'max:11'],
+        'nec_email' => ['required', 'email'],
+        'nec_telefono' => ['required', 'string', 'min:9', 'max:9'],
+        'nec_direccion' => ['required', 'string', 'max:255'],
+        'nec_titulo' => ['required', 'string', 'min:10', 'max:100'],
+        'nec_descripcion' => ['required', 'string', 'min:20'],
+        'doc_nombre' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+       /* 'file_2' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
         'file_3' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-        'file_4' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+        'file_4' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],*/
     ];
 
     public function mount()
@@ -68,8 +66,8 @@ class CrearNecesidad extends Component
             'nec_email' => $this->nec_email,
             'nec_telefono' => $this->nec_telefono,
             'nec_direccion' => $this->nec_direccion,
-            'es_financiado' => $this->es_financiado == '1' ? 'SI' : 'NO',
-            'user_id' => $this->user_id,
+            'es_financiado' => $this->es_financiado,
+            'user_id' => Auth::id(),
         ]);
         $this->dispatch('guardado');
         $this->reset();
@@ -77,7 +75,7 @@ class CrearNecesidad extends Component
 
     public function ruc_dni()
     {
-        $this->es_institucion = $this->tipo_institucion !== 'Ciudadano';
+        $this->es_institucion = $this->nec_tipo!== 'Ciudadano';
     }
     
     public function closeModal()
