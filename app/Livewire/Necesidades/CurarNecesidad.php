@@ -27,6 +27,7 @@ class CurarNecesidad extends Component
     {
         $this->openModal();
         $this->necesidad = Necesidades::find($id);
+        $this->dispatch('enviarId', $this->necesidad->nec_id);
     }
 
     public function guardar()

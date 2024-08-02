@@ -5,7 +5,6 @@ namespace App\Livewire\Necesidades;
 use App\Models\Necesidades;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Illuminate\Support\Facades\Session;
 
 class CardNecesidades extends Component
 {
@@ -17,6 +16,7 @@ class CardNecesidades extends Component
     {
         $this->getNecesidades();
     }
+
     //visualizar la necesidad-modal
     public function verNecesidad($id)
     {
@@ -30,11 +30,11 @@ class CardNecesidades extends Component
 
         if ($necesidad) {
             // Si se encuentra la necesidad, elimínala
-            $necesidad->delete();
-
+            $necesidad->nec_estado = 0;
+            $necesidad->save();
             // Actualiza la lista de necesidades después de la eliminación
             $this->getNecesidades();
-        } 
+        }
     }
 
     public function editarNecesidad($id)
@@ -44,10 +44,9 @@ class CardNecesidades extends Component
 
     public function getNecesidades()
     {
-        $this->necesidades = Necesidades::where('user_id', Auth::id())
+        $this->necesidades = Necesidades::where('nec_estado', 1)->where('user_id', Auth::id())
             ->orderBY('nec_created', 'desc')
             ->get();
-        
     }
 
     public function render()
