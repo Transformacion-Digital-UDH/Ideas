@@ -1,9 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Mis necesidades') }}
-        </h2>
-        <div class="flex justify-center items-center mt-6">
+        <div class="flex justify-center items-center mt-2">
             <div class="relative justify-center items-center FL p-1 border border-gray-200 rounded-lg w-full max-w-lg">
                 <div class="relative flex items-center">
                     <input data-table="table_id" type="text" placeholder="Buscar..."
@@ -21,7 +18,7 @@
         </div>
 
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-                    @livewire('necesidades.card-necesidades')
+            @livewire('necesidades.card-necesidades')
         </div>
     </div>
 
