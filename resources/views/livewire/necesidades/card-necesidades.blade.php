@@ -13,6 +13,10 @@
                                 class="bg-blue-100 font-bold text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-200">
                                 Ver detalles
                             </button>
+                            <button wire:click="editarNecesidad({{ $necesidad->nec_id }})"
+                                class="bg-lime-100 font-bold text-lime-600 px-4 py-2 rounded-lg hover:bg-lime-200">
+                                Editar
+                            </button>
                             <button wire:click="eliminarNecesidad({{ $necesidad->nec_id }})"
                                 class="bg-red-100 font-bold text-white px-4 py-2 rounded-lg hover:bg-red-600">
                                 Eliminar
@@ -24,4 +28,5 @@
             </div>
         @endforeach
     </div>
+
 </div>

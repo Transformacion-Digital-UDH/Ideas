@@ -22,6 +22,7 @@ class CardNecesidades extends Component
     {
         $this->dispatch('ver', $id);
     }
+
     public function eliminarNecesidad($id)
     {
         // Encuentra la necesidad por ID
@@ -37,6 +38,11 @@ class CardNecesidades extends Component
             // mensaje de éxito
             Session::flash('message', 'Necesidad eliminada correctamente.');
         } 
+    }
+
+    public function editarNecesidad($id)
+    {
+        $this->dispatch('editar', $id);
     }
 
     public function getNecesidades()
