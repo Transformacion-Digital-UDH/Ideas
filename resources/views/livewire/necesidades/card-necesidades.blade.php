@@ -10,16 +10,16 @@
                             {{ $necesidad->nec_created->format('Y-m-d') ?? '' }}</p>
                         <div>
                             <button wire:click="verNecesidad({{ $necesidad->nec_id }})"
-                                class="bg-blue-100 font-bold text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-200">
-                                Ver detalles
+                                class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                <i class="fas fa-eye text-white"></i>
                             </button>
                             <button wire:click="editarNecesidad({{ $necesidad->nec_id }})"
-                                class="bg-lime-100 font-bold text-lime-600 px-4 py-2 rounded-lg hover:bg-lime-200">
-                                Editar
+                                class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                <i class="fas fa-edit text-white"></i>
                             </button>
                             <button wire:click="eliminarNecesidad({{ $necesidad->nec_id }})"
-                                class="bg-red-100 font-bold text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                                Eliminar
+                                class="middle px-2 py-1 bg-red-600 border border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                <i class="fas fa-trash text-white"></i>
                             </button>
                         </div>
                     </div>
