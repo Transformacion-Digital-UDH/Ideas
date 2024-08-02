@@ -60,6 +60,8 @@ class EditarNecesidad extends Component
         $this->nec_descripcion = $this->necesidad->nec_descripcion;
         $this->es_financiado = $this->necesidad->es_financiado;
         $this->doc_nombre = $this->necesidad->doc_nombre;
+        //resetear la validación
+        $this->resetValidation();
 
     }
 
