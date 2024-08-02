@@ -5,6 +5,7 @@ namespace App\Livewire\Necesidades;
 use App\Models\Necesidades;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class CrearNecesidad extends Component
 {
@@ -66,7 +67,7 @@ class CrearNecesidad extends Component
             'nec_telefono' => $this->nec_telefono,
             'nec_direccion' => $this->nec_direccion,
             'es_financiado' => $this->es_financiado,
-            'user_id' => $this->user_id,
+            'user_id' => Auth::id(),
         ]);
         $this->dispatch('guardado');
         $this->reset();
