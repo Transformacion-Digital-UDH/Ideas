@@ -130,7 +130,9 @@
             <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled">
+            <x-button class="ml-2" wire:click="actualizar" 
+                wire:loading.attr="disabled" 
+                :disabled="!$isEditable">
                 Actualizar
             </x-button>
         </x-slot>
