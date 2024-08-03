@@ -24,6 +24,7 @@ class EditarNecesidad extends Component
     public $es_financiado;
     public $doc_nombre;
     public $user_id;
+    public $nec_proceso;
 
     protected $listeners = ['editar'];
     protected $rules = [
@@ -49,8 +50,9 @@ class EditarNecesidad extends Component
     public function editar($id)
     {
         $this->openModal(); // Abre el modal
-        $this->nec_tipo = $id;
+        
         $this->necesidad = Necesidades::find($id);
+        $this->nec_tipo = $this->necesidad->nec_tipo;
         $this->nec_entidad = $this->necesidad->nec_entidad;
         $this->nec_documento = $this->necesidad->nec_documento;
         $this->nec_email = $this->necesidad->nec_email;
@@ -60,11 +62,14 @@ class EditarNecesidad extends Component
         $this->nec_descripcion = $this->necesidad->nec_descripcion;
         $this->es_financiado = $this->necesidad->es_financiado;
         $this->doc_nombre = $this->necesidad->doc_nombre;
+        $this->nec_proceso = $this->necesidad->nec_proceso;
+        //resetear la validación
+        $this->resetValidation();
 
     }
 
     public function actualizar()
-    {
+    {   
         $this->validate();
 
         $this->necesidad->update([
@@ -89,6 +94,10 @@ class EditarNecesidad extends Component
         $this->es_institucion = $this->nec_tipo!== 'Ciudadano';
     }
 
+    public function isEditable()
+    {
+        return $this->nec_proceso === 'Pendiente';
+    }
 
     public function closeModal()
     {
@@ -97,6 +106,8 @@ class EditarNecesidad extends Component
 
     public function render()
     {
-        return view('livewire.necesidades.editar-necesidad');
+        return view('livewire.necesidades.editar-necesidad',[
+            'isEditable'=> $this->isEditable(),
+        ]);
     }
 }
