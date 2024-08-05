@@ -5,7 +5,7 @@
                 placeholder="Dónde se va a implementar" />
             <x-input-error for="pro_lugar" class="mt-2" />
         </div>
-        <div class="mt-4">
+        <div class="mt-2">
             <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_beneficiarios"
                 placeholder="A quiénes va a beneficiar" />
             <x-input-error for="pro_beneficiarios" class="mt-2" />

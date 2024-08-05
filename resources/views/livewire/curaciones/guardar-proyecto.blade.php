@@ -1,8 +1,8 @@
 <div>
     <form>
         <div class="mt-5">
-            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_titulo"
-                placeholder="Ingrese un título tentativo" />
+            <x-textarea class="block mt-1 w-full" rows="2" wire:model.defer="pro_titulo"
+                placeholder="Ingrese un título tentativo." />
             <x-input-error for="pro_titulo" class="mt-2" />
         </div>
         <div class="mt-5">

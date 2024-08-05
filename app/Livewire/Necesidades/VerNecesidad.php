@@ -22,7 +22,7 @@ class VerNecesidad extends Component
     public function ver($id)
     {
         $this->openModal();
-        $this->necesidad = Necesidades::find($id);
+        $this->necesidad = Necesidades::with('propuestas')->find($id);
     }
 
     public function closeModal()
