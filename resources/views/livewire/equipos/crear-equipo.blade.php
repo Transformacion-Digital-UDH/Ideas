@@ -21,14 +21,6 @@
                     @if($es_curso)
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="equ_codigo" placeholder="Resolución"
-                                    class="block mt-1 text-center" />
-                                <x-input-error for="equ_codigo" class="mt-2" />
-                            </div>
-                        </div>
-                    @else 
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
-                            <div class="sm:w-2/4 px-1">
                                 <x-input wire:model="equ_codigo" placeholder="Código"
                                     class="block mt-1 text-center" />
                                 <x-input-error for="equ_codigo" class="mt-2" />
@@ -39,6 +31,14 @@
                                 <x-input-error for="equ_ciclo" class="mt-2" />
                             </div>
                         </div>
+                    @else 
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                        <div class="sm:w-2/4 px-1">
+                            <x-input wire:model="equ_codigo" placeholder="Resolución"
+                                class="block mt-1 text-center" />
+                            <x-input-error for="equ_codigo" class="mt-2" />
+                        </div>
+                    </div>
 
                     @endif
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">

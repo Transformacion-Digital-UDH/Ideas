@@ -48,7 +48,7 @@ class CrearEquipo extends Component
     }
     public function curso_sem()
     {
-        $this->es_curso = $this->equ_tipo!='Curso';
+        $this->es_curso = $this->equ_tipo =='Curso';
     }
     public function closeModal()
     {

@@ -10,7 +10,7 @@ class ListarEquipo extends Component
     
     public $equipos;
 
-    protected $listeners = ['guardado'=> 'getEquipos'];
+    protected $listeners = ['guardado'=> 'getEquipos','EquipoActualizado'=>'getEquipos'];
 
     public function mount()
     {
