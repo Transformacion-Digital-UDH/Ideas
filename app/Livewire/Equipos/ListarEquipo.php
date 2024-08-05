@@ -8,28 +8,18 @@ use Livewire\Component;
 class ListarEquipo extends Component
 {
     
-    public $equipos = [];
-    public $searchQuery = '';
+    public $equipos;
 
-    protected $listeners = ['searchUpdated'];
+    protected $listeners = ['guardado'=> 'getEquipos'];
 
     public function mount()
     {
-        $this->equipos = Equipos::all();
+        $this->getEquipos();
     }
 
-    public function searchUpdated($query)
+    public function getEquipos()
     {
-        $this->searchQuery = $query;
-        $this->filterEquipos();
-    }
-
-    public function filterEquipos()
-    {
-        $this->equipos = EquipoS::where('equ_nombre', 'like', '%' . $this->searchQuery . '%')
-                                ->orWhere('equ_descripcion', 'like', '%' . $this->searchQuery . '%')
-                                ->orWhere('equ_codigo', 'like', '%' . $this->searchQuery . '%')
-                                ->get();
+        $this->equipos = Equipos::where('equ_estado', 1)->get();
     }
 
     public function verEquipo($id)
