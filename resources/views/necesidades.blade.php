@@ -13,4 +13,5 @@
         </div>
     </div>
     @livewire('necesidades.curar-necesidad')
+    @livewire('necesidades.ver-necesidad')
 </x-app-layout>

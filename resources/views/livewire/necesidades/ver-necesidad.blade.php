@@ -18,7 +18,6 @@
                             </td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                 {{ $necesidad->nec_entidad }}
-                                <x-input-error for="nec_entidad" />
                             </td>
                         </tr>
                         <tr>
@@ -51,6 +50,22 @@
                         </tr>
                     </tbody>
                 </table>
+                @role('VRI|ESCUELA')
+                    <h3 class="text-md font-bold text-sky-700 pt-5">Propuestas</h3>
+                    @if (count($necesidad->propuestas) > 0)
+                        @foreach ($necesidad->propuestas as $propuesta)
+                            <div class="py-2 px-3 border border-gray-300 my-3">
+                                <p>{{ $propuesta->pro_titulo }}</p>
+                                <div class="flex justify-between items-center">
+                                    <b>{{ $propuesta->pro_tipo }}</b>
+                                    <x-estadoPropuesta :status="$propuesta->pro_proceso" />
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <p class="mt-2 text-sm">No hay propuestas para esta necesidad.</p>
+                    @endif
+                @endrole
             </div>
         </x-slot>
 
@@ -60,6 +75,6 @@
             </x-secondary-button>
         </x-slot>
     </x-dialog-modal>
-    {{--------
-    @livewire('necesidades.editar-necesidad')-------}}
+    {{-- ------
+    @livewire('necesidades.editar-necesidad')----- --}}
 </div>
