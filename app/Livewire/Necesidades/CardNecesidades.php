@@ -49,6 +49,11 @@ class CardNecesidades extends Component
             ->get();
     }
 
+    public function es_editable($proceso)
+    {
+        return $proceso == 'Pendiente' ? true : false;
+    }
+
     public function render()
     {
         return view('livewire.necesidades.card-necesidades');

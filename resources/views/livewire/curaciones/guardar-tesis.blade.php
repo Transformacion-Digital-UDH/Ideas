@@ -2,22 +2,17 @@
     <form>
         <div class="mt-4">
             <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_lugar"
-                placeholder="Dónce se va a implementar" />
+                placeholder="Dónde se va a implementar" />
             <x-input-error for="pro_lugar" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_lugar"
-                placeholder="A quienes va a veneficiar" />
-            <x-input-error for="pro_lugar" class="mt-2" />
-        </div>
-        <div class="mt-2">
             <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_beneficiarios"
-                placeholder="Dónde se va implementar" />
+                placeholder="A quiénes va a beneficiar" />
             <x-input-error for="pro_beneficiarios" class="mt-2" />
         </div>
         <div class="mt-2">
             <x-textarea class="block mt-1 w-full" rows="2" wire:model.defer="problematicas"
-                placeholder="Ingresa la problematica a tratar." />
+                placeholder="Problematica a tratar" />
             <x-input-error for="problematicas" class="mt-2" />
         </div>
         <div class="mt-2">
@@ -26,9 +21,9 @@
             <x-input-error for="pro_causas" class="mt-2" />
         </div>
         <div class="mt-2">
-            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_consecunecias"
+            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_consecuencias"
                 placeholder="Cuáles son las consecuencias" />
-            <x-input-error for="pro_consecunecias" class="mt-2" />
+            <x-input-error for="pro_consecuencias" class="mt-2" />
         </div>
         <div class="mt-2">
             <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_aportes"
@@ -67,8 +62,8 @@
         </div>
 
         <div class="mt-6 text-right">
-            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled">
-                Curar para Curso
+            <x-button type="button" class="ml-2" wire:click="curarTesis" wire:loading.attr="disabled">
+                Curar para Tesis
             </x-button>
         </div>
     </form>

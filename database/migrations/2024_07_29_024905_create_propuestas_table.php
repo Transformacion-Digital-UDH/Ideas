@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('pro_tratar')->nullable();
             $table->text('pro_causas')->nullable();
             $table->text('pro_consecuencias')->nullable();
+            $table->text('pro_justificacion')->nullable();
             $table->string('pro_aportes')->nullable();
             $table->text('problematicas')->nullable();
             $table->string('variable_1', 150)->nullable();
