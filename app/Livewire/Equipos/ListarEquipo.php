@@ -26,6 +26,16 @@ class ListarEquipo extends Component
     {
         $this->dispatch('ver', $id);
     }
+    public function eliminarEquipo($id)
+    {
+        $equipo = Equipos::find($id);
+
+        if ($equipo) {
+            $equipo->equ_estado = 0;
+            $equipo->save();
+            $this->getEquipos();
+        }
+    }
 
     public function editarEquipo($id)
     {
