@@ -25,7 +25,7 @@
             <x-input-error for="pro_justificacion" class="mt-2" />
         </div>
         <div class="mt-8 text-right">
-            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled">
+            <x-button type="button" class="ml-2" wire:click="curarProyecto" wire:loading.attr="disabled">
                 Curar para Proyecto
             </x-button>
         </div>

@@ -76,34 +76,41 @@
                     <!-- Selección de Tipo -->
                     <div class="mb-4">
                         <div class="mt-1 flex justify-between gap-2 botones">
-                            <button id="btn-curso" onclick="selectOption('curso')"
-                                class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
-                                Curso
-                            </button>
-                            <button id="btn-tesis" onclick="selectOption('tesis')"
-                                class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
-                                Tesis
-                            </button>
-                            <button id="btn-proyecto" onclick="selectOption('proyecto')"
-                                class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
-                                Proyecto
-                            </button>
+                            @role('ESCUELA')
+                                <button id="btn-curso" onclick="selectOption('curso')"
+                                    class="flex-1 py-2 px-3 bg-blue-500 text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                    Curso
+                                </button>
+                                <button id="btn-tesis" onclick="selectOption('tesis')"
+                                    class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                    Tesis
+                                </button>
+                            @endrole
+                            @role('VRI')
+                                <button id="btn-proyecto" onclick="selectOption('proyecto')"
+                                    class="flex-1 py-2 px-3 border bg-blue-500 text-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                    Proyecto
+                                </button>
+                            @endrole
                         </div>
                     </div>
 
                     <!-- Formulario -->
                     <div class="w-100">
-                        <form id="curso-form" class="hidden">
-                            @livewire('curaciones.guardar-curso')
-                        </form>
+                        @role('ESCUELA')
+                            <form id="curso-form">
+                                @livewire('curaciones.guardar-curso')
+                            </form>
 
-                        <div id="tesis-form" class="hidden">
-                            @livewire('curaciones.guardar-tesis')
-                        </div>
-
-                        <div id="proyecto-form" class="hidden">
-                            @livewire('curaciones.guardar-proyecto')
-                        </div>
+                            <div id="tesis-form" class="hidden">
+                                @livewire('curaciones.guardar-tesis')
+                            </div>
+                        @endrole
+                        @role('VRI')
+                            <form id="proyecto-form">
+                                @livewire('curaciones.guardar-proyecto')
+                            </form>
+                        @endrole
                     </div>
                 </div>
             </div>
@@ -120,6 +127,10 @@
         function selectOption(value) {
             const buttons = document.querySelectorAll('.botones button');
             const forms = document.querySelectorAll('[id$="-form"]');
+
+            if (value == null) {
+                value = buttons[0].id.split('-')[1];
+            }
 
             buttons.forEach(button => {
                 button.classList.remove('bg-blue-500', 'text-white');

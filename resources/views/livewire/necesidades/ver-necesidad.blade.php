@@ -18,7 +18,6 @@
                             </td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                 {{ $necesidad->nec_entidad }}
-                                <x-input-error for="nec_entidad" />
                             </td>
                         </tr>
                         <tr>
