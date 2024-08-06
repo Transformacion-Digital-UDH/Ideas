@@ -5,7 +5,7 @@
         case 'En Espera':
             $clase = 'text-gray-500 bg-gray-100/60';
             break;
-        case 'Aprobada':
+        case 'Asignado':
             $clase = 'text-teal-500 bg-teal-100/60';
             break;
         case 'En Desarrollo':

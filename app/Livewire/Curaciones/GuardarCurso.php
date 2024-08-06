@@ -33,6 +33,8 @@ class GuardarCurso extends Component
             'pro_beneficiarios' => ['required', 'string', 'max:255'],
             'problematicas' => ['required', 'string', 'max:800'],
         ]);
+
+        DB::beginTransaction();
         $propuestas = new Propuestas();
         $propuestas->pro_titulo = $this->pro_titulo;
         $propuestas->problematicas = $this->problematicas;
@@ -44,12 +46,11 @@ class GuardarCurso extends Component
         $propuestas->curador_id = auth()->user()->id;
         $propuestas->save();
         Necesidades::find($this->nec_id)
-        ->update(['nec_proceso' => 'En Revisión']);
+            ->update(['nec_proceso' => 'En Revisión']);
 
-        // DB::commit();
-        $this->dispatch('curado');
+        DB::commit();
+        redirect(route('propuestas'));
         $this->reset();
-        DB::beginTransaction();
         try {
         } catch (\Exception $e) {
             DB::rollBack();
