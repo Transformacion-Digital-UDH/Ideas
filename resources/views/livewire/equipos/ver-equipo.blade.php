@@ -32,7 +32,7 @@
                             <td class="px-6 py-4 whitespace-normal text-md font-medium
                              text-gray-800">Estado</td>
                             <td class="px-6 py-4 whitespace-normal text-md ">
-                                <x-est_equipo :status="$equipo->equ_estado" />
+                                <x-estadoItem :status="$equipo->equ_estado" />
                             </td>
                         </tr>
                         <tr>
