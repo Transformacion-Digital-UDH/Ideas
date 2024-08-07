@@ -10,7 +10,7 @@
             @role('VRI|ESCUELA')
                 @livewire('propuestas.admin-propuestas')
             @endrole
-            @role('DOCENTE|ESTUDIANTE')
+            @role('DOCENTE|ESTUDIANTE|PROYECTISTA')
                 @livewire('propuestas.lista-propuestas')
             @endrole
         </div>

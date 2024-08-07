@@ -27,7 +27,7 @@
                             {{ $equipo->equ_created->format('H:i') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
-                            <x-est_equipo :status="$equipo->equ_estado" />
+                            <x-estadoItem :status="$equipo->equ_estado" />
                         </td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">
                             <button wire:click='verEquipo({{ $equipo->equ_id }})'

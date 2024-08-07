@@ -43,6 +43,12 @@ class UserSeeder extends Seeder
             'telefono' => '123456789',
         ])->assignRole('ESTUDIANTE');
 
+        User::factory()->create([
+            'name' => 'Proyectista',
+            'email' => 'proyectista@udh.edu.pe',
+            'telefono' => '123456789',
+        ])->assignRole('PROYECTISTA');
+
         // User::factory(10)->create();
     }
 }

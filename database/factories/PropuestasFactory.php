@@ -27,6 +27,7 @@ class PropuestasFactory extends Factory
             'pro_consecuencias' => $this->faker->paragraph,
             'pro_aportes' => $this->faker->sentence,
             'problematicas' => $this->faker->paragraph,
+            'pro_justificacion' => $this->faker->paragraph,
             'variable_1' => $this->faker->word,
             'variable_2' => $this->faker->word,
             'pro_tipo' => $this->faker->randomElement(['Curso', 'Tesis', 'Proyecto']),
