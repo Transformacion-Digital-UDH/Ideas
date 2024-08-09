@@ -90,13 +90,14 @@
             <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
                 Cerrar
             </x-secondary-button>
-
+            @role('PROYECTISTA|ESTUDIANTE|DOCENTE')
             @if ($mostrarBtnPostular)
                 <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})"
                     wire:loading.attr="disabled">
                     Postular
                 </x-button>
             @endif
+            @endrole
         </x-slot>
     </x-dialog-modal>
 </div>
