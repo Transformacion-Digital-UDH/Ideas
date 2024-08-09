@@ -6,6 +6,7 @@ use App\Models\Equipos;
 use App\Models\Postulaciones;
 use App\Rules\UnicaPostulacion;
 use App\Traits\GestionarModal;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class PostularPropuesta extends Component
@@ -32,7 +33,7 @@ class PostularPropuesta extends Component
     {
         $this->openModal(); // Abre el modal
         $this->pro_id = $id;
-        $this->user_id = auth()->user()->id;
+        $this->user_id = Auth::user()->id;
         $this->pos_semestre = $this->getSemestre();
     }
 

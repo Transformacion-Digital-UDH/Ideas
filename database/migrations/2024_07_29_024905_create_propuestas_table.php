@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('pro_proceso', 20)->default('En Espera');
             $table->foreignId('curador_id')->references('id')->on('users');
             $table->foreignId('nec_id')->references('nec_id')->on('necesidades');
-            $table->foreignId('proyectista_id')->nullable()->constrained('proyectistas', 'proy_id');
             $table->tinyInteger('pro_estado')->unsigned()->default(1);
             $table->timestamp('pro_created')->useCurrent();
             $table->timestamp('pro_updated')->useCurrent()->useCurrentOnUpdate();
