@@ -1,3 +1,4 @@
+
 <div>
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4">
         <div class="relative overflow-x-auto">
@@ -37,7 +38,7 @@
                                 <x-estadoPropuesta :status="$propuesta->pro_proceso" />
                             </td>
                             <td class="px-6 py-4 text-center whitespace-nowrap">
-                                <button wire:click="editarNecesidad({{ $propuesta->pro_id }})"
+                                <button wire:click="abrirModalEditar({{ $propuesta->pro_id }})"
                                     class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                     <i class="fas fa-edit text-white"></i>
                                 </button>
@@ -54,3 +55,4 @@
         </div>
     </div>
 </div>
+

@@ -6,6 +6,7 @@ use App\Models\Necesidades;
 use App\Models\Propuestas;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class GuardarCurso extends Component
 {
@@ -43,7 +44,7 @@ class GuardarCurso extends Component
         $propuestas->pro_descripcion = $this->pro_descripcion;
         $propuestas->pro_tipo = 'Curso';
         $propuestas->nec_id = $this->nec_id;
-        $propuestas->curador_id = auth()->user()->id;
+        $propuestas->curador_id = Auth::user()->id;
         $propuestas->save();
         Necesidades::find($this->nec_id)
             ->update(['nec_proceso' => 'En Revisión']);

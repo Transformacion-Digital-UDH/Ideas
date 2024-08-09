@@ -9,7 +9,7 @@ class AdminPropuestas extends Component
 {
     public $propuestas;
 
-
+    protected $listeners = ['cursoActualizado'=>'getPropuestas'];
     public function mount()
     {
         $this->propuestas = $this->getPropuestas();
@@ -18,6 +18,10 @@ class AdminPropuestas extends Component
     public function abrirModalVer($id)
     {
         $this->dispatch('ver', $id);
+    }
+    public function abrirModalEditar($id)
+    {
+        $this->dispatch('editar', $id);
     }
     
     public function render()

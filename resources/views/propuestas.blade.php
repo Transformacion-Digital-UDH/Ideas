@@ -17,5 +17,6 @@
     </div>
 
     @livewire('propuestas.ver-detalles')
+    @livewire('propuestas.editar-propuesta')
     @livewire('propuestas.postular-propuesta')
 </x-app-layout>
