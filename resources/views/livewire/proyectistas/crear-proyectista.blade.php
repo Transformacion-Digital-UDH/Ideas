@@ -25,6 +25,12 @@
             </div>
 
             <div class="mt-6">
+                <x-label for="password" value="{{ __('Password') }}" />
+                <x-input id="password" class="block mt-1 w-full" type="password" wire:model="password" />
+                <x-input-error for="password" class="mt-2" />
+            </div>
+
+            <div class="mt-6">
                 <x-label for="telefono" value="{{ __('Teléfono') }}" />
                 <x-input id="telefono" class="block mt-1 w-full" type="text" wire:model="telefono" />
                 <x-input-error for="telefono" class="mt-2" />

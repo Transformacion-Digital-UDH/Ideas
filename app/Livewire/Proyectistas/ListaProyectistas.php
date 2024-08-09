@@ -10,7 +10,10 @@ class ListaProyectistas extends Component
 {
     public $proyectistas;
 
-    protected $listeners = ['actualizado' => 'getProyectistas'];
+    protected $listeners = [
+        'actualizado' => 'getProyectistas',
+        'guardado' => 'getProyectistas'
+    ];
 
     public function mount()
     {
