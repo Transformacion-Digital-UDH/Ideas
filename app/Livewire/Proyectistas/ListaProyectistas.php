@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Proyectistas;
 
-use App\Models\Proyectistas;
 use App\Models\User;
 use Livewire\Component;
 

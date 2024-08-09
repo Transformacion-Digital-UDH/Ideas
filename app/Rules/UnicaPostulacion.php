@@ -5,6 +5,7 @@ namespace App\Rules;
 use App\Models\Postulaciones;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Auth;
 
 class UnicaPostulacion implements ValidationRule
 {
@@ -16,7 +17,7 @@ class UnicaPostulacion implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $exist = Postulaciones::where('pro_id', $value)
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', Auth::user()->id)
             ->where('pos_estado', 1)
             ->first();
 
