@@ -4,8 +4,8 @@ namespace App\Livewire\Curaciones;
 
 use App\Models\Necesidades;
 use App\Models\Propuestas;
-use App\Models\Proyectistas;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
