@@ -9,7 +9,7 @@
             <x-select wire:model.defer="proy_id" class="block mt-1 w-full">
                 <option value="" selected hidden>Seleccione un proyectista...</option>
                 @foreach ($proyectistas as $proy)
-                    <option value="{{ $proy->proy_id }}">{{ $proy->proy_nombres }}</option>
+                    <option value="{{ $proy->id }}">{{ $proy->name }}</option>
                 @endforeach
             </x-select>
             <x-input-error for="proy_id" class="mt-2" />
