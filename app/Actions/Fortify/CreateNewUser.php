@@ -26,10 +26,27 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $rol = $this->determinar_rol($user->email);
+        $user->assignRole($rol);
+        return $user;
+    }
+
+    public function determinar_rol($email)
+    {
+        if (preg_match('/^\d+@udh\.edu\.pe$/', $email)) {
+            $role = 'ESTUDIANTE';
+        } elseif (strpos($email, '@udh.edu.pe') !== false) {
+            $role = 'DOCENTE';
+        } else {
+            $role = 'SOCIEDAD';
+        }
+
+        return $role;
     }
 }
