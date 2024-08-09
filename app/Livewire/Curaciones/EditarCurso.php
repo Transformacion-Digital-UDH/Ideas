@@ -39,7 +39,7 @@ class EditarCurso extends Component
     public function actualizarCurso()
     {
         $this->validate([
-            'pro_titulo' => ['required', 'string', 'max:50'],
+            'pro_titulo' => ['required', 'string', 'max:255'],
             'pro_descripcion' => ['required', 'string', 'max:800'],
             'pro_lugar' => ['required', 'string', 'max:255'],
             'pro_beneficiarios' => ['required', 'string', 'max:255'],

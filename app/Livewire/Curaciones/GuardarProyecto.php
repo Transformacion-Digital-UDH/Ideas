@@ -8,6 +8,7 @@ use App\Models\Proyectistas;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class GuardarProyecto extends Component
 {
@@ -40,7 +41,7 @@ class GuardarProyecto extends Component
         $propuestas->proyectista_id = $this->proy_id;
         $propuestas->pro_tipo = 'Proyecto';
         $propuestas->nec_id = $this->nec_id;
-        $propuestas->curador_id = auth()->user()->id;
+        $propuestas->curador_id = Auth::user()->id;
         $propuestas->save();
         Necesidades::find($this->nec_id)
             ->update(['nec_proceso' => 'En Revisión']);

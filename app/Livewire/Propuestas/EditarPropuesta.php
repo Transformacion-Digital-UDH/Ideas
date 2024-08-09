@@ -13,7 +13,8 @@ class EditarPropuesta extends Component
     public $propuesta;
     public $necesidad;
 
-    protected $listeners = ['editar'=>'editar', 'cursoActualizado' => 'closeModal'];
+    protected $listeners = ['editar'=>'editar', 'cursoActualizado' => 'closeModal',
+    'proyActualizado'=>'closeModal'];
 
     public function mount()
     {
