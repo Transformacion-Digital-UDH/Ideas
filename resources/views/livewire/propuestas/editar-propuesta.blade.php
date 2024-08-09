@@ -108,7 +108,7 @@
                         @endrole
                         @role('VRI')
                             <form id="proyecto-form">
-                                @livewire('curaciones.guardar-proyecto')
+                                @livewire('curaciones.editar-proyecto')
                             </form>
                         @endrole
                     </div>

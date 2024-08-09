@@ -7,7 +7,6 @@ use App\Models\Propuestas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 
 class GuardarCurso extends Component
 {

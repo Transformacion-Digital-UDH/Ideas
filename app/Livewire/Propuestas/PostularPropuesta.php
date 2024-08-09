@@ -8,7 +8,7 @@ use App\Rules\UnicaPostulacion;
 use App\Traits\GestionarModal;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
+
 
 class PostularPropuesta extends Component
 {

@@ -5,15 +5,7 @@
                 placeholder="Ingrese un título tentativo." />
             <x-input-error for="pro_titulo" class="mt-2" />
         </div>
-        <div class="mt-5">
-            <x-select wire:model.defer="proy_id" class="block mt-1 w-full">
-                <option value="" selected hidden>Seleccione un proyectista...</option>
-                @foreach ($proyectistas as $proy)
-                    <option value="{{ $proy->id }}">{{ $proy->name }}</option>
-                @endforeach
-            </x-select>
-            <x-input-error for="proy_id" class="mt-2" />
-        </div>
+       
         <div class="mt-5">
             <x-textarea class="block mt-1 w-full" wire:model.defer="pro_descripcion"
                 placeholder="Agrega una descripción para la propuesta." />

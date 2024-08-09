@@ -14,10 +14,11 @@ class EditarProyecto extends Component
     public $propuesta;
     public $nec_id;
     public $pro_titulo;
-    public $problematicas;
-    public $proy_id;
-    public $pro_justficacion;
-
+    public $pro_descripcion;
+   // public $proy_id;
+    public $pro_justificacion;
+    public $pro_id;
+    
     protected $listeners = ['enviarId'=>'cargarPropuesta'];
 
     public function cargarPropuesta($id)
@@ -25,27 +26,30 @@ class EditarProyecto extends Component
         $this->propuesta = Propuestas::find($id);
        // $this->proy_id = $this->propuesta->id;
         $this->pro_titulo = $this->propuesta->pro_titulo;
-        $this->problematicas = $this->propuesta->problematicas;
-        $this->pro_justficacion = $this->propuesta->pro_justificacion;
+        $this->pro_descripcion = $this->propuesta->pro_descripcion;
+        //$this->proy_id= $this->propuesta->proy_id;
+        $this->pro_justificacion = $this->propuesta->pro_justificacion;
+
     }
     public function actualizarProyecto()
     {
         $this->validate([
             'pro_titulo' => ['required', 'string', 'max:255'],
             'pro_justificacion' => ['required', 'string', 'max:800'],
-            'problematicas' => ['required', 'string', 'max:800'],
+            'pro_descripcion' => ['required', 'string', 'max:800'],
         ]);
 
         DB::beginTransaction();
         try {
             $this->propuesta->update([
                 'pro_titulo' => $this->pro_titulo,
-                'problematicas' => $this->problematicas,
+                'pro_descripcion' => $this->pro_descripcion,
                 'pro_justificacion' => $this->pro_justificacion,
             ]);
 
             DB::commit();
-            $this->dispatch('proyActualizado',$this->proy_id);
+            $this->dispatch('proyActualizado',$this->pro_id);
+            $this->reset();
         } catch (\Exception $e) {
             DB::rollBack();
         }
