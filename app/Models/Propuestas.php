@@ -20,11 +20,6 @@ class Propuestas extends Model
         return $this->belongsTo(Necesidades::class, 'nec_id', 'nec_id');
     }
 
-    public function proyectista()
-    {
-        return $this->belongsTo(Proyectistas::class, 'proyectista_id', 'proy_id');
-    }
-
     public function curador()
     {
         return $this->belongsTo(User::class, 'curador_id', 'id');

@@ -2,51 +2,59 @@
 
 namespace App\Livewire\Proyectistas;
 
-use App\Models\Proyectistas;
+use App\Models\User;
 use App\Traits\GestionarModal;
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 
 class EditarProyectista extends Component
 {
     use GestionarModal;
-    
+
     public $proyectista;
-    public $proy_id;
-    public $proy_nombres;
-    public $proy_telefono;
-    public $proy_email;
+    public $id;
+
+    public $name;
+    public $telefono;
+    public $email;
+    public $profesion;
+    public $descripcion;
 
     protected $listeners = ['editar'];
 
-    protected $rules = [
-        'proy_nombres' => 'required|string|max:255',
-        'proy_email' => 'required|email',
-        'proy_telefono' => 'required|string|max:20',
-    ];
-
     public function mount()
     {
-        $this->proyectista = new Proyectistas();
+        $this->proyectista = new User();
     }
 
     public function editar($id)
     {
         $this->openModal(); // Abre el modal
-        $this->proy_id = $id;
-        $this->proyectista = Proyectistas::find($id);
-        $this->proy_nombres = $this->proyectista->proy_nombres;
-        $this->proy_email = $this->proyectista->proy_email;
-        $this->proy_telefono = $this->proyectista->proy_telefono;
+        $this->id = $id;
+        $this->proyectista = User::find($id);
+        $this->name = $this->proyectista->name;
+        $this->email = $this->proyectista->email;
+        $this->telefono = $this->proyectista->telefono;
+        $this->profesion = $this->proyectista->profesion;
+        $this->descripcion = $this->proyectista->descripcion;
     }
 
     public function actualizar()
     {
-        $this->validate();
+        $this->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->proyectista->id)],
+            'telefono' => ['required', 'string', 'max:255'],
+            'profesion' => ['required', 'string', 'max:255'],
+            'descripcion' => ['required', 'string', 'max:255'],
+        ]);
 
         $this->proyectista->update([
-            'proy_nombres' => $this->proy_nombres,
-            'proy_email' => $this->proy_email,
-            'proy_telefono' => $this->proy_telefono,
+            'name' => $this->name,
+            'email' => $this->email,
+            'telefono' => $this->telefono,
+            'profesion' => $this->profesion,
+            'descripcion' => $this->descripcion,
         ]);
 
         $this->dispatch('actualizado');
