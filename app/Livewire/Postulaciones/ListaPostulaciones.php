@@ -13,15 +13,16 @@ class ListaPostulaciones extends Component
 
     public function mount()
     {
-       $this->postulaciones = $this->getPostulaciones();
+        //    $this->postulaciones = $this->getPostulaciones();
     }
 
     public function render()
     {
+        $this->postulaciones = $this->getPostulaciones();
         return view('livewire.postulaciones.lista-postulaciones');
     }
 
-    public function abrirModalVer($id)
+    public function cargarVer($id)
     {
         $this->dispatch('ver', $id);
     }
