@@ -13,33 +13,38 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($postulaciones as $i => $postulacion)
+                @if (count($postulaciones) > 0)
+                    @foreach ($postulaciones as $i => $postulacion)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $i + 1 }}
+                            </th>
+                            <td class="px-6 py-5">
+                                <strong class="text-gray-900">{{ $postulacion->propuesta->pro_titulo }}</strong>
+                            </td>
+                            <td class="px-6 py-5">
+                                {{ $postulacion->pos_created->format('Y-m-d') }}
+                            </td>
+                            <td class="px-6 py-5 whitespace-nowrap text-center">
+                                <x-estadoPostulacion :status="$postulacion->estado" />
+                            </td>
+                            <td class="px-6 py-5 whitespace-nowrap">
+                                {{ $postulacion->propuesta->pro_tipo }}
+                            </td>
+                            <td class="px-6 py-5 whitespace-nowrap text-center">
+                                <button wire:click="abrirModalVer({{ $postulacion->propuesta->pro_id }})"
+                                    class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                    <i class="fas fa-eye text-white"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row"
-                            class="px-6 py-5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $i + 1 }}
-                        </th>
-                        <td class="px-6 py-5">
-                            <strong class="text-gray-900">{{ $postulacion->propuesta->pro_titulo }}</strong>
-                        </td>
-                        <td class="px-6 py-5">
-                            {{ $postulacion->pos_created->format('Y-m-d') }}
-                        </td>
-                        <td class="px-6 py-5 whitespace-nowrap text-center">
-                            <x-estadoPostulacion :status="$postulacion->estado" />
-                        </td>
-                        <td class="px-6 py-5 whitespace-nowrap">
-                            {{ $postulacion->propuesta->pro_tipo }}
-                        </td>
-                        <td class="px-6 py-5 whitespace-nowrap text-center">
-                            <button wire:click="abrirModalVer({{ $postulacion->propuesta->pro_id }})"
-                                class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                <i class="fas fa-eye text-white"></i>
-                            </button>
-                        </td>
+                        <td colspan="6" class="px-6 py-4">Usted no tiene postulaciones</td>
                     </tr>
-                @endforeach
-
+                @endif
             </tbody>
         </table>
     </div>

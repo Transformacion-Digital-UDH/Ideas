@@ -1,41 +1,100 @@
 <div>
-    <x-dialog-modal wire:model="showModal" maxWidth="4xl">
-        <x-slot name="title">
-            <h2 class="text-base">EDITANDO</h2>
-        </x-slot>
-
+    <x-dialog-modal wire:model="showModal">
         <x-slot name="content">
-            <div class="mb-7">
-                <p> {{ $necesidad->nec_titulo }} </p>
-                <p class="mt-1 text-gray-400 text-sm">{{ $necesidad->nec_descripcion }}</p>
-            </div>
-            <div class="overflow-x-auto">
-                <h3 class="text-md font-bold text-sky-700">Detalles de la necesidad</h3>
-                <table class="min-w-full bg-white">
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                {{ $necesidad->nec_tipo }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                <x-input wire:model="nec_entidad" placeholder="Correo electrónico"
+            <section>
+                <h2 class="text-2xl font-bold text-center text-sky-700 mb-4">Información General</h2>
+                <p class="text-sm text-gray-600 text-left mb-8">
+                    Por favor, actualice la información relacionada con la necesidad que desea editar.
+                </p>
+
+                <form wire:submit.prevent="actualizar" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <x-select wire:model="nec_tipo" wire:change="ruc_dni" class="block w-full">
+                            <option value="" selected hidden>Seleccione tipo de entidad...</option>
+                            <option value="Empresa privada">Empresa privada</option>
+                            <option value="Institución pública">Institución pública</option>
+                            <option value="ONG">Sociedad civil organizada (ONGs)</option>
+                            <option value="Universidad">Universidad</option>
+                            <option value="Instituto">Instituto</option>
+                            <option value="Ciudadano">Ciudadano</option>
+                        </x-select>
+                        <x-input-error for="nec_tipo" class="mt-2" />
+                    </div>
+
+                    @if ($es_institucion)
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                            <div class="sm:w-2/4 px-1">
+                                <x-input wire:model="nec_entidad" placeholder="Nombre de la institución"
+                                    class="text-center" />
+                                <x-input-error for="nec_entidad" />
+                            </div>
+                            <div class="sm:w-2/4 px-1">
+                                <div id="rucMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
+                                    Ingrese 11 dígitos
+                                </div>
+                                <x-input wire:model="nec_documento" id="ruc" placeholder="RUC" class="text-center" />
+                                <x-input-error for="nec_documento" />
+                            </div>
+                        </div>
+                    @else
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                            <div class="sm:w-2/4 px-1">
+                                <x-input wire:model="nec_entidad" placeholder="Nombres completos"
+                                    class="text-center" />
+                                <x-input-error for="nec_entidad" />
+                            </div>
+                            <div class="sm:w-2/4 px-1">
+                                <div id="dniMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
+                                    Ingrese 8 dígitos
+                                </div>
+                                <x-input wire:model="nec_documento" id="dni" placeholder="DNI" class="text-center" />
+                                <x-input-error for="nec_documento" />
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                        <div class="sm:w-2/4 px-1">
+                            <x-input type="email" wire:model="nec_email" placeholder="Correo electrónico"
                                 class="block mt-1 text-center" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                {{ $necesidad->nec_tipo == 'Ciudadano' ? 'DNI' : 'RUC' }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                <x-input wire:model="nec_documento" placeholder="Correo electrónico"
+                            <x-input-error for="nec_email" class="mt-2" />
+                        </div>
+                        <div class="sm:w-2/4 px-1">
+                            <x-input wire:model="nec_telefono" placeholder="Número de teléfono"
                                 class="block mt-1 text-center" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                ¿Es financiado?
-                            </td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                            <x-input-error for="nec_telefono" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1 text-center" />
+                        <x-input-error for="nec_direccion" class="mt-2" />
+                    </div>
+
+                    <div class="rounded-lg shadow-lg p-8 space-y-6 bg-gray-100 mb-8">
+                        <h2 class="text-2xl font-bold text-center text-sky-700">
+                            Detalles del Problema
+                        </h2>
+                        <p class="text-sm text-gray-600 text-left">
+                            Por favor, proporciona un título breve pero descriptivo y una
+                            explicación detallada del problema que estás experimentando.
+                        </p>
+
+                        <div class="mb-2">
+                            <x-input type="text" wire:model="nec_titulo" placeholder="Breve título del problema"
+                                class="block mt-1 text-center" />
+                            <x-input-error for="nec_titulo" class="mt-2" />
+                        </div>
+                        <div class="mb-2">
+                            <x-textarea wire:model="nec_descripcion"
+                                placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
+                                class="block mt-1 w-full text-center" />
+                            <x-input-error for="nec_descripcion" class="mt-2" />
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="flex items-center justify-center">
+                                <label for="es_financiado" class="pr-4 font-normal">¿Desea financiarlo?</label>
                                 <label class="flex items-center pl-2">
                                     <input type="radio" value="SI" wire:model="es_financiado"
                                         name="es_financiado" id="es_financiado"
@@ -48,34 +107,34 @@
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2">NO</span>
                                 </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Estado</td>
-                            <td class="px-6 py-4 whitespace-normal text-md ">
-                                <x-com_proceso :status="$necesidad->nec_proceso" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Registrado el</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                {{ \Carbon\Carbon::parse($necesidad->nec_created)->format('d/m/Y \a \l\a\s H:i') }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 p-8">
+                        <h2 class="text-2xl font-bold text-center text-sky-700">Adjuntar Archivos</h2>
+                        <p class="text-sm text-gray-600 text-left my-2">
+                            Opcionalmente, puede proporcionar más información sobre su problema para una mejor solución,
+                            puede adjuntar un archivo haciendo click en el siguiente apartado.
+                        </p>
+
+                        <input type="file" wire:model="doc_nombre"
+                            class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
+                        <x-input-error for="doc_nombre" class="mt-2" />
+                    </div>
+                </form>
+            </section>
         </x-slot>
 
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
-                Cerrar
+            <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
+                Cancelar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled">
+            <x-button class="ml-2" wire:click="actualizar" 
+                wire:loading.attr="disabled" 
+                :disabled="!$isEditable">
                 Actualizar
             </x-button>
         </x-slot>
     </x-dialog-modal>
-    {{--------
-    @livewire('necesidades.editar-necesidad')-------}}
 </div>

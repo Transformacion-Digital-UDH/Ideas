@@ -1,81 +1,61 @@
 <div>
-    <x-dialog-modal wire:model="showModal" maxWidth="4xl">
-        <x-slot name="title">
-            <h2 class="text-base">EDITANDO</h2>
-        </x-slot>
-
+    <x-dialog-modal wire:model="showModal">
         <x-slot name="content">
-            <div class="mb-7">
-                <p> {{ $equipo->equ_codigo }} </p>
-                <p class="mt-1 text-gray-400 text-sm">{{ $equipo->equ_codigo }}</p>
-            </div>
-            <div class="overflow-x-auto">
-                <h3 class="text-md font-bold text-sky-700">Detalles de la necesidad</h3>
-                <table class="min-w-full bg-white">
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                {{ $equipo->equ_codigo }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                <x-input wire:model="nec_entidad" placeholder="Correo electrónico"
-                                class="block mt-1 text-center" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                {{ $equipo->equ_codigo == 'Ciudadano' ? 'DNI' : 'RUC' }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                <x-input wire:model="nec_documento" placeholder="Correo electrónico"
-                                class="block mt-1 text-center" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                ¿Es financiado?
-                            </td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                <label class="flex items-center pl-2">
-                                    <input type="radio" value="SI" wire:model="es_financiado"
-                                        name="es_financiado" id="es_financiado"
-                                        class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
-                                    <span class="pl-2 pr-6">SI</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="radio" value="NO" wire:model="es_financiado"
-                                        name="es_financiado" id="es_financiado"
-                                        class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
-                                    <span class="pl-2">NO</span>
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Estado</td>
-                            <td class="px-6 py-4 whitespace-normal text-md ">
-                                <x-com_proceso :status="$equipo->nec_proceso" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Registrado el</td>
-                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                {{ \Carbon\Carbon::parse($equipo->nec_created)->format('d/m/Y \a \l\a\s H:i') }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </x-slot>
+            <section>
+                <form wire:submit.prevent="submitForm" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <x-select wire:model="equ_tipo" wire:change="curso_sem" class="block w-full">
+                            <option value="" selected hidden>Seleccione tipo de equipo...</option>
+                            <option value="Curso">Curso</option>
+                            <option value="Semillero">Semillero</option>
+                        </x-select>
+                        <x-input-error for="equ_tipo" class="mt-2" />
+                    </div>
 
+                    @if($es_curso)
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                            <div class="sm:w-2/4 px-1">
+                                <x-label for="equ_nombre" value="{{ __('Código') }}" />
+                                <x-input wire:model="equ_codigo" placeholder="Código"
+                                    class="block mt-1 text-left" />
+                                <x-input-error for="equ_codigo" class="mt-2" />
+                            </div>
+                            <div class="sm:w-2/4 px-1">
+                                <x-label for="equ_nombre" value="{{ __('Ciclo') }}" />
+                                <x-input wire:model="equ_ciclo" placeholder="Ciclo"
+                                    class="block mt-1 text-left " />
+                                <x-input-error for="equ_ciclo" class="mt-2" />
+                            </div>
+                        </div>
+                    @else 
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                            <div class="sm:w-2/4 px-1">
+                                <x-label for="equ_nombre" value="{{ __('Resolución') }}" />
+                                <x-input wire:model="equ_codigo" placeholder="Resolución"
+                                    class="block mt-1 text-left" />
+                                <x-input-error for="equ_codigo" class="mt-2" />
+                            </div>
+                        </div>
+
+                    @endif
+                    
+                        <div class="mb-4">
+                            <x-label for="equ_nombre" value="{{ __('Nombre') }}" />
+                            <x-input wire:model="equ_nombre" placeholder="Nombre"
+                                class="block mt-1 text-left" />
+                            <x-input-error for="equ_nombre" class="mt-2" />
+                        </div>
+                    
+                </form>
+            </section>
+        </x-slot>
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
-                Cerrar
+            <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
+                Cancelar
             </x-secondary-button>
             <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled">
                 Actualizar
             </x-button>
         </x-slot>
     </x-dialog-modal>
-    {{--------
-    @livewire('necesidades.editar-necesidad')-------}}
 </div>

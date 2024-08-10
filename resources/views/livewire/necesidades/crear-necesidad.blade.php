@@ -39,8 +39,8 @@
                                 <div id="rucMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
                                     Ingrese 11 dígitos
                                 </div>
-                                <x-input wire:model="nec_documento" id="ruc" placeholder="RUC" class="text-center" />
-                                <x-input-error for="nec_documento" />
+                                <x-input wire:model="nec_ruc" id="ruc" placeholder="RUC" class="text-center" />
+                                <x-input-error for="nec_ruc" />
                             </div>
                         </div>
                     @else
@@ -54,8 +54,8 @@
                                 <div id="dniMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
                                     Ingrese 8 dígitos
                                 </div>
-                                <x-input wire:model="nec_documento" id="dni" placeholder="DNI" class="text-center" />
-                                <x-input-error for="nec_documento" />
+                                <x-input wire:model="nec_dni" id="dni" placeholder="DNI" class="text-center" />
+                                <x-input-error for="nec_dni" />
                             </div>
                         </div>
                     @endif
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1 text-center" />
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
 
@@ -95,7 +95,7 @@
                         <div class="mb-2">
                             <x-textarea wire:model="nec_descripcion"
                                 placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
-                                class="block mt-1 w-full text-center" />
+                                class="block mt-1 w-full" />
                             <x-input-error for="nec_descripcion" class="mt-2" />
                         </div>
 
@@ -115,6 +115,7 @@
                                     <span class="pl-2">NO</span>
                                 </label>
                             </div>
+                            <x-input-error for="es_financiado" class="mt-2 text-center" />
                         </div>
                     </div>
 

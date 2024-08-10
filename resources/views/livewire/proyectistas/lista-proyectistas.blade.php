@@ -13,29 +13,29 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($proyectistas as $proyectista)
+                @foreach ($proyectistas as $i => $proyectista)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $proyectista->proy_id }}
+                            {{ $i + 1 }}
                         </th>
                         <td class="px-6 py-4">
-                            <strong class="text-gray-900">{{ $proyectista->proy_nombres }}</strong>
+                            <strong class="text-gray-900">{{ $proyectista->name }}</strong>
                         </td>
                         <td class="px-6 py-4">
-                            {{ $proyectista->proy_telefono }}
+                            {{ $proyectista->telefono }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $proyectista->proy_email }}
+                            {{ $proyectista->email }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
-                            {{ $proyectista->proy_created->format('Y-m-d') }}
+                            {{ $proyectista->created_at->format('Y-m-d') }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
-                            <x-estadoItem :status="$proyectista->proy_estado" />
+                            <x-estadoItem :status="$proyectista->estado" />
                         </td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">
-                            <button wire:click="abrirModal({{ $proyectista->proy_id }})"
+                            <button wire:click="abrirModal({{ $proyectista->id }})"
                                 class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                 <i class="fas fa-edit text-white"></i>
                             </button>

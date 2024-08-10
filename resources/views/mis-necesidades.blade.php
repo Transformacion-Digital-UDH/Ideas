@@ -23,6 +23,6 @@
     </div>
 
     @livewire('necesidades.ver-necesidad')
-    {{--- --}}@livewire('necesidades.editar-necesidad') 
+    @livewire('necesidades.editar-necesidad')
     @livewire('componentes.buscar-necesidad-js')
 </x-app-layout>

@@ -14,10 +14,6 @@ class CurarNecesidad extends Component
 
     protected $listeners = ['curar'];
 
-    protected $rules = [
-        'proy_nombres' => 'required|string|max:255',
-    ];
-
     public function mount()
     {
         $this->necesidad = new Necesidades();
@@ -27,20 +23,7 @@ class CurarNecesidad extends Component
     {
         $this->openModal();
         $this->necesidad = Necesidades::find($id);
-    }
-
-    public function guardar()
-    {
-        $this->validate();
-
-        $this->necesidad->update([
-            'proy_nombres' => $this->proy_nombres,
-            'proy_email' => $this->proy_email,
-            'proy_telefono' => $this->proy_telefono,
-        ]);
-
-        $this->dispatch('guardado');
-        $this->reset();
+        $this->dispatch('enviarId', $this->necesidad->nec_id);
     }
 
     public function closeModal()

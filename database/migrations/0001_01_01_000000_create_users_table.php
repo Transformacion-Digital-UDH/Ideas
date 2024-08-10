@@ -15,13 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('telefono');
+            $table->string('telefono')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('google_id')->nullable();
             $table->tinyInteger('estado')->unsigned()->default(1);
+
+            $table->string('profesion', 100)->nullable();
+            $table->text('descripcion')->nullable();
+
             $table->timestamps();
         });
 

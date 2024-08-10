@@ -2,14 +2,17 @@
 
 namespace App\Livewire\Proyectistas;
 
-use App\Models\Proyectistas;
+use App\Models\User;
 use Livewire\Component;
 
 class ListaProyectistas extends Component
 {
     public $proyectistas;
 
-    protected $listeners = ['actualizado' => 'getProyectistas'];
+    protected $listeners = [
+        'actualizado' => 'getProyectistas',
+        'guardado' => 'getProyectistas'
+    ];
 
     public function mount()
     {
@@ -28,7 +31,7 @@ class ListaProyectistas extends Component
 
     public function getProyectistas()
     {
-        $proyectistas = Proyectistas::where('proy_estado', '!=', 0)->get();
+        $proyectistas = User::role('PROYECTISTA')->where('estado', 1)->get();
         return $proyectistas ?? [];
     }
 }

@@ -23,8 +23,12 @@ class ListaNecesidades extends Component
 
     public function getNecesidades()
     {
-        $necesidades = Necesidades::where('nec_estado', '!=', 0)->get();
+        $necesidades = Necesidades::where('nec_estado', 1)->get();
         return $necesidades ?? [];
+    }
+    public function verNecesidad($id)
+    {
+        $this->dispatch('ver', $id);
     }
 
     public function render()
