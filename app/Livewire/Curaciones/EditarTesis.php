@@ -23,7 +23,7 @@ class EditarTesis extends Component
 
     public $pro_titulo;
     public $pro_descripcion;
-
+    public $pro_id;
     protected $listeners =['enviarId'=>'cargarPropuesta'];
 
     public function mount()
@@ -32,8 +32,10 @@ class EditarTesis extends Component
     }
     public function cargarPropuesta($id)
     {
+        
         $this->propuestas = Propuestas::find($id);
         $this->nec_id = $this->propuestas->nec_id;
+        $this->pro_id = $this->propuestas->pro_id;
         $this->pro_lugar = $this->propuestas->pro_lugar;
         $this->pro_beneficiarios = $this->propuestas->pro_beneficiarios;
         $this->problematicas = $this->propuestas->problematicas;
@@ -45,6 +47,7 @@ class EditarTesis extends Component
         $this->pro_titulo = $this->propuestas->pro_titulo;
         $this->pro_descripcion = $this->propuestas->pro_descripcion;
 
+        
     }
     public function actualizarProyecto()
     {
