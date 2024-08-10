@@ -10,7 +10,7 @@ class CardNecesidades extends Component
 {
     public $necesidades;
 
-    protected $listeners = ['guardado' => 'getNecesidades',  'necesidadActualizada' => 'getNecesidades'];
+    protected $listeners = ['guardado' => 'getNecesidades',  'actualizado' => 'getNecesidades'];
 
     public function mount()
     {

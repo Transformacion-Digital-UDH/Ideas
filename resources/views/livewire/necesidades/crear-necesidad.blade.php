@@ -46,9 +46,8 @@
                     @else
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="nec_entidad" placeholder="Nombres completos"
-                                    class="text-center" />
-                                <x-input-error for="nec_entidad" />
+                                <x-input wire:model="nec_persona" placeholder="Nombres completos" class="text-center" />
+                                <x-input-error for="nec_persona" />
                             </div>
                             <div class="sm:w-2/4 px-1">
                                 <div id="dniMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
@@ -103,8 +102,8 @@
                             <div class="flex items-center justify-center">
                                 <label for="es_financiado" class="pr-4 font-normal">¿Desea financiarlo?</label>
                                 <label class="flex items-center pl-2">
-                                    <input type="radio" value="SI" wire:model="es_financiado"
-                                        name="es_financiado" id="es_financiado"
+                                    <input type="radio" value="SI" wire:model="es_financiado" name="es_financiado"
+                                        id="es_financiado"
                                         class="focus:ring-sky-500 h-4 w-4 text-sky-600 border-gray-300" />
                                     <span class="pl-2 pr-6">SI</span>
                                 </label>
