@@ -29,7 +29,6 @@
                     @livewire('propuestas.lista-propuestas')
                 </div>
             </div>
-
             @endrole
         </div>
     </div>
