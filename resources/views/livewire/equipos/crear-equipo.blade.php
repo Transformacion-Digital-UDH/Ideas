@@ -1,9 +1,10 @@
 <div>
     <div class="flex justify-center">
         <button wire:click="abrirModal"
-            class="middle px-4 py-2 bg-cyan-500 hover:bg-cyan-700 text-white rounded-lg mr-4 text-lg font-bold shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50">
+            class="middle px-3 py-2 bg-blue-600 text-sm font-bold border text-white rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out transform hover:scale-105">
             Agregar equipo
         </button>
+
     </div>
     <x-dialog-modal wire:model="showModal">
         <x-slot name="content">
@@ -18,35 +19,30 @@
                         <x-input-error for="equ_tipo" class="mt-2" />
                     </div>
 
-                    @if($es_curso)
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
+                    @if ($es_curso)
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-6">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="equ_codigo" placeholder="Código"
-                                    class="block mt-1 text-center" />
+                                <x-input wire:model="equ_codigo" placeholder="Código" class="block mt-1 text-center" />
                                 <x-input-error for="equ_codigo" class="mt-2" />
                             </div>
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="equ_ciclo" placeholder="Ciclo"
-                                    class="block mt-1 text-center" />
+                                <x-input wire:model="equ_ciclo" placeholder="Ciclo" class="block mt-1 text-center" />
                                 <x-input-error for="equ_ciclo" class="mt-2" />
                             </div>
                         </div>
-                    @else 
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
-                        <div class="sm:w-2/4 px-1">
-                            <x-input wire:model="equ_codigo" placeholder="Resolución"
-                                class="block mt-1 text-center" />
-                            <x-input-error for="equ_codigo" class="mt-2" />
+                    @else
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-6">
+                            <div class="sm:w-2/4 px-1">
+                                <x-input wire:model="equ_codigo" placeholder="Resolución"
+                                    class="block mt-1 text-center" />
+                                <x-input-error for="equ_codigo" class="mt-2" />
+                            </div>
                         </div>
-                    </div>
-
                     @endif
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
-                        <div class="sm:w-2/4 px-1">
-                            <x-input wire:model="equ_nombre" placeholder="Nombre"
-                                class="block mt-1 text-center" />
-                            <x-input-error for="equ_nombre" class="mt-2" />
-                        </div>
+                    <div class="mb-4">
+                        <x-label for="equ_nombre" value="{{ __('Nombre') }}" />
+                        <x-input wire:model="equ_nombre" placeholder="Ingrese nombre" class="block mt-1" />
+                        <x-input-error for="equ_nombre" class="mt-2" />
                     </div>
                 </form>
             </section>

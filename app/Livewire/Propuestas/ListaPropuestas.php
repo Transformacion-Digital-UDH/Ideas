@@ -37,12 +37,12 @@ class ListaPropuestas extends Component
     public function getPropuestas()
     {
         $user_id = Auth::user()->id;
-        
+
         // Obtener IDs de propuestas en las que el usuario ha postulado
         $postulaciones_ids = Postulaciones::where('user_id', $user_id)
             ->pluck('pro_id')
             ->toArray();
-        
+
         // Filtrar propuestas según el rol del usuario y excluir aquellas a las que el usuario ya ha postulado
         if (User::esRol('ESTUDIANTE')) {
             $propuestas = Propuestas::where('pro_estado', 1)
@@ -56,6 +56,12 @@ class ListaPropuestas extends Component
                 ->whereNotIn('pro_id', $postulaciones_ids)
                 ->orderBy('pro_id', 'desc')
                 ->get();
+        } else if (User::esRol('PROYECTISTA')) {
+            $propuestas = Propuestas::where('pro_estado', 1)
+                ->where('pro_tipo', 'Proyecto')
+                ->whereNotIn('pro_id', $postulaciones_ids)
+                ->orderBy('pro_id', 'desc')
+                ->get();
         } else {
             $propuestas = Propuestas::with('necesidad')
                 ->where('pro_estado', 1)
@@ -63,7 +69,7 @@ class ListaPropuestas extends Component
                 ->orderBy('pro_id', 'desc')
                 ->get();
         }
-        
+
         return $propuestas ?? [];
     }
 }

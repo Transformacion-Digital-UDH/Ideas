@@ -39,8 +39,8 @@
                                 <div id="rucMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
                                     Ingrese 11 dígitos
                                 </div>
-                                <x-input wire:model="nec_documento" id="ruc" placeholder="RUC" class="text-center" />
-                                <x-input-error for="nec_documento" />
+                                <x-input wire:model="nec_ruc" id="ruc" placeholder="RUC" class="text-center" />
+                                <x-input-error for="nec_ruc" />
                             </div>
                         </div>
                     @else
@@ -54,8 +54,8 @@
                                 <div id="dniMessage" class="hidden text-gray-500 text-xs mb-1 text-center">
                                     Ingrese 8 dígitos
                                 </div>
-                                <x-input wire:model="nec_documento" id="dni" placeholder="DNI" class="text-center" />
-                                <x-input-error for="nec_documento" />
+                                <x-input wire:model="nec_dni" id="dni" placeholder="DNI" class="text-center" />
+                                <x-input-error for="nec_dni" />
                             </div>
                         </div>
                     @endif
@@ -115,6 +115,7 @@
                                     <span class="pl-2">NO</span>
                                 </label>
                             </div>
+                            <x-input-error for="es_financiado" class="mt-2 text-center" />
                         </div>
                     </div>
 

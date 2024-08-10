@@ -4,7 +4,8 @@ namespace App\Livewire\Curaciones;
 
 use App\Models\Necesidades;
 use App\Models\Propuestas;
-use App\Models\Proyectistas;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -39,7 +40,7 @@ class GuardarProyecto extends Component
         $propuestas->proyectista_id = $this->proy_id;
         $propuestas->pro_tipo = 'Proyecto';
         $propuestas->nec_id = $this->nec_id;
-        $propuestas->curador_id = auth()->user()->id;
+        $propuestas->curador_id = Auth::user()->id;
         $propuestas->save();
         Necesidades::find($this->nec_id)
             ->update(['nec_proceso' => 'En Revisión']);
@@ -62,7 +63,7 @@ class GuardarProyecto extends Component
 
     public function render()
     {
-        $proyectistas = Proyectistas::where('proy_estado', 1)->get();
+        $proyectistas = User::role('PROYECTISTA')->where('estado', 1)->get();
         return view('livewire.curaciones.guardar-proyecto', compact('proyectistas'));
     }
 }

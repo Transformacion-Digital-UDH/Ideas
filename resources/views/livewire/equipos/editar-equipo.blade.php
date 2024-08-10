@@ -15,33 +15,37 @@
                     @if($es_curso)
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
+                                <x-label for="equ_nombre" value="{{ __('Código') }}" />
                                 <x-input wire:model="equ_codigo" placeholder="Código"
-                                    class="block mt-1 text-center" />
+                                    class="block mt-1 text-left" />
                                 <x-input-error for="equ_codigo" class="mt-2" />
                             </div>
                             <div class="sm:w-2/4 px-1">
+                                <x-label for="equ_nombre" value="{{ __('Ciclo') }}" />
                                 <x-input wire:model="equ_ciclo" placeholder="Ciclo"
-                                    class="block mt-1 text-center" />
+                                    class="block mt-1 text-left " />
                                 <x-input-error for="equ_ciclo" class="mt-2" />
                             </div>
                         </div>
                     @else 
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
+                                <x-label for="equ_nombre" value="{{ __('Resolución') }}" />
                                 <x-input wire:model="equ_codigo" placeholder="Resolución"
-                                    class="block mt-1 text-center" />
+                                    class="block mt-1 text-left" />
                                 <x-input-error for="equ_codigo" class="mt-2" />
                             </div>
                         </div>
 
                     @endif
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
-                        <div class="sm:w-2/4 px-1">
+                    
+                        <div class="mb-4">
+                            <x-label for="equ_nombre" value="{{ __('Nombre') }}" />
                             <x-input wire:model="equ_nombre" placeholder="Nombre"
-                                class="block mt-1 text-center" />
+                                class="block mt-1 text-left" />
                             <x-input-error for="equ_nombre" class="mt-2" />
                         </div>
-                    </div>
+                    
                 </form>
             </section>
         </x-slot>

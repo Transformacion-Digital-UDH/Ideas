@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Proyectistas;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +13,10 @@ class ProyectistasSeeder extends Seeder
      */
     public function run(): void
     {
-        Proyectistas::factory(5)->create();
+        $users = User::factory(5)->create();
+
+        foreach ($users as $user) {
+            $user->assignRole('PROYECTISTA');
+        }
     }
 }

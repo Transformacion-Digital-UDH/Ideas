@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
 
-class User extends Authenticatable
+class User extends Authenticatable  implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -31,6 +33,8 @@ class User extends Authenticatable
         'email',
         'password',
         'telefono',
+        'profesion',
+        'descripcion',
         'estado'
     ];
 
@@ -93,5 +97,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = mb_strtoupper(trim($value), 'UTF-8');
+    }
+
+    public function setEmailAtribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    public function setTelefonoAttribute($value)
+    {
+        $this->attributes['telefono'] = str_replace(' ', '', trim($value));
     }
 }
