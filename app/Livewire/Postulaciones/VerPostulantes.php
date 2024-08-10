@@ -24,7 +24,7 @@ class VerPostulantes extends Component
     public function ver($id)
     {
         $this->openModal(); // Abre el modal
-        $this->postulantes = Postulaciones::find($id);
+        $this->postulantes = Postulaciones::with('propuesta')->find($id);
     }
 
     public function closeModal()
