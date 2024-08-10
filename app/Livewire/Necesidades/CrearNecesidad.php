@@ -16,7 +16,8 @@ class CrearNecesidad extends Component
 
     public $nec_tipo;
     public $nec_entidad;
-    public $nec_documento;
+    public $nec_ruc;
+    public $nec_dni;
     public $nec_email;
     public $nec_telefono;
     public $nec_direccion;
@@ -30,14 +31,16 @@ class CrearNecesidad extends Component
     protected $rules = [
         'nec_tipo' => ['required', 'string'],
         'nec_entidad' => ['nullable', 'string'],
-        'nec_documento' => ['nullable', 'string', 'min:8', 'max:11'],
+        'nec_ruc' => ['nullable', 'string', 'min:11', 'max:11', 'required_if:nec_tipo,Empresa privada,Institución pública,ONG,Universidad,Instituto'],
+        'nec_dni' => ['nullable', 'string', 'min:8', 'max:8', 'required_if:nec_tipo,Ciudadano'],
         'nec_email' => ['required', 'email'],
         'nec_telefono' => ['required', 'string', 'min:9', 'max:9'],
         'nec_direccion' => ['required', 'string', 'max:255'],
         'nec_titulo' => ['required', 'string', 'min:10', 'max:100'],
         'nec_descripcion' => ['required', 'string', 'min:20'],
+        'es_financiado' => ['required'],
         'doc_nombre' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-       /* 'file_2' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
+        /* 'file_2' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
         'file_3' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
         'file_4' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],*/
     ];
@@ -56,28 +59,32 @@ class CrearNecesidad extends Component
     public function guardarNecesidad()
     {
         $this->validate();
+        $necesidad = new Necesidades();
+        $necesidad->nec_tipo = $this->nec_tipo;
+        $necesidad->nec_entidad = $this->nec_entidad;
+        $necesidad->nec_titulo = $this->nec_titulo;
+        $necesidad->nec_descripcion = $this->nec_descripcion;
+        $necesidad->nec_email = $this->nec_email;
+        $necesidad->nec_telefono = $this->nec_telefono;
+        $necesidad->nec_direccion = $this->nec_direccion;
+        $necesidad->es_financiado = $this->es_financiado;
+        $necesidad->user_id = Auth::id();
 
-        Necesidades::create([
-            'nec_tipo' => $this->nec_tipo,
-            'nec_entidad' => $this->nec_entidad,
-            'nec_documento' => $this->nec_documento,
-            'nec_titulo' => $this->nec_titulo,
-            'nec_descripcion' => $this->nec_descripcion,
-            'nec_email' => $this->nec_email,
-            'nec_telefono' => $this->nec_telefono,
-            'nec_direccion' => $this->nec_direccion,
-            'es_financiado' => $this->es_financiado,
-            'user_id' => Auth::id(),
-        ]);
-        $this->dispatch('guardado');
+        if ($this->nec_tipo == 'Ciudadano') {
+            $necesidad->nec_documento = $this->nec_dni;
+        } else {
+            $necesidad->nec_documento = $this->nec_ruc;
+        }
+        $necesidad->save();
+        $this->dispatch('necesidadGuardada');
         $this->reset();
     }
 
     public function ruc_dni()
     {
-        $this->es_institucion = $this->nec_tipo!== 'Ciudadano';
+        $this->es_institucion = $this->nec_tipo !== 'Ciudadano';
     }
-    
+
     public function closeModal()
     {
         $this->showModal = false;

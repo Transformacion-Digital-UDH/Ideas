@@ -98,4 +98,19 @@ class User extends Authenticatable  implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = mb_strtoupper(trim($value), 'UTF-8');
+    }
+
+    public function setEmailAtribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    public function setTelefonoAttribute($value)
+    {
+        $this->attributes['telefono'] = str_replace(' ', '', trim($value));
+    }
 }
