@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1 text-center" />
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
 
@@ -95,7 +95,7 @@
                         <div class="mb-2">
                             <x-textarea wire:model="nec_descripcion"
                                 placeholder="Cuéntanos, con mayor detalle, en qué consiste el problema."
-                                class="block mt-1 w-full text-center" />
+                                class="block mt-1 w-full" />
                             <x-input-error for="nec_descripcion" class="mt-2" />
                         </div>
 
