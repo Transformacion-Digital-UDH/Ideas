@@ -9,6 +9,7 @@ use App\Traits\GestionarModal;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
+
 class PostularPropuesta extends Component
 {
     use GestionarModal;
