@@ -14,7 +14,7 @@ class EditarNecesidad extends Component
     public $es_institucion = true;
 
     public $nec_tipo;
-    public $nec_entidad;
+    public $nec_empresa;
     public $nec_persona;
     public $nec_ruc;
     public $nec_dni;
@@ -30,7 +30,7 @@ class EditarNecesidad extends Component
 
     protected $rules = [
         'nec_tipo' => ['required', 'string'],
-        'nec_entidad' => ['nullable', 'string', 'max:80', 'required_if:nec_tipo,Empresa privada,Institución pública,ONG,Universidad,Instituto'],
+        'nec_empresa' => ['nullable', 'string', 'max:80', 'required_if:nec_tipo,Empresa privada,Institución pública,ONG,Universidad,Instituto'],
         'nec_persona' => ['nullable', 'string', 'max:80', 'required_if:nec_tipo,Ciudadano'],
         'nec_ruc' => ['nullable', 'string', 'min:11', 'max:11', 'required_if:nec_tipo,Empresa privada,Institución pública,ONG,Universidad,Instituto'],
         'nec_dni' => ['nullable', 'string', 'min:8', 'max:8', 'required_if:nec_tipo,Ciudadano'],
@@ -53,7 +53,6 @@ class EditarNecesidad extends Component
 
         $this->necesidad = Necesidades::find($id);
         $this->nec_tipo = $this->necesidad->nec_tipo;
-        $this->nec_entidad = $this->necesidad->nec_entidad;
         $this->nec_email = $this->necesidad->nec_email;
         $this->nec_telefono = $this->necesidad->nec_telefono;
         $this->nec_direccion = $this->necesidad->nec_direccion;
@@ -63,11 +62,13 @@ class EditarNecesidad extends Component
         $this->nec_proceso = $this->necesidad->nec_proceso;
 
         if ($this->nec_tipo == 'Ciudadano') {
-            $this->nec_dni = $this->$this->necesidad->nec_documento;
-            $this->nec_entidad = $this->$this->necesidad->nec_entidad;
+            $this->es_institucion = false;
+            $this->nec_dni = $this->necesidad->nec_documento;
+            $this->nec_persona = $this->necesidad->nec_entidad;
         } else {
-            $this->nec_ruc = $this->$this->necesidad->nec_documento;
-            $this->nec_persona = $this->$this->necesidad->nec_entidad;
+            $this->es_institucion = true;
+            $this->nec_ruc = $this->necesidad->nec_documento;
+            $this->nec_empresa = $this->necesidad->nec_entidad;
         }
 
         $this->resetValidation();
@@ -79,7 +80,6 @@ class EditarNecesidad extends Component
 
         $necesidad = Necesidades::find($this->necesidad->nec_id);
         $necesidad->nec_tipo = $this->nec_tipo;
-        $necesidad->nec_entidad = $this->nec_entidad;
         $necesidad->nec_titulo = $this->nec_titulo;
         $necesidad->nec_descripcion = $this->nec_descripcion;
         $necesidad->nec_email = $this->nec_email;
@@ -91,7 +91,7 @@ class EditarNecesidad extends Component
             $necesidad->nec_entidad = $this->nec_persona;
         } else {
             $necesidad->nec_documento = $this->nec_ruc;
-            $necesidad->nec_entidad = $this->nec_entidad;
+            $necesidad->nec_entidad = $this->nec_empresa;
         }
         $necesidad->save();
 
@@ -112,6 +112,8 @@ class EditarNecesidad extends Component
 
     public function closeModal()
     {
+        $this->reset();
+        $this->resetValidation();
         $this->showModal = false;
     }
 
