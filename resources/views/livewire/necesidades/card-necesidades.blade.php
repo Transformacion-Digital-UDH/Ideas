@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+<div>
     <div class="grid grid-cols-1 gap-6">
         @foreach ($necesidades as $necesidad)
             <div class="bg-white shadow-sm rounded-lg p-6 flex justify-between items-center card-item">

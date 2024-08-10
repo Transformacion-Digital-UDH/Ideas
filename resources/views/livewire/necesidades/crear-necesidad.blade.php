@@ -1,8 +1,8 @@
 <div>
     <div class="flex justify-center">
         <button wire:click="abrirModal"
-            class="middle px-4 py-2 bg-cyan-500 hover:bg-cyan-700 text-white rounded-lg mr-4 text-lg font-bold shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50">
-            Agregar Problema
+            class="middle px-3 py-2 bg-blue-600 text-md font-bold border text-white rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out transform hover:scale-105">
+            Agregar Necesidad
         </button>
     </div>
     <x-dialog-modal wire:model="showModal">

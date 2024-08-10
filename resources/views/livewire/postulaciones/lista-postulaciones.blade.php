@@ -27,13 +27,13 @@
                                 {{ $postulacion->pos_created->format('Y-m-d') }}
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap text-center">
-                                <x-estadoPostulacion :status="$postulacion->estado" />
+                                {{ $postulacion->estado }}
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap">
                                 {{ $postulacion->propuesta->pro_tipo }}
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap text-center">
-                                <button wire:click="abrirModalVer({{ $postulacion->propuesta->pro_id }})"
+                                <button wire:click="cargarVer({{ $postulacion->propuesta->pro_id }})"
                                     class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                     <i class="fas fa-eye text-white"></i>
                                 </button>
