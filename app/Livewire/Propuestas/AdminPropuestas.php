@@ -9,7 +9,7 @@ class AdminPropuestas extends Component
 {
     public $propuestas;
 
-    protected $listeners = ['cursoActualizado'=>'getPropuestas','proyActualizado'=>'getPropuestas'];
+    protected $listeners = ['cursoActualizado'=>'getPropuestas','proyActualizado'=>'getPropuestas','tesisActualizado'=>'getPropuestas'];
     public function mount()
     {
         $this->propuestas = $this->getPropuestas();

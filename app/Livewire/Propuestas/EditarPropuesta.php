@@ -12,9 +12,10 @@ class EditarPropuesta extends Component
     use GestionarModal;
     public $propuesta;
     public $necesidad;
+   
 
     protected $listeners = ['editar'=>'editar', 'cursoActualizado' => 'closeModal',
-    'proyActualizado'=>'closeModal'];
+    'proyActualizado'=>'closeModal','tesisActualizado'=>'closeModal'];
 
     public function mount()
     {
@@ -28,6 +29,7 @@ class EditarPropuesta extends Component
         $this->necesidad = Necesidades::find($this->propuesta->nec_id);
         $this->dispatch('enviarId',$this->propuesta->pro_id);
     }
+
     public function closeModal()
     {
         $this->showModal = false;

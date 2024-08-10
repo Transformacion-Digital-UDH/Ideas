@@ -103,7 +103,7 @@
                             </form>
 
                             <div id="tesis-form" class="hidden">
-                                @livewire('curaciones.guardar-tesis')
+                                @livewire('curaciones.editar-tesis')
                             </div>
                         @endrole
                         @role('VRI')
@@ -124,6 +124,7 @@
     </x-dialog-modal>
 
     <script>
+        
         function selectOption(value) {
             const buttons = document.querySelectorAll('.botones button');
             const forms = document.querySelectorAll('[id$="-form"]');
