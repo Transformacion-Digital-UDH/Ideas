@@ -77,17 +77,20 @@
                     <div class="mb-4">
                         <div class="mt-1 flex justify-between gap-2 botones">
                             @role('ESCUELA')
-                                <button id="btn-curso" onclick="selectOption('curso')"
+                            @if($propuesta->pro_tipo=='Curso')
+                                <button id="btn-curso"
                                     class="flex-1 py-2 px-3 bg-blue-500 text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                                     Curso
                                 </button>
-                                <button id="btn-tesis" onclick="selectOption('tesis')"
-                                    class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                            @else
+                                <button id="btn-tesis"
+                                    class="flex-1 py-2 px-3 bg-blue-500 text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                                     Tesis
                                 </button>
                             @endrole
+                            @endif
                             @role('VRI')
-                                <button id="btn-proyecto" onclick="selectOption('proyecto')"
+                                <button id="btn-proyecto" 
                                     class="flex-1 py-2 px-3 border bg-blue-500 text-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                                     Proyecto
                                 </button>
@@ -98,14 +101,17 @@
                     <!-- Formulario -->
                     <div class="w-100">
                         @role('ESCUELA')
-                            <form id="curso-form">
-                                @livewire('curaciones.editar-curso')
-                            </form>
-
-                            <div id="tesis-form" class="hidden">
-                                @livewire('curaciones.editar-tesis')
-                            </div>
+                        @if($propuesta->pro_tipo =='Curso')
+                                <form id="curso-form">
+                                    @livewire('curaciones.editar-curso')
+                                </form>
+                         @else
+                                <form id="tesis-form" >
+                                    @livewire('curaciones.editar-tesis')
+                                </form>
+                        @endif
                         @endrole
+                        
                         @role('VRI')
                             <form id="proyecto-form">
                                 @livewire('curaciones.editar-proyecto')
@@ -122,29 +128,6 @@
             </x-secondary-button>
         </x-slot>
     </x-dialog-modal>
-
-    <script>
         
-        function selectOption(value) {
-            const buttons = document.querySelectorAll('.botones button');
-            const forms = document.querySelectorAll('[id$="-form"]');
-
-            if (value == null) {
-                value = buttons[0].id.split('-')[1];
-            }
-
-            buttons.forEach(button => {
-                button.classList.remove('bg-blue-500', 'text-white');
-                button.classList.add('bg-white', 'text-gray-700');
-            });
-
-            forms.forEach(form => {
-                form.classList.add('hidden');
-            });
-
-            document.getElementById('btn-' + value).classList.remove('bg-white', 'text-gray-700');
-            document.getElementById('btn-' + value).classList.add('bg-blue-500', 'text-white');
-            document.getElementById(value + '-form').classList.remove('hidden');
-        }
-    </script>
+        
 </div>

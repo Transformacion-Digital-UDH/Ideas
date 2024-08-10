@@ -32,6 +32,7 @@ class EditarTesis extends Component
     }
     public function cargarPropuesta($id)
     {
+        
         $this->propuestas = Propuestas::find($id);
         $this->nec_id = $this->propuestas->nec_id;
         $this->pro_lugar = $this->propuestas->pro_lugar;
@@ -45,6 +46,7 @@ class EditarTesis extends Component
         $this->pro_titulo = $this->propuestas->pro_titulo;
         $this->pro_descripcion = $this->propuestas->pro_descripcion;
 
+        
     }
     public function actualizarProyecto()
     {
