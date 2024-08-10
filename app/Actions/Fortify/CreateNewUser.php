@@ -32,21 +32,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        $rol = $this->determinar_rol($user->email);
+        $rol = determinar_rol($user->email);
         $user->assignRole($rol);
         return $user;
-    }
-
-    public function determinar_rol($email)
-    {
-        if (preg_match('/^\d+@udh\.edu\.pe$/', $email)) {
-            $role = 'ESTUDIANTE';
-        } elseif (strpos($email, '@udh.edu.pe') !== false) {
-            $role = 'DOCENTE';
-        } else {
-            $role = 'SOCIEDAD';
-        }
-
-        return $role;
     }
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('google_id')->nullable();
             $table->tinyInteger('estado')->unsigned()->default(1);
 
             $table->string('profesion', 100)->nullable();
