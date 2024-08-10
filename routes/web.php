@@ -7,10 +7,4 @@ Route::get('/', function () {
 });
 
 
-
-
-
-
-
-
 require __DIR__ . '/admin.php';
