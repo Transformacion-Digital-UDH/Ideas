@@ -47,7 +47,7 @@ class CrearNecesidad extends Component
 
     public function mount()
     {
-        $this->user_id = Auth::id();
+        $this->user_id = Auth::user()->id;
     }
 
 

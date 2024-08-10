@@ -9,11 +9,21 @@ class AdminPropuestas extends Component
 {
     public $propuestas;
 
+    protected $listeners = ['cursoActualizado'=>'getPropuestas','proyActualizado'=>'getPropuestas','tesisActualizado'=>'getPropuestas'];
     public function mount()
     {
         $this->propuestas = $this->getPropuestas();
     }
 
+    public function abrirModalVer($id)
+    {
+        $this->dispatch('ver', $id);
+    }
+    public function abrirModalEditar($id)
+    {
+        $this->dispatch('editar', $id);
+    }
+    
     public function render()
     {
         return view('livewire.propuestas.admin-propuestas');

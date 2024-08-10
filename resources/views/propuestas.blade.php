@@ -35,6 +35,7 @@
     </div>
 
     @livewire('propuestas.ver-detalles')
+    @livewire('propuestas.editar-propuesta')
     @livewire('propuestas.postular-propuesta')
     @livewire('componentes.BuscarEquipo')<!--por que es busqueda por tabla-->
     @livewire('componentes.BuscarNecesidadJs')<!--por que es busqueda por card-->

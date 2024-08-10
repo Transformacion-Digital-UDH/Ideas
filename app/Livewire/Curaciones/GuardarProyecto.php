@@ -30,14 +30,14 @@ class GuardarProyecto extends Component
         $this->validate([
             'pro_titulo' => ['required', 'string', 'max:255'],
             'pro_descripcion' => ['required', 'string', 'max:800'],
-            'proy_id' => ['required', 'exists:proyectistas,proy_id'],
+           // 'proy_id' => ['required', 'exists:proyectistas,proy_id'],
             'pro_justificacion' => ['required', 'string', 'max:800'],
         ]);
         $propuestas = new Propuestas();
         $propuestas->pro_titulo = $this->pro_titulo;
         $propuestas->pro_descripcion = $this->pro_descripcion;
         $propuestas->pro_justificacion = $this->pro_justificacion;
-        $propuestas->proyectista_id = $this->proy_id;
+        //$propuestas->proyectista_id = $this->proy_id;
         $propuestas->pro_tipo = 'Proyecto';
         $propuestas->nec_id = $this->nec_id;
         $propuestas->curador_id = Auth::user()->id;
