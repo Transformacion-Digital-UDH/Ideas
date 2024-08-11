@@ -6,11 +6,11 @@ use Livewire\Component;
 use App\Models\Propuestas;
 use App\Models\Postulaciones;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class ListaPropuestas extends Component
 {
     public $propuestas;
+    public $postulaciones_ids;
 
     protected $listeners = ['guardado' => 'getPropuestas'];
 
@@ -21,7 +21,7 @@ class ListaPropuestas extends Component
 
     public function render()
     {
-        return view('livewire.propuestas.lista-propuestas', ['propuestas' => $this->propuestas]);
+        return view('livewire.propuestas.lista-propuestas');
     }
 
     public function abrirModalVer($id)
@@ -36,36 +36,26 @@ class ListaPropuestas extends Component
 
     public function getPropuestas()
     {
-        $user_id = Auth::user()->id;
+        $this->postulaciones_ids = Postulaciones::postulaciones_ids();
 
-        // Obtener IDs de propuestas en las que el usuario ha postulado
-        $postulaciones_ids = Postulaciones::where('user_id', $user_id)
-            ->pluck('pro_id')
-            ->toArray();
-
-        // Filtrar propuestas según el rol del usuario y excluir aquellas a las que el usuario ya ha postulado
         if (User::esRol('ESTUDIANTE')) {
             $propuestas = Propuestas::where('pro_estado', 1)
                 ->where('pro_tipo', 'Tesis')
-                ->whereNotIn('pro_id', $postulaciones_ids)
                 ->orderBy('pro_id', 'desc')
                 ->get();
         } else if (User::esRol('DOCENTE')) {
             $propuestas = Propuestas::where('pro_estado', 1)
                 ->where('pro_tipo', 'Curso')
-                ->whereNotIn('pro_id', $postulaciones_ids)
                 ->orderBy('pro_id', 'desc')
                 ->get();
         } else if (User::esRol('PROYECTISTA')) {
             $propuestas = Propuestas::where('pro_estado', 1)
                 ->where('pro_tipo', 'Proyecto')
-                ->whereNotIn('pro_id', $postulaciones_ids)
                 ->orderBy('pro_id', 'desc')
                 ->get();
         } else {
             $propuestas = Propuestas::with('necesidad')
                 ->where('pro_estado', 1)
-                ->whereNotIn('pro_id', $postulaciones_ids)
                 ->orderBy('pro_id', 'desc')
                 ->get();
         }

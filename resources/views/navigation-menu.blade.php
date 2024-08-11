@@ -12,9 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('panel') }}" :active="request()->routeIs('panel')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @can('panel.ver')
+                        <x-nav-link href="{{ route('panel') }}" :active="request()->routeIs('panel')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endcan
                     @can('mis-necesidades.ver')
                         <x-nav-link href="{{ route('mis-necesidades') }}" :active="request()->routeIs('mis-necesidades')">
                             {{ __('Mis necesidades') }}
@@ -137,9 +139,15 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                            <div class="block px-4 py-2 text-xs text-udh_3 font-bold">
+                                {{ Auth::user()->name }}
                             </div>
+
+                            <div class="block px-4 pb-4 text-xs text-gray-400 break-words">
+                                {{ Auth::user()->email }}
+                            </div>
+
+                            <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
@@ -185,9 +193,46 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('panel') }}" :active="request()->routeIs('panel')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @can('panel.ver')
+                <x-responsive-nav-link href="{{ route('panel') }}" :active="request()->routeIs('panel')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('mis-necesidades.ver')
+                <x-responsive-nav-link href="{{ route('mis-necesidades') }}" :active="request()->routeIs('mis-necesidades')">
+                    {{ __('Mis necesidades') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('necesidades.ver')
+                <x-responsive-nav-link href="{{ route('necesidades') }}" :active="request()->routeIs('necesidades')">
+                    {{ __('Necesidades') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('propuestas.ver')
+                <x-responsive-nav-link href="{{ route('propuestas') }}" :active="request()->routeIs('propuestas')">
+                    {{ __('Propuestas') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('mis-postulaciones.ver')
+                <x-responsive-nav-link href="{{ route('mis-postulaciones') }}" :active="request()->routeIs('mis-postulaciones')">
+                    {{ __('Mis postulaciones') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('proyectistas.ver')
+                <x-responsive-nav-link href="{{ route('proyectistas') }}" :active="request()->routeIs('proyectistas')">
+                    {{ __('Proyectistas') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('postulaciones.ver')
+                <x-responsive-nav-link href="{{ route('postulaciones') }}" :active="request()->routeIs('postulaciones')">
+                    {{ __('Postulaciones') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('equipos.ver')
+                <x-responsive-nav-link href="{{ route('equipos') }}" :active="request()->routeIs('equipos')">
+                    {{ __('Equipos') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
