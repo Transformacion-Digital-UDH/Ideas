@@ -21,7 +21,7 @@
                 <div class="flex justify-center items-center pb-10">
                     <x-input-buscar type="text" placeholder="Buscar propuestas..." class="light-table-filter w-full max-w-2xl" />
                 </div>
-                @livewire('propuestas.lista-propuestas')
+            </div>
             @endrole
         </div>
     </div>
