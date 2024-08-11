@@ -28,6 +28,10 @@ class ListaProyectistas extends Component
     {
         $this->dispatch('editar', $id);
     }
+    public function abrirModalVer($id)
+    {
+        $this->dispatch('ver', $id);
+    }
 
     public function getProyectistas()
     {

@@ -22,5 +22,6 @@
     </div>
 
     @livewire('proyectistas.editar-proyectista')
-
+    @livewire('proyectistas.ver-proyectista')
+    @livewire('componentes.buscar-equipo')<!--por que es para busqueda de tabla-->
 </x-app-layout>
