@@ -25,6 +25,8 @@ class RolesSeeder extends Seeder
         $proyectista = Role::create(['name' => 'PROYECTISTA']);
 
 
+        Permission::create(['name' => 'panel.ver'])->syncRoles($admin, $asistente, $escuela, $vri);
+
         Permission::create(['name' => 'necesidades.ver'])->syncRoles($admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'necesidades.crear'])->syncRoles($sociedad, $admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'necesidades.editar'])->syncRoles($sociedad, $admin, $asistente, $escuela, $vri);
