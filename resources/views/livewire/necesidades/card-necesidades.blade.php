@@ -26,7 +26,7 @@
                                         class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                         <i class="fas fa-edit text-white"></i>
                                     </button>
-                                    <button wire:click="eliminarNecesidad({{ $necesidad->nec_id }})"
+                                    <button wire:click="confirmDelete({{ $necesidad->nec_id }})"
                                         class="middle px-2 py-1 bg-red-600 border border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                         <i class="fas fa-trash text-white"></i>
                                     </button>
@@ -45,4 +45,24 @@
             </div>
         @endif
     </div>
+        <!-- Modal de confirmación -->
+    <div wire:ignore.self class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75" style="display: none;" id="delete-modal">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-center font-bold mb-4">Confirmar Eliminación</h2>
+            <p>¿Estás seguro de eliminar esta necesidad?</p>
+            <div class="flex flex-row justify-center px-6 py-4 bg-gray-100 dark:bg-gray-800 text-center">
+                <button onclick="document.getElementById('delete-modal').style.display='none'" class="mr-2 inline-flex items-center px-4 py-2 bg-gray-300 text-gray-700 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150  shadow-lg">Cancelar</button>
+                <button wire:click="eliminarNecesidad" class="inline-flex items-center px-4 py-2 bg-red-600 text-white border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150   shadow-lg">Eliminar</button>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    window.addEventListener('show-delete-modal', event => {
+        document.getElementById('delete-modal').style.display = 'flex';
+    });
+
+    window.addEventListener('hide-delete-modal', event => {
+        document.getElementById('delete-modal').style.display = 'none';
+    });
+</script>
