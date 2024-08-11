@@ -75,13 +75,13 @@
                 <div class="w-full lg:w-3/6 lg:pl-5 mt-6 lg:mt-0">
                     <!-- Selección de Tipo -->
                     <div class="mb-4">
-                        <div class="mt-1 flex justify-between gap-2 botones">
+                        <div class="mt-1 flex justify-between gap-2 ">
                             @role('ESCUELA')
                                 @if ($propuesta->pro_tipo == 'Curso')
-                                    <button id="btn-curso"
-                                        class="flex-1 py-2 px-3 bg-blue-500 text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
-                                        Curso
-                                    </button>
+                                    <div
+                                    class="flex-1 py-2 px-3 bg-blue-500 text-white border border-gray-300 rounded-md text-sm cursor-default">
+                                    Curso
+                                    </div>
                                 @else
                                     <button id="btn-tesis"
                                         class="flex-1 py-2 px-3 bg-blue-500 text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
