@@ -6,15 +6,16 @@
     </x-slot>
 
     <div class="py-12 space-y-4">
-        <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 px-4">
             <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                <div class="pb-6 flex justify-between">
-                    <div>
+                <div class="pb-6 flex flex-col sm:flex-row justify-center sm:justify-between">
+                    <div class="mb-4 sm:mb-0">
                         @livewire('necesidades.crear-necesidad')
                     </div>
                     <x-input-buscar data-table="table_id" type="text" placeholder="Buscar ..."
-                        class="light-table-filter " />
+                        class="light-table-filter" />
                 </div>
+
                 @livewire('necesidades.card-necesidades')
             </div>
         </div>
