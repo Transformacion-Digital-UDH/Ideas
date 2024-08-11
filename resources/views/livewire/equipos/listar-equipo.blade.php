@@ -54,7 +54,7 @@
             <h2 class="text-lg font-bold mb-4">Confirmar Eliminación</h2>
             <p>¿Estás seguro de eliminar este equipo?</p>
             <div class="mt-4 flex justify-end">
-                <button onclick="document.getElementById('delete-modal').style.display='none'" class="mr-2 px-4 py-2 bg-gray-300 rounded">Cancelar</button>
+                <button onclick="document.getElementById('delete-modal').style.display='none'" class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 hover:text-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg">Cancelar</button>
                 <button wire:click="eliminarEquipo" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 hover:text-gray-200 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg">Eliminar</button>
             </div>
         </div>
