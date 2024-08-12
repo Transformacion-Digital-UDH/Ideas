@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             NecesidadesSeeder::class,
             ProyectistasSeeder::class,
+            TipoProyectosSeeder::class,
             PropuestasSeeder::class,
             EquiposSeeder::class,
         ]);

@@ -14,14 +14,14 @@
                         <p class="text-gray-500 mb-4 line-clamp-3 text-sm">{{ $necesidad->nec_entidad }}</p>
                         <div class="flex justify-between items-end mt-2">
                             <div class="text-gray-400 text-sm font-bold block md:flex">
-                                <x-com_proceso :status="$necesidad->nec_proceso" />
+                                <x-estadoSociedad :status="$necesidad->nec_proceso" />
                             </div>
                             <div>
                                 <button wire:click="verNecesidad({{ $necesidad->nec_id }})"
                                     class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                     <i class="fas fa-eye text-white"></i>
                                 </button>
-                                @if ($necesidad->nec_proceso == 'Pendiente')
+                                @if ($necesidad->nec_proceso == 'En Espera')
                                     <button wire:click="editarNecesidad({{ $necesidad->nec_id }})"
                                         class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                         <i class="fas fa-edit text-white"></i>

@@ -1,3 +1,4 @@
-# Privacy Policy
+## Política de privacidad
 
-Edit this file to define the privacy policy for your application.
+#### Recopilación de Información
+**Copiloto UDH** recopila información personal y datos relacionados con las necesidades registradas por los usuarios. Esto incluye, pero no se limita a, nombres, direcciones de correo electrónico, y detalles de la necesidad.

@@ -22,13 +22,11 @@
 </head>
 
 <body class="font-sans antialiased">
-    <header x-data="{
-        navbarOpen: false,
-    }" class="absolute left-0 top-0 z-50 w-full">
+    <header x-data="{ navbarOpen: false, }" class="absolute px-4 left-0 top-0 z-50 w-full shadow-sm border-b">
         <div class="container mx-auto">
-            <div class="relative -mx-4 flex items-center justify-between">
-                <div class="w-60 max-w-full px-4">
-                    <a href="javascript:void(0)" class="block w-full py-5">
+            <div class="relative flex items-center justify-between">
+                <div class="w-60 max-w-full">
+                    <a href="/" class="block w-full py-5">
                         <img src="{{ asset('logo.webp') }}" alt="logo" class="block w-full dark:hidden" />
                         <img src="{{ asset('logo.webp') }}" alt="logo" class="hidden w-full dark:block" />
                     </a>
@@ -64,10 +62,10 @@
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
                                 @auth
-                                <a href="{{ route('panel') }}"
-                                class="px-3 py-1 text-sm font-bold border bg-udh_3 text-white hover:text-whiterounded-sm">
-                                {{ __('Dashboard') }}
-                            </a>
+                                    <a href="{{ route('panel') }}"
+                                        class="px-3 py-1 text-sm font-bold border bg-udh_3 text-white hover:text-whiterounded-sm">
+                                        {{ __('Dashboard') }}
+                                    </a>
                                 @else
                                     <a href="{{ route('login') }}"
                                         class="px-3 py-1 text-sm font-bold border border-udh_3 text-dark hover:bg-udh_3 hover:text-white text-udh_3 rounded-sm">
@@ -89,14 +87,15 @@
         </div>
     </header>
 
-    <main>
-        <div class="relative bg-white pb-[110px] pt-[120px] lg:pt-[150px] dark:bg-dark">
-            <div class="container mx-auto px-4">
+    <main class="pt-[70px] sm:pt-[100px] relative px-4 w-full">
+        <div class="relative bg-white">
+            <div class="container mx-auto">
                 {{ $slot }}
             </div>
         </div>
     </main>
 
+    <x-web-footer />
     @livewireScripts
 </body>
 

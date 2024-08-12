@@ -33,6 +33,7 @@ class PropuestasFactory extends Factory
             'pro_tipo' => $this->faker->randomElement(['Curso', 'Tesis', 'Proyecto']),
             'pro_proceso' => $this->faker->randomElement(Propuestas::estados()),
             'nec_id' => \App\Models\Necesidades::factory(),
+            'tpro_id' => \App\Models\TipoProyectos::factory(),
             'curador_id' => \App\Models\User::factory(),
             'pro_estado' => 1,
             'pro_created' => now(),
