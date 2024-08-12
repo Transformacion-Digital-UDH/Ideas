@@ -23,7 +23,7 @@ class ListaNecesidades extends Component
 
     public function getNecesidades()
     {
-        $necesidades = Necesidades::where('nec_estado', 1)->get();
+        $necesidades = Necesidades::where('nec_estado', 1)->orderBy('nec_id', 'desc')->get();
         return $necesidades ?? [];
     }
     public function verNecesidad($id)
