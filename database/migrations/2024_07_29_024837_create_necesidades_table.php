@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('nec_telefono', 20)->nullable();
             $table->string('nec_direccion')->nullable();
             $table->enum('es_financiado', ['SI', 'NO'])->default('NO');
-            // Pendiente, En Revisión, Aprobada, No Aplicable, Rechazada, En Proceso, Completada
-            $table->string('nec_proceso', 20)->default('Pendiente');
+            $table->string('nec_proceso', 20)->default('En Espera');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('responsable_id')->nullable()->constrained('users');
             $table->tinyInteger('nec_estado')->unsigned()->default(1);

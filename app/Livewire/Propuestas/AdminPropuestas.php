@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Propuestas;
 
-use App\Http\Controllers\PropuestasController;
 use Livewire\Component;
 
 class AdminPropuestas extends Component

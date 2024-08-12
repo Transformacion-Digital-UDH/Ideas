@@ -31,15 +31,22 @@ class Propuestas extends Model
             ->withPivot('pos_id', 'pos_semestre', 'pos_seccion', 'pos_asignado', 'equ_id', 'pos_estado', 'pos_created', 'pos_updated');
     }
 
+    public function tipo_proyecto()
+    {
+        return $this->belongsTo(TipoProyectos::class, 'tip_id', 'tip_id');
+    }
+
     public static function estados()
     {
         return [
-            'En Espera',
+            'Cancelado',
+            'En Postulación',
+            'Postulado',
             'Asignado',
-            'En Desarrollo',
-            'Implementación',
-            'Completada',
-            'Cancelada'
+            'En Planificación',
+            'En Ejecución',
+            'En Finalización',
+            'Completado'
         ];
     }
 }

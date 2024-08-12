@@ -1,7 +1,6 @@
 <x-web-layout>
-
-    <div class="-mx-4 flex flex-wrap items-center">
-        <div class="w-full px-4 lg:w-5/12">
+    <div class="pt-5 pb-20 flex flex-wrap items-center">
+        <div class="w-full lg:w-5/12">
             <div class="hero-content">
                 <h1
                     class="mb-5 text-4xl font-bold !leading-[1.208] text-udh_3 sm:text-[42px] lg:text-[40px] xl:text-5xl dark:text-white">
@@ -19,7 +18,6 @@
                             Ingresa tu necesidad
                             <i class="ml-4 fa-solid fa-arrow-right"></i>
                         </a>
-
                     </li>
                 </ul>
                 <div class="clients pt-16">
@@ -48,8 +46,8 @@
                 </div>
             </div>
         </div>
-        <div class="hidden px-4 lg:block lg:w-1/12"></div>
-        <div class="w-full px-4 lg:w-6/12">
+        <div class="hidden lg:block lg:w-1/12"></div>
+        <div class="w-full lg:w-6/12">
             <div class="lg:ml-auto lg:text-right">
                 <div class="relative z-10 inline-block pt-11 lg:pt-0">
                     <img src="{{ asset('recursos/portada.jpeg') }}" alt="hero"
@@ -88,4 +86,5 @@
             </div>
         </div>
     </div>
+
 </x-web-layout>

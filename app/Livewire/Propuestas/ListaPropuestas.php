@@ -39,23 +39,23 @@ class ListaPropuestas extends Component
         $this->postulaciones_ids = Postulaciones::postulaciones_ids();
 
         if (User::esRol('ESTUDIANTE')) {
-            $propuestas = Propuestas::where('pro_estado', 1)
-                ->where('pro_tipo', 'Tesis')
-                ->orderBy('pro_id', 'desc')
-                ->get();
+            $tipo = 'Tesis';
         } else if (User::esRol('DOCENTE')) {
-            $propuestas = Propuestas::where('pro_estado', 1)
-                ->where('pro_tipo', 'Curso')
-                ->orderBy('pro_id', 'desc')
-                ->get();
+            $tipo = 'Curso';
         } else if (User::esRol('PROYECTISTA')) {
+            $tipo = 'Proyecto';
+        } else {
+            $tipo = 'Todo';
+        }
+
+        if ($tipo == 'Todo') {
             $propuestas = Propuestas::where('pro_estado', 1)
-                ->where('pro_tipo', 'Proyecto')
                 ->orderBy('pro_id', 'desc')
                 ->get();
         } else {
-            $propuestas = Propuestas::with('necesidad')
-                ->where('pro_estado', 1)
+            $propuestas = Propuestas::where('pro_estado', 1)
+                ->where('pro_tipo', $tipo)
+                ->where('pro_estado', 'En Postulación')
                 ->orderBy('pro_id', 'desc')
                 ->get();
         }
