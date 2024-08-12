@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Propuestas;
 
+use App\Models\Postulaciones;
 use App\Models\Propuestas;
 use App\Traits\GestionarModal;
 use Livewire\Component;
@@ -25,6 +26,10 @@ class VerDetalles extends Component
     {
         $this->openModal(); // Abre el modal
         $this->propuesta = Propuestas::find($id);
+        $validar = in_array($id, Postulaciones::postulaciones_ids());
+        if ($validar) {
+            $this->mostrarBtnPostular = false;
+        }
     }
 
     public function closeModal()

@@ -9,8 +9,9 @@ use Livewire\Component;
 class CardNecesidades extends Component
 {
     public $necesidades;
+    public $necesidadIdDelete = null;
 
-    protected $listeners = ['guardado' => 'getNecesidades',  'necesidadActualizada' => 'getNecesidades'];
+    protected $listeners = ['guardado' => 'getNecesidades',  'actualizado' => 'getNecesidades'];
 
     public function mount()
     {
@@ -23,17 +24,27 @@ class CardNecesidades extends Component
         $this->dispatch('ver', $id);
     }
 
-    public function eliminarNecesidad($id)
+    public function confirmDelete($id)
     {
+        $this->necesidadIdDelete=$id;
+        $this->dispatch('show-delete-modal');
+    }
+    public function eliminarNecesidad()
+    {
+        if($this->necesidadIdDelete)
+        {
         // Encuentra la necesidad por ID
-        $necesidad = Necesidades::find($id);
+            $necesidad = Necesidades::find($this->necesidadIdDelete);
 
-        if ($necesidad) {
-            // Si se encuentra la necesidad, elimínala
-            $necesidad->nec_estado = 0;
-            $necesidad->save();
-            // Actualiza la lista de necesidades después de la eliminación
-            $this->getNecesidades();
+            if ($necesidad) {
+                // Si se encuentra la necesidad, elimínala
+                $necesidad->nec_estado = 0;
+                $necesidad->save();
+                // Actualiza la lista de necesidades después de la eliminación
+                $this->getNecesidades();
+            }
+            $this->necesidadIdDelete = null;
+            $this->dispatch('hide-delete-modal');
         }
     }
 

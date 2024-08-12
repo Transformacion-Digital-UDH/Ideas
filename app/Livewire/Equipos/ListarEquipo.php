@@ -9,6 +9,7 @@ class ListarEquipo extends Component
 {
     
     public $equipos;
+    public $equipoIdToDelete = null;
 
     protected $listeners = ['guardado'=> 'getEquipos','EquipoActualizado'=>'getEquipos'];
 
@@ -26,14 +27,25 @@ class ListarEquipo extends Component
     {
         $this->dispatch('ver', $id);
     }
-    public function eliminarEquipo($id)
-    {
-        $equipo = Equipos::find($id);
 
-        if ($equipo) {
-            $equipo->equ_estado = 0;
-            $equipo->save();
-            $this->getEquipos();
+    public function confirmDelete($id)
+    {
+        $this->equipoIdToDelete = $id;
+        $this->dispatch('show-delete-modal');
+    }
+    public function eliminarEquipo()
+    {
+        if ($this->equipoIdToDelete) {
+            $equipo = Equipos::find($this->equipoIdToDelete);
+
+            if ($equipo) {
+                $equipo->equ_estado = 0;
+                $equipo->save();
+                $this->getEquipos();
+            }
+
+            $this->equipoIdToDelete = null;
+            $this->dispatch('hide-delete-modal');
         }
     }
 

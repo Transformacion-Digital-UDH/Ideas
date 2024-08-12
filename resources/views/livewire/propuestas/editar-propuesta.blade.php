@@ -75,22 +75,30 @@
                 <div class="w-full lg:w-3/6 lg:pl-5 mt-6 lg:mt-0">
                     <!-- Selección de Tipo -->
                     <div class="mb-4">
-                        <div class="mt-1 flex justify-between gap-2 botones">
+                        <div class="mt-1 flex justify-between gap-2 text-center">
                             @role('ESCUELA')
-                                <button id="btn-curso" onclick="selectOption('curso')"
-                                    class="flex-1 py-2 px-3 bg-blue-500 text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                @if ($propuesta->pro_tipo == 'Curso')
+                                    <div class="flex-1 py-2 px-3 bg-blue-500 text-white border
+                                         border-gray-300 rounded-md shadow-sm focus:outline-none
+                                          focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                                     Curso
-                                </button>
-                                <button id="btn-tesis" onclick="selectOption('tesis')"
-                                    class="flex-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
-                                    Tesis
-                                </button>
-                            @endrole
+                                    </div>
+                                @else
+                                    <div
+                                        class="flex-1 py-2 px-3 bg-blue-500 text-white border
+                                         border-gray-300 rounded-md shadow-sm focus:outline-none
+                                          focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                        Tesis
+                                    </div>
+                                @endrole
+                            @endif
                             @role('VRI')
-                                <button id="btn-proyecto" onclick="selectOption('proyecto')"
-                                    class="flex-1 py-2 px-3 border bg-blue-500 text-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                <div
+                                    class="flex-1 py-2 px-3 border bg-blue-500 text-white
+                                     border-gray-300 rounded-md shadow-sm focus:outline-none
+                                      focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                                     Proyecto
-                                </button>
+                                </div>
                             @endrole
                         </div>
                     </div>
@@ -98,17 +106,122 @@
                     <!-- Formulario -->
                     <div class="w-100">
                         @role('ESCUELA')
-                            <form id="curso-form">
-                                @livewire('curaciones.editar-curso')
-                            </form>
+                            @if ($propuesta->pro_tipo == 'Curso')
+                                <form id="curso-form">
+                                    
+                                    <div class="mt-5">
+                                        <x-input class="block mt-1 w-full" type="text" wire:model="pro_titulo"
+                                            placeholder="Ingrese un título tentativo" />
+                                        <x-input-error for="pro_titulo" class="mt-2" />
+                                    </div>
+                                    <div class="mt-5">
+                                        <x-textarea class="block mt-1 w-full" wire:model="problematicas"
+                                            placeholder="Ingresa el problema a tratar." />
+                                        <x-input-error for="problematicas" class="mt-2" />
+                                    </div>
+                                    <div class="mt-5">
+                                        <x-input class="block mt-1 w-full" type="text" wire:model="pro_beneficiarios"
+                                            placeholder="A quienes" />
+                                        <x-input-error for="pro_beneficiarios" class="mt-2" />
+                                    </div>
+                                    <div class="mt-5">
+                                        <x-input class="block mt-1 w-full" type="text" wire:model="pro_lugar"
+                                            placeholder="Ingrese el lugar de aplicación" />
+                                        <x-input-error for="pro_lugar" class="mt-2" />
+                                    </div>
+                                    <div class="mt-5">
+                                        <x-textarea class="block mt-1 w-full" wire:model="pro_descripcion"
+                                            placeholder="Agrega una descripción para la propuesta." />
+                                        <x-input-error for="pro_descripcion" class="mt-2" />
+                                    </div>
+                                </form>
+                            @else
+                                <form id="tesis-form">
+                                    <div class="mt-4">
+                                        <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_lugar"
+                                            placeholder="Dónde se va a implementar" />
+                                        <x-input-error for="pro_lugar" class="mt-2" />
+                                    </div>
+                                    <div class="mt-2">
+                                        <x-input class="block mt-1 w-full" type="text"
+                                            wire:model.defer="pro_beneficiarios"
+                                            placeholder="A quiénes va a beneficiar" />
+                                        <x-input-error for="pro_beneficiarios" class="mt-2" />
+                                    </div>
+                                    <div class="mt-2">
+                                        <x-textarea class="block mt-1 w-full" rows="2"
+                                            wire:model.defer="problematicas" placeholder="Problematica a tratar" />
+                                        <x-input-error for="problematicas" class="mt-2" />
+                                    </div>
+                                    <div class="mt-2">
+                                        <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_causas"
+                                            placeholder="Cuáles son las causas" />
+                                        <x-input-error for="pro_causas" class="mt-2" />
+                                    </div>
+                                    <div class="mt-2">
+                                        <x-input class="block mt-1 w-full" type="text"
+                                            wire:model.defer="pro_consecuencias"
+                                            placeholder="Cuáles son las consecuencias" />
+                                        <x-input-error for="pro_consecuencias" class="mt-2" />
+                                    </div>
+                                    <div class="mt-2">
+                                        <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_aportes"
+                                            placeholder="Ingrese posibles aportes" />
+                                        <x-input-error for="pro_aportes" class="mt-2" />
+                                    </div>
 
-                            <div id="tesis-form" class="hidden">
-                                @livewire('curaciones.editar-tesis')
-                            </div>
+                                    <hr class="my-4 border border-blue-600">
+
+                                    <div class="mt-4">
+                                        <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_titulo"
+                                            placeholder="Ingrese un título tentativo" />
+                                        <x-input-error for="pro_titulo" class="mt-2" />
+                                    </div>
+
+                                    <div class="flex flex-wrap">
+                                        <div class="w-full lg:w-3/6 lg:pr-3">
+                                            <div class="mt-2">
+                                                <x-input class="block mt-1 w-full" type="text"
+                                                    wire:model.defer="variable_1" placeholder="Variable 1" />
+                                                <x-input-error for="variable_1" class="mt-2" />
+                                            </div>
+                                        </div>
+                                        <div class="w-full lg:w-3/6">
+                                            <div class="mt-2">
+                                                <x-input class="block mt-1 w-full" type="text"
+                                                    wire:model.defer="variable_2" placeholder="Variable 2" />
+                                                <x-input-error for="variable_2" class="mt-2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <x-textarea class="block mt-1 w-full" rows="2"
+                                            wire:model.defer="pro_descripcion"
+                                            placeholder="Agrega una descripción para la propuesta." />
+                                        <x-input-error for="pro_descripcion" class="mt-2" />
+                                    </div>
+                                </form>
+                            @endif
                         @endrole
+
                         @role('VRI')
                             <form id="proyecto-form">
-                                @livewire('curaciones.editar-proyecto')
+                                <div class="mt-5">
+                                    <x-textarea class="block mt-1 w-full" rows="2" wire:model.defer="pro_titulo"
+                                        placeholder="Ingrese un título tentativo." />
+                                    <x-input-error for="pro_titulo" class="mt-2" />
+                                </div>
+
+                                <div class="mt-5">
+                                    <x-textarea class="block mt-1 w-full" wire:model.defer="pro_descripcion"
+                                        placeholder="Agrega una descripción para la propuesta." />
+                                    <x-input-error for="pro_descripcion" class="mt-2" />
+                                </div>
+                                <div class="mt-5">
+                                    <x-textarea class="block mt-1 w-full" wire:model.defer="pro_justificacion"
+                                        placeholder="Ingrese la justificación de la propuesta." />
+                                    <x-input-error for="pro_justificacion" class="mt-2" />
+                                </div>
                             </form>
                         @endrole
                     </div>
@@ -117,34 +230,14 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('showModal', null)" wire:loading.attr="disabled">
+            <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
+            <x-button type="button" class="ml-2" wire:click="actualizarPropuesta" wire:loading.attr="disabled">
+                Actualizar
+            </x-button>
         </x-slot>
     </x-dialog-modal>
 
-    <script>
-        
-        function selectOption(value) {
-            const buttons = document.querySelectorAll('.botones button');
-            const forms = document.querySelectorAll('[id$="-form"]');
 
-            if (value == null) {
-                value = buttons[0].id.split('-')[1];
-            }
-
-            buttons.forEach(button => {
-                button.classList.remove('bg-blue-500', 'text-white');
-                button.classList.add('bg-white', 'text-gray-700');
-            });
-
-            forms.forEach(form => {
-                form.classList.add('hidden');
-            });
-
-            document.getElementById('btn-' + value).classList.remove('bg-white', 'text-gray-700');
-            document.getElementById('btn-' + value).classList.add('bg-blue-500', 'text-white');
-            document.getElementById(value + '-form').classList.remove('hidden');
-        }
-    </script>
 </div>

@@ -6,32 +6,26 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 px-4">
             @role('VRI|ESCUELA')
-            <div class="py-12 space-y-4">
-                <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4">
-                        <div class="flex justify-between items-center pb-3">
-                            <div></div> <!-- Espacio vacío para mantener la alineación -->
-                            <x-input-buscar data-table="table_id" type="text" placeholder="Buscar..." class="light-table-filter" />
-                        </div>
-                        @livewire('propuestas.admin-propuestas')
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4">
+                    <div class="flex justify-between items-center pb-3">
+                        <div></div> <!-- Espacio vacío para mantener la alineación -->
+                        <x-input-buscar data-table="table_id" type="text" placeholder="Buscar..."
+                            class="light-table-filter" />
                     </div>
+                    @livewire('propuestas.admin-propuestas')
                 </div>
-            </div>
             @endrole
             @role('DOCENTE|ESTUDIANTE|PROYECTISTA')
-            <div class="py-6 space-y-4">
-                <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-                    <div class="flex justify-center items-center pb-10">
-                        <x-input-buscar type="text" placeholder="Buscar..." class="light-table-filter w-full max-w-2xl" />
-                    </div>
-                    @livewire('propuestas.lista-propuestas')
+                <div class="flex justify-center items-center pb-10">
+                    <x-input-buscar type="text" placeholder="Buscar propuestas..."
+                        class="light-table-filter w-full max-w-2xl" />
                 </div>
+                @livewire('propuestas.lista-propuestas')
             </div>
-
-            @endrole
-        </div>
+        @endrole
+    </div>
     </div>
 
     @livewire('propuestas.ver-detalles')
