@@ -7,7 +7,7 @@
                 <th scope="col" class="px-6 py-3">Necesidad</th>
                 <th scope="col" class="px-6 py-3">Registro</th>
                 <th scope="col" class="px-6 py-3">Financiamiento</th>
-                <th scope="col" class="px-6 py-3 text-center">Estado</th>
+                <th scope="col" class="px-6 py-3 text-left">Estado</th>
                 <th scope="col" class="px-6 py-3 text-center">Acciones</th>
             </tr>
         </thead>
@@ -30,10 +30,10 @@
                         {{ $necesidad->nec_created->format('H:i') }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-center">
-                        {{ $necesidad->es_financiado }}
+                        <x-estadoFinanciamiento :status="$necesidad->es_financiado" />
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <x-com_proceso :status="$necesidad->nec_proceso" />
+                    <td class="px-6 py-4 whitespace-nowrap text-left">
+                        <x-estadoInterno :status="$necesidad->nec_proceso" />
                     </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap">
                         <button wire:click='abrirModal({{ $necesidad->nec_id }})'

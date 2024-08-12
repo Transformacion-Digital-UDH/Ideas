@@ -39,7 +39,12 @@
                         <tr>
                             <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">Estado</td>
                             <td class="px-6 py-4 whitespace-normal text-md ">
-                                <x-com_proceso :status="$necesidad->nec_proceso" />
+                                @role('SOCIEDAD|PROYECTISTA|DOCENTE|ESTUDIANTE')
+                                    <x-estadoSociedad :status="$necesidad->nec_proceso" />
+                                @endrole
+                                @role('VRI|ESCUELA')
+                                    <x-estadoInterno :status="$necesidad->nec_proceso" />
+                                @endrole
                             </td>
                         </tr>
                         <tr>

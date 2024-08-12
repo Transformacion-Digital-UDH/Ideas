@@ -46,8 +46,8 @@ class GuardarCurso extends Component
         $propuestas->nec_id = $this->nec_id;
         $propuestas->curador_id = Auth::user()->id;
         $propuestas->save();
-        Necesidades::find($this->nec_id)
-            ->update(['nec_proceso' => 'En Revisión']);
+        Necesidades::where('nec_proceso', 'En Espera')->find($this->nec_id)
+            ->update(['nec_proceso' => 'Curado']);
 
         DB::commit();
         redirect(route('propuestas'));

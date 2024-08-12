@@ -26,10 +26,10 @@ return new class extends Migration
             $table->string('variable_1', 150)->nullable();
             $table->string('variable_2', 150)->nullable();
             $table->string('pro_tipo', 80);
-            // En Espera, En Desarrollo, En Revisión, Aprobada, Rechazada, Implementación, Completada, Cancelada
-            $table->string('pro_proceso', 20)->default('En Espera');
+            $table->string('pro_proceso', 20)->default('En Postulación');
             $table->foreignId('curador_id')->references('id')->on('users');
             $table->foreignId('nec_id')->references('nec_id')->on('necesidades');
+            $table->foreignId('tpro_id')->nullable()->constrained('tipo_proyectos', 'tpro_id');
             $table->tinyInteger('pro_estado')->unsigned()->default(1);
             $table->timestamp('pro_created')->useCurrent();
             $table->timestamp('pro_updated')->useCurrent()->useCurrentOnUpdate();

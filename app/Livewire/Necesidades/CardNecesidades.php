@@ -26,14 +26,13 @@ class CardNecesidades extends Component
 
     public function confirmDelete($id)
     {
-        $this->necesidadIdDelete=$id;
+        $this->necesidadIdDelete = $id;
         $this->dispatch('show-delete-modal');
     }
     public function eliminarNecesidad()
     {
-        if($this->necesidadIdDelete)
-        {
-        // Encuentra la necesidad por ID
+        if ($this->necesidadIdDelete) {
+            // Encuentra la necesidad por ID
             $necesidad = Necesidades::find($this->necesidadIdDelete);
 
             if ($necesidad) {
@@ -55,14 +54,15 @@ class CardNecesidades extends Component
 
     public function getNecesidades()
     {
-        $this->necesidades = Necesidades::where('nec_estado', 1)->where('user_id', Auth::id())
+        $this->necesidades = Necesidades::where('nec_estado', 1)
+            ->where('user_id', Auth::id())
             ->orderBY('nec_created', 'desc')
             ->get();
     }
 
     public function es_editable($proceso)
     {
-        return $proceso == 'Pendiente' ? true : false;
+        return $proceso == 'En Espera' ? true : false;
     }
 
     public function render()
