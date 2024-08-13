@@ -57,4 +57,9 @@ class ListaPostulaciones extends Component
         }
         return $estado;
     }
+    
+    public function reportarEstado($id)
+    {
+        $this->dispatch('reportar', $id);
+    }
 }
