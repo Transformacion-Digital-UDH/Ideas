@@ -36,14 +36,14 @@
                         <x-estadoInterno :status="$necesidad->nec_proceso" />
                     </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap">
-                        <button wire:click='abrirModal({{ $necesidad->nec_id }})'
-                            class="middle px-2 py-1 bg-transparent border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                        <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
+                            wire:click='abrirModal({{ $necesidad->nec_id }})'>
                             Curar
-                        </button>
-                        <button wire:click="verNecesidad({{ $necesidad->nec_id }})"
-                            class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                        </x-button-icon>
+                        <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
+                            wire:click='verNecesidad({{ $necesidad->nec_id }})'>
                             <i class="fas fa-eye text-white"></i>
-                        </button>
+                        </x-button-icon>
                     </td>
                 </tr>
             @endforeach

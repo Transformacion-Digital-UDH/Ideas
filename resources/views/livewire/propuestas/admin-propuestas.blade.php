@@ -6,7 +6,7 @@
                 <th scope="col" class="px-6 py-3">Necesidad / Propuesta</th>
                 <th scope="col" class="px-6 py-3">Curación</th>
                 <th scope="col" class="px-6 py-3">Tipo</th>
-                <th scope="col" class="px-6 py-3 text-center">Estado</th>
+                <th scope="col" class="px-6 py-3">Estado</th>
                 <th scope="col" class="px-6 py-3 text-center">Acciones</th>
             </tr>
         </thead>
@@ -30,39 +30,37 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                         <b>{{ $propuesta->pro_tipo }}</b>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                    <td class="px-6 py-4 whitespace-nowrap">
                         <x-estadoPropuesta :status="$propuesta->pro_proceso" />
                     </td>
                     <td class="px-6 py-4 text-center whitespace-nowrap">
                         @if ($propuesta->pro_tipo == 'Proyecto')
                             @role('VRI')
-                                <button wire:click="abrirModalEditar({{ $propuesta->pro_id }})"
-                                    class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                    <i class="fas fa-edit text-white"></i>
-                                </button>
-                            @elserole('ESCUELA')
-                                <button 
-                                    class="middle px-2 py-1 bg-gray-400 border border-gray-400 text-gray-700 rounded-lg cursor-not-allowed" disabled>
-                                    <i class="fas fa-edit text-white"></i>
-                                </button>
+                                <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
+                                    wire:click="abrirModalEditar({{ $propuesta->pro_id }})">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </x-button-icon>
+                                @elserole('ESCUELA')
+                                <x-button-icon class="px-2 h-7 bg-gray-400 cursor-not-allowed">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </x-button-icon>
                             @endrole
                         @elseif($propuesta->pro_tipo == 'Curso' || $propuesta->pro_tipo == 'Tesis')
                             @role('ESCUELA')
-                                <button wire:click="abrirModalEditar({{ $propuesta->pro_id }})"
-                                    class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                    <i class="fas fa-edit text-white"></i>
-                                </button>
-                            @elserole('VRI')
-                                <button 
-                                    class="middle px-2 py-1 bg-gray-400 border border-gray-400 text-gray-700 rounded-lg cursor-not-allowed" disabled>
-                                    <i class="fas fa-edit text-white"></i>
-                                </button>
+                                <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
+                                    wire:click="abrirModalEditar({{ $propuesta->pro_id }})">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </x-button-icon>
+                                @elserole('VRI')
+                                <x-button-icon class="px-2 h-7 bg-gray-400 cursor-not-allowed">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </x-button-icon>
                             @endrole
                         @endif
-                        <button wire:click="abrirModalVer({{ $propuesta->pro_id }})"
-                            class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                        <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
+                            wire:click='abrirModalVer({{ $propuesta->pro_id }})'>
                             <i class="fas fa-eye text-white"></i>
-                        </button>
+                        </x-button-icon>
                     </td>
                 </tr>
             @endforeach

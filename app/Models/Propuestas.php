@@ -49,15 +49,4 @@ class Propuestas extends Model
             'Completado'
         ];
     }
-
-    public static function puede_reportar()
-    {
-        return [
-            'Asignado',
-            'En Planificación',
-            'En Ejecución',
-            'En Finalización',
-            'Completado',
-        ];
-    }
 }

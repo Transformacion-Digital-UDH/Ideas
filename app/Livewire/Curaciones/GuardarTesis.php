@@ -63,12 +63,14 @@ class GuardarTesis extends Component
 
             $propuestas->pro_titulo = $this->pro_titulo;
             $propuestas->pro_descripcion = $this->pro_descripcion;
+            $propuestas->pro_proceso = 'En Postulación';
             $propuestas->pro_tipo = 'Tesis';
             $propuestas->nec_id = $this->nec_id;
             $propuestas->curador_id = Auth::user()->id;
             $propuestas->save();
-            Necesidades::where('nec_proceso', 'En Espera')->find($this->nec_id)
-            ->update(['nec_proceso' => 'Curado']);
+            Necesidades::where('nec_proceso', 'En Espera')
+                ->where('nec_id', $this->nec_id)
+                ->update(['nec_proceso' => 'Curado']);
 
             DB::commit();
             redirect(route('propuestas'));
