@@ -1,4 +1,5 @@
 # Condiciones de uso
+*Actualizado el **10 agosto, 2024***.
 
 Al acceder o utilizar **Copiloto UDH**, usted acepta cumplir con todas las condiciones aquí establecidas. Este documento contiene información importante sobre sus derechos, obligaciones y recursos legales como usuario del sistema.
 

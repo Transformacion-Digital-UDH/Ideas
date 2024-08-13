@@ -1,4 +1,6 @@
-## Política de privacidad
+# Política de privacidad
+*Actualizado el **10 agosto, 2024***.
+
 Le recomendamos leer este documento con atención para comprender cómo tratamos sus datos y cuáles son sus derechos en relación con su privacidad. Al utilizar **Copiloto UDH**, usted acepta las prácticas descritas en esta política.
 
 #### Recopilación de Información
