@@ -3,7 +3,7 @@
         <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled">
             Agregar Necesidad
         </x-button-icon>
-    </div>sss
+    </div>
     <x-dialog-modal wire:model="showModal">
         <x-slot name="content">
             <section>
