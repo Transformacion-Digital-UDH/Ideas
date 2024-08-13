@@ -13,6 +13,6 @@ class PropuestasSeeder extends Seeder
      */
     public function run(): void
     {
-        Propuestas::factory(5)->create();
+        Propuestas::factory(15)->create();
     }
 }

@@ -12,4 +12,5 @@
     </div>
 
     @livewire('propuestas.ver-detalles', ['mostrarBtnPostular' => false])
+    @livewire('postulaciones.reportar-propuesta')
 </x-app-layout>
