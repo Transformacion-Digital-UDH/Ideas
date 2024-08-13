@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('est_rol', 20)->default('Todos')->nullable();
             $table->string('est_descripcion', 255)->nullable();
             $table->tinyInteger('est_estado')->unsigned()->default(1);
-            $table->unsignedBigInteger('pre_requisito')->nullable();
-            $table->foreign('pre_requisito')->references('est_id')->on('estado_procesos')->onDelete('set null');
+            $table->string('est_siguiente', 4)->nullable();
             $table->timestamp('est_created')->useCurrent();
             $table->timestamp('est_updated')->useCurrent()->useCurrentOnUpdate();
         });

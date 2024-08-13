@@ -1,10 +1,8 @@
 <div>
     <div class="flex justify-center">
-        <button wire:click="abrirModal"
-            class="middle px-3 py-2 bg-blue-600 text-sm font-bold border text-white rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out transform hover:scale-105">
+        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled">
             Agregar equipo
-        </button>
-
+        </x-button-icon>
     </div>
     <x-dialog-modal wire:model="showModal">
         <x-slot name="content">
