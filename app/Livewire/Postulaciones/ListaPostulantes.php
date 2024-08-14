@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class ListaPostulantes extends Component
 {
-    
+
     public $postulantes;
 
     public function mount()
@@ -30,14 +30,10 @@ class ListaPostulantes extends Component
     {
         $postulantes = Postulaciones::all();
 
-        $postulantes = $postulantes->map(function ($postulacion) {
-            $validar = Postulaciones::where('pos_asignado', '1')
-                ->where('pos_estado', 1)
-                ->where('pro_id', $postulacion->pro_id)
-                ->exists();
-            $postulacion->estado = $this->validarEstado($validar, $postulacion->pos_asignado);
-            return $postulacion;
-        });
+        //$idpropuesta = $postulantes->pro_id;
+        // Si quieres conservar las claves originales del arreglo, usa:
+        $postulantes = $postulantes->unique('pro_id')->values();
+
 
         return $postulantes;
     }
