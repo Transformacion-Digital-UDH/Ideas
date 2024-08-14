@@ -3,11 +3,12 @@
 namespace App\Livewire\Equipos;
 
 use App\Models\Equipos;
+use App\Traits\GestionarModal;
 use Livewire\Component;
 
 class ListarEquipo extends Component
 {
-    
+    use GestionarModal;
     public $equipos;
     public $equipoIdToDelete = null;
 
@@ -31,7 +32,7 @@ class ListarEquipo extends Component
     public function confirmDelete($id)
     {
         $this->equipoIdToDelete = $id;
-        $this->dispatch('show-delete-modal');
+        $this->openModal();
     }
     public function eliminarEquipo()
     {
@@ -45,7 +46,7 @@ class ListarEquipo extends Component
             }
 
             $this->equipoIdToDelete = null;
-            $this->dispatch('hide-delete-modal');
+            $this->closeModal();
         }
     }
 
@@ -54,6 +55,7 @@ class ListarEquipo extends Component
         $this->dispatch('editar', $id);
     }
 
+    
 
     public function render()
     {
