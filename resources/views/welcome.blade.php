@@ -962,7 +962,11 @@
                             promoviendo un entorno
                             donde las ideas se transforman en acciones concretas que mejoran la vida de las personas.
                         </p>
+
+                    
                     </div>
+
+
                 </main>
 
                 <footer class="py-16 text-center text-sm text-black dark:text-white/70">

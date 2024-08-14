@@ -13,7 +13,7 @@ class ListaPostulaciones extends Component
 
     public function mount()
     {
-       $this->postulaciones = $this->getPostulaciones();
+        $this->postulaciones = $this->getPostulaciones();
     }
 
     public function render()

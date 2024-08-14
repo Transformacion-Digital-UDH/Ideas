@@ -73,4 +73,5 @@ Route::middleware([
         Route::get('/vri/propuestas', 'propuestas')->name('vri.propuestas');
     });
 
+    
 });
