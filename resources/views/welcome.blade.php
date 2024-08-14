@@ -1,5 +1,5 @@
 <x-web-layout>
-    <div class="pt-5 pb-20 flex flex-wrap items-center">
+    <div class="pt-5 flex flex-wrap items-center">
         <div class="w-full lg:w-5/12">
             <div class="hero-content">
                 <h1
@@ -46,12 +46,12 @@
                 </div>
             </div>
         </div>
-        <div class="hidden lg:block lg:w-1/12"></div>
-        <div class="w-full lg:w-6/12">
+        <div class="hidden lg:block lg:w-2/12"></div>
+        <div class="w-full lg:w-5/12">
             <div class="lg:ml-auto lg:text-right">
                 <div class="relative z-10 inline-block pt-11 lg:pt-0">
-                    <img src="{{ asset('recursos/portada.jpeg') }}" alt="hero"
-                        class="max-w-full lg:ml-auto rounded-xl" />
+                    <img src="{{ asset('recursos/portada.png') }}" alt="hero"
+                        class="max-w-full lg:ml-auto rounded-xl -mb-2" />
                     <span class="absolute -bottom-8 -left-8 z-[-1]">
                         <svg width="93" height="93" viewBox="0 0 93 93" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -84,6 +84,9 @@
                     </span>
                 </div>
             </div>
+        </div>
+        <div class="bg-blue-500 w-full">
+            
         </div>
     </div>
 
