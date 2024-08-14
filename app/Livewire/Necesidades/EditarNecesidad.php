@@ -107,7 +107,7 @@ class EditarNecesidad extends Component
 
     public function isEditable()
     {
-        return $this->nec_proceso === 'Pendiente';
+        return $this->nec_proceso === 'En Espera';
     }
 
     public function closeModal()

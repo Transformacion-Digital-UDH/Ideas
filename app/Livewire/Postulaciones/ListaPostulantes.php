@@ -13,7 +13,7 @@ class ListaPostulantes extends Component
 
     public function mount()
     {
-       $this->postulantes = $this->getPostulantes();
+        $this->postulantes = $this->getPostulantes();
     }
 
     public function render()
@@ -26,28 +26,5 @@ class ListaPostulantes extends Component
         $this->dispatch('ver', $id);
     }
 
-    public function getPostulantes()
-    {
-        $postulantes = Postulaciones::all();
 
-        //$idpropuesta = $postulantes->pro_id;
-        // Si quieres conservar las claves originales del arreglo, usa:
-        $postulantes = $postulantes->unique('pro_id')->values();
-
-
-        return $postulantes;
-    }
-
-    public function validarEstado($validar, $pos_estado)
-    {
-        $estado = 'Pendiente';
-        if ($validar) {
-            if ($validar && $pos_estado) {
-                $estado = 'Aprobado';
-            } else {
-                $estado = 'Rechazado';
-            }
-        }
-        return $estado;
-    }
 }
