@@ -1,10 +1,8 @@
 <div>
     <div class="flex justify-center">
-        <button wire:click="abrirModal"
-            class="middle px-3 py-2 bg-blue-600 text-sm font-bold border text-white rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out transform hover:scale-105">
+        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled">
             Agregar proyectista
-        </button>
-
+        </x-button-icon>
     </div>
     <x-dialog-modal wire:model="showModal" maxWidth="md">
         <x-slot name="title">
@@ -13,39 +11,43 @@
 
         <x-slot name="content">
             <div class="mt-6">
-                <x-label for="name" value="{{ __('Nombres') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" wire:model="name" />
+                <x-label for="name" value="{{ __('Full Names') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" autocomplete="off" wire:model="name" />
                 <x-input-error for="name" class="mt-2" />
             </div>
 
             <div class="mt-6">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" wire:model="email" />
+                <x-input id="email" class="block mt-1 w-full" type="email" autocomplete="off"
+                    wire:model="email" />
                 <x-input-error for="email" class="mt-2" />
             </div>
 
             <div class="mt-6">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" wire:model="password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" autocomplete="off"
+                    wire:model="password" />
                 <x-input-error for="password" class="mt-2" />
             </div>
 
             <div class="mt-6">
                 <x-label for="telefono" value="{{ __('Teléfono') }}" />
-                <x-input id="telefono" class="block mt-1 w-full" type="text" wire:model="telefono" />
+                <x-input id="telefono" class="block mt-1 w-full" type="text" autocomplete="off"
+                    wire:model="telefono" />
                 <x-input-error for="telefono" class="mt-2" />
             </div>
 
             <div class="mt-6">
                 <x-label for="profesion" value="{{ __('Profesión') }}" />
-                <x-input id="profesion" class="block mt-1 w-full" type="text" wire:model="profesion" />
+                <x-input id="profesion" class="block mt-1 w-full" type="text" autocomplete="off"
+                    wire:model="profesion" />
                 <x-input-error for="profesion" class="mt-2" />
             </div>
 
             <div class="mt-6">
                 <x-label for="descripcion" value="{{ __('Más detalles') }}" />
-                <x-textarea id="descripcion" class="block mt-1 w-full" type="text" wire:model="descripcion"
-                    placeholder="Agrega más detalles del proyectista." />
+                <x-textarea id="descripcion" class="block mt-1 w-full" type="text" autocomplete="off"
+                    wire:model="descripcion" placeholder="Agrega más detalles del proyectista." />
                 <x-input-error for="descripcion" class="mt-2" />
             </div>
         </x-slot>

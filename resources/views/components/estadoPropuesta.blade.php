@@ -1,31 +1,37 @@
 @props(['status'])
-
 @php
     switch ($status) {
-        case 'En Espera':
-            $clase = 'text-gray-500 bg-gray-100/60';
+        case 'En Postulación':
+            $clase = 'text-white bg-purple-500/80';
+            break;
+        case 'Postulado':
+            $clase = 'text-white bg-orange-500/80';
             break;
         case 'Asignado':
-            $clase = 'text-teal-500 bg-teal-100/60';
+            $clase = 'text-white bg-purple-500/80';
             break;
-        case 'En Desarrollo':
-            $clase = 'text-blue-500 bg-blue-100/60';
+        case 'En Planificación':
+            $clase = 'text-white bg-blue-500/80';
             break;
-        case 'Implementación':
-            $clase = 'text-yellow-500 bg-yellow-100/60';
+        case 'En Ejecución':
+            $clase = 'text-white bg-blue-500/80';
             break;
-        case 'Completada':
-            $clase = 'text-emerald-500 bg-emerald-100/60';
+        case 'En Finalización':
+            $clase = 'text-white bg-blue-500/80';
             break;
-        case 'Cancelada':
-            $clase = 'text-red-500 bg-red-100/60';
+        case 'Completado':
+            $clase = 'text-white bg-green-500/80';
+            break;
+        case 'Cancelado':
+            $clase = 'text-white bg-red-500/80';
             break;
         default:
-            $clase = 'text-gray-500 bg-gray-100/60';
+            $clase = 'text-white bg-gray-500/80';
+            $status = 'Desconocido';
             break;
     }
 @endphp
 
-<div class="inline px-3 py-1 text-sm font-normal rounded-full {{ $clase }} gap-x-2 text-center">
+<div class="inline px-2 py-1 text-xs font-bold rounded-full {{ $clase }} gap-x-2 text-center">
     {{ $status }}
 </div>

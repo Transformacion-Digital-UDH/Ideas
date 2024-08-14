@@ -43,13 +43,16 @@ class Necesidades extends Model
     public static function estados()
     {
         return [
-            'Pendiente',
-            'En Revisión',
-            'Aprobada',
-            'No Aplicable',
-            'Rechazada',
-            'En Proceso',
-            'Completada'
+            'No Aplica',
+            'Cancelado',
+            'En Espera',
+            'Curado',
+            'Postulado',
+            'Asignado',
+            'En Planificación',
+            'En Ejecución',
+            'En Finalización',
+            'Completado'
         ];
     }
 }

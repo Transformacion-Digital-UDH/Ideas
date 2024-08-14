@@ -42,12 +42,14 @@ class GuardarCurso extends Component
         $propuestas->pro_beneficiarios = $this->pro_beneficiarios;
         $propuestas->pro_lugar = $this->pro_lugar;
         $propuestas->pro_descripcion = $this->pro_descripcion;
+        $propuestas->pro_proceso = 'En Postulación';
         $propuestas->pro_tipo = 'Curso';
         $propuestas->nec_id = $this->nec_id;
         $propuestas->curador_id = Auth::user()->id;
         $propuestas->save();
-        Necesidades::find($this->nec_id)
-            ->update(['nec_proceso' => 'En Revisión']);
+        Necesidades::where('nec_proceso', 'En Espera')
+            ->where('nec_id', $this->nec_id)
+            ->update(['nec_proceso' => 'Curado']);
 
         DB::commit();
         redirect(route('propuestas'));

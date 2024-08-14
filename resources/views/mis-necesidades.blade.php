@@ -1,24 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-center items-center mt-2">
-            <div class="relative justify-center items-center FL p-1 border border-gray-200 rounded-lg w-full max-w-lg">
-                <div class="relative flex items-center">
-                    <input data-table="table_id" type="text" placeholder="Buscar..."
-                        class="light-table-filter block w-full py-1.5 pr-5
-                            text-gray-700 bg-white border border-gray-200 rounded-lg placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5
-                            focus:border-sky-400 focus:ring-sky-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                </div>
-            </div>
-        </div>
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Mis necesidades') }}
+        </h2>
     </x-slot>
 
     <div class="py-12 space-y-4">
-        <div class="">
-            @livewire('necesidades.crear-necesidad')
-        </div>
+        <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 px-4">
+            <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+                <div class="pb-6 flex flex-col sm:flex-row justify-center sm:justify-between">
+                    <div class="mb-4 sm:mb-0">
+                        @livewire('necesidades.crear-necesidad')
+                    </div>
+                    <x-input-buscar data-table="table_id" type="text" placeholder="Buscar ..."
+                        class="light-table-filter" />
+                </div>
 
-        <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-            @livewire('necesidades.card-necesidades')
+                @livewire('necesidades.card-necesidades')
+            </div>
         </div>
     </div>
 

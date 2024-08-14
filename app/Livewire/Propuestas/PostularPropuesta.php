@@ -4,10 +4,12 @@ namespace App\Livewire\Propuestas;
 
 use App\Models\Equipos;
 use App\Models\Postulaciones;
+use App\Models\User;
 use App\Rules\UnicaPostulacion;
 use App\Traits\GestionarModal;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+
 
 class PostularPropuesta extends Component
 {
@@ -31,28 +33,39 @@ class PostularPropuesta extends Component
 
     public function postular($id)
     {
-        $this->openModal(); // Abre el modal
+        $this->resetExcept('postulacion');
+        $this->resetValidation();
+        $this->openModal();
         $this->pro_id = $id;
         $this->user_id = Auth::user()->id;
-        $this->pos_semestre = $this->getSemestre();
+        $this->pos_semestre = $this->obtenerSemestre();
     }
 
     public function guardar()
     {
-        $this->validate([
+        $rules = [
             'pos_semestre' => ['required', 'string', 'max:25'],
             'pro_id' => ['required', new UnicaPostulacion],
-            // Agregar mas reglas de validacion
-        ]);
+            'pos_justificar' => ['required', 'string', 'min:10', 'max:255'],
+        ];
 
-        $this->postulacion->create([
-            'pos_semestre' => $this->pos_semestre,
-            'pos_seccion' => $this->pos_seccion,
-            'user_id' => $this->user_id,
-            'pro_id' => $this->pro_id,
-            'equ_id' => $this->equ_id,
-            'pos_justificar' => $this->pos_justificar
-        ]);
+        if (User::esRol('DOCENTE')) {
+            $rules['pos_seccion'] = ['required', 'string', 'max:25'];
+            $rules['equ_id'] = ['required', 'integer', 'exists:equipos,equ_id'];
+        }
+
+        $this->validate($rules);
+
+        $this->postulacion->pos_semestre = $this->pos_semestre;
+        $this->postulacion->pos_seccion = $this->pos_seccion;
+        $this->postulacion->user_id = $this->user_id;
+        $this->postulacion->pro_id = $this->pro_id;
+        if (User::esRol('DOCENTE')) {
+            $this->postulacion->equ_id = $this->equ_id;
+            $this->postulacion->pos_justificar = $this->pos_justificar;
+        }
+
+        $this->postulacion->save();
 
         $this->dispatch('guardado');
         $this->reset();
@@ -69,9 +82,17 @@ class PostularPropuesta extends Component
         return view('livewire.propuestas.postular-propuesta', compact('equipos'));
     }
 
-    public function getSemestre()
+    public function obtenerSemestre()
     {
-        return '2024-2';
-        // validar a que semestre pertenece
+        $mesActual = date('n');
+        $anioActual = date('Y');
+        if ($mesActual <= 2) {
+            $semestre = 0;
+        } elseif ($mesActual <= 7) {
+            $semestre = 1;
+        } else {
+            $semestre = 2;
+        }
+        return $anioActual . '-' . $semestre;
     }
 }

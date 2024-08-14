@@ -7,8 +7,8 @@
                     <th scope="col" class="px-6 py-3">N°</th>
                     <th scope="col" class="px-6 py-3">Propuesta</th>
                     <th scope="col" class="px-6 py-3">Postulación</th>
-                    <th scope="col" class="px-6 py-3 text-center">Estado</th>
                     <th scope="col" class="px-6 py-3">Tipo</th>
+                    <th scope="col" class="px-6 py-3 text-center">Estado</th>
                     <th scope="col" class="px-6 py-3 text-center">Acciones</th>
                 </tr>
             </thead>
@@ -26,17 +26,23 @@
                             <td class="px-6 py-5">
                                 {{ $postulacion->pos_created->format('Y-m-d') }}
                             </td>
-                            <td class="px-6 py-5 whitespace-nowrap text-center">
-                                <x-estadoPostulacion :status="$postulacion->estado" />
-                            </td>
                             <td class="px-6 py-5 whitespace-nowrap">
                                 {{ $postulacion->propuesta->pro_tipo }}
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap text-center">
-                                <button wire:click="abrirModalVer({{ $postulacion->propuesta->pro_id }})"
-                                    class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                    <i class="fas fa-eye text-white"></i>
-                                </button>
+                                <x-estadoPostulacion :status="$postulacion->estado" />
+                            </td>
+                            <td class="px-6 py-5 whitespace-nowrap text-center">
+                                @if ($postulacion->pro_proceso != 'Postulación')
+                                    <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
+                                        wire:click="reportarEstado({{ $postulacion->propuesta->pro_id }})">
+                                        Reportar
+                                    </x-button-icon>
+                                @endif
+                                <x-button-icon class="px-1 h-6 w-6 bg-udh_1"
+                                    wire:click="cargarVer({{ $postulacion->propuesta->pro_id }})">
+                                    <i class="fas fa-eye"></i>
+                                </x-button-icon>
                             </td>
                         </tr>
                     @endforeach

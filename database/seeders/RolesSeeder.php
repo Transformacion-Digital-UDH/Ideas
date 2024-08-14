@@ -25,6 +25,8 @@ class RolesSeeder extends Seeder
         $proyectista = Role::create(['name' => 'PROYECTISTA']);
 
 
+        Permission::create(['name' => 'panel.ver'])->syncRoles($admin, $asistente, $escuela, $vri);
+
         Permission::create(['name' => 'necesidades.ver'])->syncRoles($admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'necesidades.crear'])->syncRoles($sociedad, $admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'necesidades.editar'])->syncRoles($sociedad, $admin, $asistente, $escuela, $vri);
@@ -43,7 +45,7 @@ class RolesSeeder extends Seeder
         Permission::create(['name' => 'postulaciones.eliminar'])->syncRoles($admin, $asistente, $escuela);
         Permission::create(['name' => 'postulaciones.asignar'])->syncRoles($admin, $asistente, $escuela);
 
-        Permission::create(['name' => 'mis-necesidades.ver'])->syncRoles($sociedad);
+        Permission::create(['name' => 'mis-necesidades.ver'])->syncRoles($sociedad, $docente);
         Permission::create(['name' => 'mis-postulaciones.ver'])->syncRoles($docente, $estudiante, $proyectista);
 
         Permission::create(['name' => 'proyectistas.ver'])->syncRoles($admin, $asistente, $vri);
