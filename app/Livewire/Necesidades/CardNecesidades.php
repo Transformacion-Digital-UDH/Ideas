@@ -3,11 +3,13 @@
 namespace App\Livewire\Necesidades;
 
 use App\Models\Necesidades;
+use App\Traits\GestionarModal;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CardNecesidades extends Component
 {
+    use GestionarModal;
     public $necesidades;
     public $necesidadIdDelete = null;
 
@@ -27,7 +29,7 @@ class CardNecesidades extends Component
     public function confirmDelete($id)
     {
         $this->necesidadIdDelete = $id;
-        $this->dispatch('show-delete-modal');
+        $this->openModal();
     }
     public function eliminarNecesidad()
     {
@@ -43,7 +45,7 @@ class CardNecesidades extends Component
                 $this->getNecesidades();
             }
             $this->necesidadIdDelete = null;
-            $this->dispatch('hide-delete-modal');
+            $this->closeModal();
         }
     }
 

@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1" />
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1 text-center" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
 
