@@ -50,6 +50,10 @@
                             {{ __('Equipos') }}
                         </x-nav-link>
                     @endcan
+                    
+                    <x-nav-link href="{{ route('mis-responsabilidades') }}" :active="request()->routeIs('mis-responsabilidades')">
+                        {{ __('Mis responsabilidades') }}
+                    </x-nav-link>
                 </div>
             </div>
 
