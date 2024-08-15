@@ -3,21 +3,19 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class EnviarCorreo extends Mailable
+class NotificacionCorreo extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $asunto = 'Correo de prueba';
-public $mensaje = 'Este es un correo de prueba';
+    public $asunto;
+    public $mensaje;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct($asunto, $mensaje)
     {
         $this->asunto = $asunto;
@@ -40,7 +38,7 @@ public $mensaje = 'Este es un correo de prueba';
     public function content(): Content
     {
         return new Content(
-            view: 'emails.enviar-correo',
+            view: 'emails.notificacion-correo', // Asegúrate de que este nombre coincide con el archivo de vista
             with: [
                 'mensaje' => $this->mensaje,
             ],

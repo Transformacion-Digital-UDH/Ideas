@@ -12,4 +12,5 @@
     </div>
 
     @livewire('responsables.ver-detalles')
+    @livewire('responsables.enviar-correo')
 </x-app-layout>

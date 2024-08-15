@@ -12,21 +12,6 @@
             </div>
         </div>
 
-        <div>
-            <h1>Enviar correo de prueba</h1>
-            <form action="{{ route('enviar-correo' )}}" method="POST">
-                @csrf
-                <div>
-                    <label for="asunto">Asunto:</label>
-                    <input type="text" id="asunto" name="asunto" required>
-                </div>
-                <div>
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-                </div>
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
 
     </div>
 
