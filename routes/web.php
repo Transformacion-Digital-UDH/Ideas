@@ -27,7 +27,6 @@ Route::post('enviar-correo', function (Illuminate\Http\Request $request) {
 })->name('enviar-correo');
 
 
-
 Route::controller(LanginpageController::class)->group(function () {
     Route::get('/nosotros', 'nosotros')->name('nosotros');
     Route::get('/contactos', 'contactos')->name('contactos');

@@ -40,13 +40,11 @@
     @else
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <div class="bg-white shadow-sm rounded-lg">
-                    <p class="pb-3">Hola, <b class="text-udh_3">{{ auth()->user()->name }}</b>!</p>
-                    <p class="pb-5">
-                        Actualmente no hay propuestas disponibles para postularse.
-                    </p>
-                    <i class="text-udh_3 text-right">¡Vuelva pronto! 🌟</i>
-                </div>
+                <p class="pb-3">Hola, <b class="text-udh_3">{{ auth()->user()->name }}</b>!</p>
+                <p class="pb-5">
+                    Actualmente no hay propuestas disponibles para postularse.
+                </p>
+                <i class="text-udh_3 text-right">¡Vuelva pronto! 🌟</i>
             </div>
         </div>
     @endif
