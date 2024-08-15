@@ -41,7 +41,7 @@ class RolesSeeder extends Seeder
         Permission::create(['name' => 'notificaciones.crear'])->syncRoles($admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'notificaciones.ver'])->syncRoles($admin, $asistente, $escuela, $vri, $sociedad);
 
-        Permission::create(['name' => 'postulaciones.ver'])->syncRoles($admin, $asistente, $escuela);
+        Permission::create(['name' => 'postulaciones.ver'])->syncRoles($admin, $asistente, $escuela, $vri);
         Permission::create(['name' => 'postulaciones.eliminar'])->syncRoles($admin, $asistente, $escuela);
         Permission::create(['name' => 'postulaciones.asignar'])->syncRoles($admin, $asistente, $escuela);
 

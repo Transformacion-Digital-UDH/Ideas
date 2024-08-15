@@ -41,7 +41,7 @@ class EstadoProcesoSeeder extends Seeder
             [
                 'est_id' => 4,
                 'est_codigo' => 'FINA',
-                'est_nombre' => 'En Finalización ',
+                'est_nombre' => 'En Finalización',
                 'est_descripcion' => 'Se lleva a cabo la revisión final del trabajo, la entrega de resultados, la documentación, correcciones y acuerdos.',
                 'est_rol' => 'Todos',
                 'est_siguiente' => 'COMP',
@@ -49,7 +49,7 @@ class EstadoProcesoSeeder extends Seeder
             [
                 'est_id' => 5,
                 'est_codigo' => 'COMP',
-                'est_nombre' => 'Completado ',
+                'est_nombre' => 'Completado',
                 'est_descripcion' => 'La propuesta ha sido resuelto completamente, el proceso se da por terminado oficialmente, y se cierra el proyecto de manera formal.',
                 'est_rol' => 'Todos',
                 'est_siguiente' => '',

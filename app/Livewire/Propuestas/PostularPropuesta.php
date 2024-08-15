@@ -4,6 +4,7 @@ namespace App\Livewire\Propuestas;
 
 use App\Models\Equipos;
 use App\Models\Postulaciones;
+use App\Models\Propuestas;
 use App\Models\User;
 use App\Rules\UnicaPostulacion;
 use App\Traits\GestionarModal;
@@ -60,6 +61,9 @@ class PostularPropuesta extends Component
         $this->postulacion->pos_seccion = $this->pos_seccion;
         $this->postulacion->user_id = $this->user_id;
         $this->postulacion->pro_id = $this->pro_id;
+        $propuesta = Propuestas::find($this->pro_id);
+        $propuesta->pro_proceso = 'Postulado';
+        $propuesta->save();
         if (User::esRol('DOCENTE')) {
             $this->postulacion->equ_id = $this->equ_id;
             $this->postulacion->pos_justificar = $this->pos_justificar;
