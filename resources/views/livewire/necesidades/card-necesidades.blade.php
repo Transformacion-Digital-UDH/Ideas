@@ -45,24 +45,24 @@
             </div>
         @endif
     </div>
-        <!-- Modal de confirmación -->
-    <div wire:ignore.self class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75" style="display: none;" id="delete-modal">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-center font-bold mb-4">Confirmar Eliminación</h2>
-            <p>¿Estás seguro de eliminar esta necesidad?</p>
-            <div class="flex flex-row justify-center px-6 py-4 bg-gray-100 dark:bg-gray-800 text-center">
-                <button onclick="document.getElementById('delete-modal').style.display='none'" class="mr-2 inline-flex items-center px-4 py-2 bg-gray-300 text-gray-700 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150  shadow-lg">Cancelar</button>
-                <button wire:click="eliminarNecesidad" class="inline-flex items-center px-4 py-2 bg-red-600 text-white border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs uppercase tracking-widest hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150   shadow-lg">Eliminar</button>
-            </div>
-        </div>
-    </div>
+    <!-- Modal de confirmación para eliminar-->
+    
+    <x-dialog-modal maxWidth="md" wire:model="showModal">
+        <x-slot name="title">
+            Confirmar Eliminación
+        </x-slot>
+        <x-slot name="content">
+            ¿Estás seguro de eliminar esta necesidad?
+        </x-slot>
+        <x-slot name="footer">
+            <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
+                Cancelar
+            </x-secondary-button>
+            <x-button wire:click="eliminarNecesidad"
+                class="ml-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                Eliminar
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
 </div>
-<script>
-    window.addEventListener('show-delete-modal', event => {
-        document.getElementById('delete-modal').style.display = 'flex';
-    });
 
-    window.addEventListener('hide-delete-modal', event => {
-        document.getElementById('delete-modal').style.display = 'none';
-    });
-</script>

@@ -13,7 +13,7 @@ class VerPostulantes extends Component
     public $postulantes;
     public $mostrarBtnPostulacion;
 
-    protected $listeners = ['ver'];
+    protected $listeners = ['verPostulantes'];
 
     public function mount($mostrarBtnPostulacion = true)
     {
@@ -21,11 +21,28 @@ class VerPostulantes extends Component
         $this->mostrarBtnPostulacion = $mostrarBtnPostulacion;
     }
 
-    public function ver($id)
+    public function verPostulantes($id)
     {
-        $this->openModal(); // Abre el modal
-        $this->postulantes = Postulaciones::with('propuesta')->find($id);
+        $this->openModal();
+        $this->postulantes = Postulaciones::where('pro_id', $id)
+            ->with('propuesta', 'postulante')
+            ->get();
+
+        if ($this->postulantes->isEmpty()) {
+            $this->postulantes = collect();
+        }
     }
+
+    public function asignarPostulacion($postulacionId)
+    {
+        $postulacion = Postulaciones::find($postulacionId);
+        dd($postulacion);
+        if ($postulacion) {
+            $postulacion->pos_asignado = 1;
+            $postulacion->save();
+        }
+    }
+
 
     public function closeModal()
     {

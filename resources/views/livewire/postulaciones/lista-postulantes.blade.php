@@ -1,7 +1,7 @@
-<div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 ">
-    <div class="relative overflow-x-auto w-full">
+<div class="mx-auto max-w-screen-2xl sm:px-6 lg:px-8 ">
+    <div class="relative w-full overflow-x-auto">
         <table
-            class="w-full text-sm text-left rtl:text-right bg-white dark:bg-gray-800 overflow-hidden shadow-xl rounded-lg">
+            class="w-full overflow-hidden text-sm text-left bg-white rounded-lg shadow-xl rtl:text-right dark:bg-gray-800">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">N°</th>
@@ -26,16 +26,16 @@
                             <td class="px-6 py-5">
                                 {{ $postulacion->pos_created->format('Y-m-d') }}
                             </td>
-                            <td class="px-6 py-5 whitespace-nowrap text-center">
+                            <td class="px-6 py-5 text-center whitespace-nowrap">
                                 <x-estadoPostulacion :status="$postulacion->estado" />
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap">
-                                {{ $postulacion->propuesta->pro_tipo }}
+                                {{ $postulacion->propuesta->pro_tipo }} {{$postulacion->propuesta->pro_id}}
                             </td>
-                            <td class="px-6 py-5 whitespace-nowrap text-center">
-                                <button wire:click="abrirModalVer({{ $postulacion->pos_id }})"
-                                    class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-                                    <i class="fas fa-eye text-white"></i>
+                            <td class="px-6 py-5 text-center whitespace-nowrap">
+                                <button wire:click="abrirModalVer({{ $postulacion->propuesta->pro_id }})"
+                                    class="px-2 py-1 transition duration-300 ease-in-out transform border rounded-lg middle bg-cyan-500 text-cyan-600 hover:bg-cyan-600 hover:text-white hover:-translate-y-1 hover:scale-105">
+                                    <i class="text-white fas fa-eye"></i>
                                 </button>
                             </td>
                         </tr>

@@ -8,8 +8,9 @@
 
     <div class="py-12">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
-            @livewire('postulaciones.lista-postulantes')
+            @livewire('postulaciones.admin-postulaciones')
         </div>
     </div>
-    @livewire('postulaciones.ver-postulantes')
+    @livewire('propuestas.ver-detalles')
+    @livewire('postulaciones.asignar-postulante')
 </x-app-layout>
