@@ -47,18 +47,18 @@
                                                 </p>
                                                 <div class="flex justify-between items-end mt-1">
                                                     <div class="text-gray-400 text-sm font-bold block md:flex">
-                                                        <x-estadoSociedad :status="$necesidad->nec_proceso" />
+                                                        <x-estadoInterno :status="$necesidad->nec_proceso" />
                                                     </div>
                                                     <div>
                                                         <x-button-icon class="px-2 h-6 bg-udh_1 uppercase"
                                                             wire:loading.attr="disabled"
-                                                            wire:click='abrirModal({{ $necesidad->nec_id }})'>
+                                                            wire:click='verResponsable({{ $necesidad->nec_id }})'>
                                                             <i class="fas fa-eye text-white"></i>
                                                         </x-button-icon>
                                                         <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
                                                             wire:loading.attr="disabled"
-                                                            wire:click='abrirModal({{ $necesidad->nec_id }})'>
-                                                            Seguimiento
+                                                            wire:click='verPropuestas({{ $necesidad->nec_id }})'>
+                                                            Propuestas
                                                         </x-button-icon>
                                                     </div>
                                                 </div>
