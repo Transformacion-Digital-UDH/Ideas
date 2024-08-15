@@ -24,4 +24,14 @@ class ListaProyectos extends Component
     {
         return view('livewire.proyectos.lista-proyectos');
     }
+
+    public function verResponsable($nec_id)
+    {
+        $this->dispatch('comoResponsable', $nec_id);
+    }
+
+    public function verPropuestas($nec_id)
+    {
+        $this->dispatch('verPropuestas', $nec_id);
+    }
 }

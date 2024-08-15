@@ -23,7 +23,7 @@ class MisPostulaciones extends Controller
             ->get();
 
         $postulaciones = $postulaciones->map(function ($postulacion) {
-            $validar = Postulaciones::where('pos_asignado', '1')
+            $validar = Postulaciones::where('pos_asignado', 1)
                 ->where('pos_estado', 1)
                 ->where('pro_id', $postulacion->pro_id)
                 ->exists();

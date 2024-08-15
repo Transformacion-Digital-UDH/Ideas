@@ -19,7 +19,7 @@ class NecesidadesFactory extends Factory
     public function definition(): array
     {
         return [
-            'nec_tipo' => $this->faker->word,
+            'nec_tipo' => $this->faker->randomElement(Necesidades::tipos_entidad()),
             'nec_entidad' => $this->faker->company,
             'nec_documento' => $this->faker->regexify('[A-Za-z0-9]{20}'),
             'nec_titulo' => $this->faker->sentence,
