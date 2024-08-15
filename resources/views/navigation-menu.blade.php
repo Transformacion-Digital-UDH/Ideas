@@ -35,6 +35,11 @@
                             {{ __('Mis postulaciones') }}
                         </x-nav-link>
                     @endcan
+                    @can('mis-proyectos.ver')
+                        <x-nav-link href="{{ route('mis-proyectos') }}" :active="request()->routeIs('mis-proyectos')">
+                            {{ __('Mis proyectos') }}
+                        </x-nav-link>
+                    @endcan
                     @can('proyectistas.ver')
                         <x-nav-link href="{{ route('proyectistas') }}" :active="request()->routeIs('proyectistas')">
                             {{ __('Proyectistas') }}
@@ -216,6 +221,9 @@
                     {{ __('Mis postulaciones') }}
                 </x-responsive-nav-link>
             @endcan
+            <x-responsive-nav-link href="{{ route('mis-proyectos') }}" :active="request()->routeIs('mis-proyectos')">
+                {{ __('Mis proyectos') }}
+            </x-responsive-nav-link>
             @can('proyectistas.ver')
                 <x-responsive-nav-link href="{{ route('proyectistas') }}" :active="request()->routeIs('proyectistas')">
                     {{ __('Proyectistas') }}

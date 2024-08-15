@@ -1,22 +1,21 @@
 <?php
 
-use App\Http\Controllers\DocentesController;
 use App\Http\Controllers\EquiposController;
-use App\Http\Controllers\EstudiantesController;
 use App\Http\Controllers\MisNecesidadesController;
 use App\Http\Controllers\MisPostulaciones;
+use App\Http\Controllers\MisProyectosController;
 use App\Http\Controllers\NecesidadesController;
-use App\Http\Controllers\PaisiController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PostulacionesController;
 use App\Http\Controllers\PropuestasController;
 use App\Http\Controllers\ProyectistasController;
 use App\Http\Controllers\ResponsablesController;
-use App\Http\Controllers\VriController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
-    'auth:sanctum', config('jetstream.auth_session'), 'verified',
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->group(function () {
 
     Route::get('/panel', [PanelController::class, 'index'])->name('panel');
@@ -47,5 +46,9 @@ Route::middleware([
 
     Route::controller(ResponsablesController::class)->group(function () {
         Route::get('/mis-responsabilidades', 'index')->name('mis-responsabilidades');
+    });
+
+    Route::controller(MisProyectosController::class)->group(function () {
+        Route::get('/mis-proyectos', 'index')->name('mis-proyectos');
     });
 });
