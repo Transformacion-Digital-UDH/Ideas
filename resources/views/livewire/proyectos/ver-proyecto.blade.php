@@ -1,15 +1,6 @@
 <div>
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
-        <x-slot name="title">
-            <h2 class="text-base">{{ $postulacion->propuesta->pro_titulo ?? '' }}</h2>
-        </x-slot>
-
         <x-slot name="content">
-            <pre>
-                @php
-                    print_r($postulacion->toArray());
-                @endphp
-            </pre>
             <div class="overflow-x-auto">
                 <h3 class="font-bold text-md text-udh_1">Detalles de la necesidad</h3>
                 <table class="min-w-full bg-white">
@@ -56,6 +47,17 @@
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-y divide-gray-200">
                         @if ($postulacion->propuesta)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Propuesta</td>
+                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                    {{ $postulacion->propuesta->pro_titulo }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600" colspan="2">
+                                    {{ $postulacion->propuesta->pro_descripcion }}
+                                </td>
+                            </tr>
                             @if ($postulacion->propuesta->pro_tipo == 'Curso' || $postulacion->propuesta->pro_tipo == 'Tesis')
                                 <tr>
                                     <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Lugar</td>
@@ -106,11 +108,15 @@
                                 </tr>
                             @endif
                             <tr>
+                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Estado</td>
+                                <td class="px-6 py-4 whitespace-normal text-md ">
+                                    <x-estadoInterno :status="$postulacion->propuesta->pro_proceso" />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Tipo</td>
                                 <td class="px-6 py-4 whitespace-normal text-md ">
-                                    <span class="text-green-700 font-bold bg-green-100 py-1 px-4 rounded-lg">
-                                        {{ $postulacion->propuesta->pro_tipo }}
-                                    </span>
+                                    {{ $postulacion->propuesta->pro_tipo }}
                                 </td>
                             </tr>
                             <tr>

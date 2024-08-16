@@ -27,7 +27,7 @@ class VerProyecto extends Component
     public function verProyecto($pos_id)
     {
         $this->postulacion = Postulaciones::with(
-            'propuesta:pro_id,nec_id,pro_titulo,pro_proceso',
+            'propuesta',
             'propuesta.necesidad',
             'propuesta.necesidad.responsable:id,name,email,telefono',
             'equipo:equ_id,equ_codigo,equ_nombre,equ_tipo',

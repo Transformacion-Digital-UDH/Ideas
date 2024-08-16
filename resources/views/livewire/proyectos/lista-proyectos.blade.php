@@ -90,12 +90,13 @@
                                         <div
                                             class="bg-white shadow-sm rounded-lg p-3 flex justify-between items-center card-item">
                                             <div class="w-full">
-                                                @isset($post->propuesta->es_oficial)
-                                                    <span class="text-white text-xs rounded-md bg-udh_1 px-1 py-[2px] mb-2">
+                                                @if ($post->propuesta->es_oficial)
+                                                    <span
+                                                        class="text-white text-xs rounded-md bg-udh_1 px-1 py-[2px] mb-2">
                                                         <i class="fa-solid fa-star text-yellow-400"></i>
                                                         Proyecto oficial
                                                     </span>
-                                                @endisset
+                                                @endif
                                                 <div class="flex justify-between items-center">
                                                     <p class="text-sm font-medium mb-1 text-blue-950">
                                                         Responsable:
