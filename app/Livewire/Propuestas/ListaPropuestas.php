@@ -6,9 +6,12 @@ use Livewire\Component;
 use App\Models\Propuestas;
 use App\Models\Postulaciones;
 use App\Models\User;
+use Livewire\WithPagination;
 
 class ListaPropuestas extends Component
 {
+    use WithPagination;
+
     public $propuestas;
     public $postulaciones_ids;
 
@@ -51,11 +54,11 @@ class ListaPropuestas extends Component
         if ($tipo == 'Todo') {
             $propuestas = Propuestas::where('pro_estado', 1)
                 ->orderBy('pro_id', 'desc')
-                ->get();
+                ->paginate(10);
         } else {
             $propuestas = Propuestas::where('pro_estado', 1)
                 ->where('pro_tipo', $tipo)
-                ->whereIn('pro_proceso', ['En Postulación', 'Postulado'])
+                ->where('pro_proceso', 'En Postulación')
                 ->orderBy('pro_id', 'desc')
                 ->get();
         }
