@@ -27,14 +27,9 @@ class PostularPropuesta extends Component
 
     protected $listeners = ['postular'];
 
-    public function mount()
-    {
-        $this->postulacion = new Postulaciones();
-    }
-
     public function postular($id)
     {
-        $this->resetExcept('postulacion');
+        $this->resetExcept('postulacion', 'pos_semestre');
         $this->resetValidation();
         $this->openModal();
         $this->pro_id = $id;
@@ -56,7 +51,7 @@ class PostularPropuesta extends Component
         }
 
         $this->validate($rules);
-
+        $this->postulacion = new Postulaciones();
         $this->postulacion->pos_semestre = $this->pos_semestre;
         $this->postulacion->pos_seccion = $this->pos_seccion;
         $this->postulacion->user_id = $this->user_id;

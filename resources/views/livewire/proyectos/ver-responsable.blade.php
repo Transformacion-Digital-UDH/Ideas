@@ -66,22 +66,6 @@
                         </tr>
                     </tbody>
                 </table>
-                @role('VRI|ESCUELA')
-                    <h3 class="pt-5 font-bold text-md text-sky-700">Propuestas</h3>
-                    @if (count($necesidad->propuestas) > 0)
-                        @foreach ($necesidad->propuestas as $propuesta)
-                            <div class="px-3 py-2 my-3 border border-gray-300">
-                                <p>{{ $propuesta->pro_titulo }}</p>
-                                <div class="flex items-center justify-between">
-                                    <b>{{ $propuesta->pro_tipo }}</b>
-                                    <x-estadoPropuesta :status="$propuesta->pro_proceso" />
-                                </div>
-                            </div>
-                        @endforeach
-                    @else
-                        <p class="mt-2 text-sm">No hay propuestas para esta necesidad.</p>
-                    @endif
-                @endrole
             </div>
         </x-slot>
 
@@ -91,6 +75,4 @@
             </x-secondary-button>
         </x-slot>
     </x-dialog-modal>
-    {{-- ------
-    @livewire('necesidades.editar-necesidad')----- --}}
 </div>

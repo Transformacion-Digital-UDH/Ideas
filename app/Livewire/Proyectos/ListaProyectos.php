@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class ListaProyectos extends Component
 {
-    public $listeners = ['reportado' => 'reportarEstado'];
+    public $listeners = ['reportado' => 'getMisProyectos'];
     public $responsables;
     public $proyectos;
 
@@ -19,10 +19,8 @@ class ListaProyectos extends Component
 
     public function mount()
     {
-        $this->responsables = Necesidades::where('responsable_id', Auth::user()->id)->get();
-        $this->es_responsable = count($this->responsables) > 0;
-        $this->proyectos = $this->getMisProyectos();
-        $this->es_proyecto = count($this->proyectos) > 0;
+        $this->getMisResponsabilidades();
+        $this->getMisProyectos();
         $this->los_dos = $this->es_responsable && $this->es_proyecto;
     }
 
@@ -31,6 +29,30 @@ class ListaProyectos extends Component
         return view('livewire.proyectos.lista-proyectos');
     }
 
+    public function getMisResponsabilidades()
+    {
+        $this->responsables = Necesidades::where('responsable_id', Auth::user()->id)
+            ->get();
+        $this->es_responsable = count($this->responsables) > 0;
+    }
+
+    public function getMisProyectos()
+    {
+        $this->proyectos = Postulaciones::with(
+            'propuesta:pro_id,nec_id,pro_titulo,pro_proceso',
+            'propuesta.necesidad:nec_id,nec_titulo,responsable_id',
+            'propuesta.necesidad.responsable:id,name',
+            'equipo:equ_id,equ_codigo,equ_nombre,equ_tipo',
+        )
+            ->where('user_id', Auth::user()->id)
+            ->where('pos_asignado', 1)
+            ->where('pos_estado', 1)
+            ->get();
+
+        $this->es_proyecto = count($this->proyectos) > 0;
+    }
+
+    // Disparadores
     public function verResponsable($nec_id)
     {
         $this->dispatch('comoResponsable', $nec_id);
@@ -41,14 +63,9 @@ class ListaProyectos extends Component
         $this->dispatch('verPropuestas', $nec_id);
     }
 
-    public function getMisProyectos()
+    public function verProyecto($pos_id)
     {
-        $misproyectos = Postulaciones::with('propuesta')
-            ->where('user_id', Auth::user()->id)
-            ->where('pos_asignado', 1)
-            ->get();
-
-        return $misproyectos;
+        $this->dispatch('verProyecto', $pos_id);
     }
 
     public function reportarEstado($id)
