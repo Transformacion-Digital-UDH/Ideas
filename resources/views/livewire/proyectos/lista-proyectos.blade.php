@@ -51,6 +51,11 @@
                                                         <x-estadoInterno :status="$necesidad->nec_proceso" />
                                                     </div>
                                                     <div>
+                                                        <x-button-icon class="px-2 h-7 bg-udh_3"
+                                                            wire:loading.attr="disabled"
+                                                            wire:click='abriModalCorreo({{ $necesidad->nec_id }})'>
+                                                            <i class="fa-regular fa-paper-plane"></i>
+                                                        </x-button-icon>
                                                         <x-button-icon class="px-2 h-6 bg-udh_1 uppercase"
                                                             wire:loading.attr="disabled"
                                                             wire:click='verResponsable({{ $necesidad->nec_id }})'>

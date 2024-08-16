@@ -44,6 +44,9 @@ class EstadoPropuestaObserver
                     'estado_nuevo' => $propuestas->pro_proceso,
                 ]);
             }
+            if ($propuestas->es_oficial) {
+                $propuestas->necesidad()->update(['nec_proceso' => $propuestas->pro_proceso]);
+            }
         }
     }
 

@@ -9,7 +9,6 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PostulacionesController;
 use App\Http\Controllers\PropuestasController;
 use App\Http\Controllers\ProyectistasController;
-use App\Http\Controllers\ResponsablesController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -42,10 +41,6 @@ Route::middleware([
 
     Route::controller(MisPostulaciones::class)->group(function () {
         Route::get('/mis-postulaciones', 'index')->name('mis-postulaciones');
-    });
-
-    Route::controller(ResponsablesController::class)->group(function () {
-        Route::get('/mis-responsabilidades', 'index')->name('mis-responsabilidades');
     });
 
     Route::controller(MisProyectosController::class)->group(function () {

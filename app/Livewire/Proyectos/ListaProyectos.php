@@ -39,7 +39,7 @@ class ListaProyectos extends Component
     public function getMisProyectos()
     {
         $this->proyectos = Postulaciones::with(
-            'propuesta:pro_id,nec_id,pro_titulo,pro_proceso',
+            'propuesta:pro_id,nec_id,pro_titulo,pro_proceso,es_oficial',
             'propuesta.necesidad:nec_id,nec_titulo,responsable_id',
             'propuesta.necesidad.responsable:id,name',
             'equipo:equ_id,equ_codigo,equ_nombre,equ_tipo',
@@ -71,5 +71,10 @@ class ListaProyectos extends Component
     public function reportarEstado($id)
     {
         $this->dispatch('reportar', $id);
+    }
+
+    public function abriModalCorreo($id_necesidad)
+    {
+        $this->dispatch('verCorreo', $id_necesidad);
     }
 }
