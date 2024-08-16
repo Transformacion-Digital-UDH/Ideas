@@ -9,6 +9,8 @@ class AdminPostulaciones extends Component
 {
     public $propuestas;
 
+    public $listeners = ['finalizado' => 'cargarPropuestas'];
+
     public function getPropuestas()
     {
         return Propuestas::where('pro_proceso', 'Postulado')
@@ -23,6 +25,11 @@ class AdminPostulaciones extends Component
         $this->dispatch('ver', $id);
     }
 
+    public function cargarPropuestas()
+    {
+        $this->propuestas = $this->getPropuestas();
+    }
+
     public function verPostulantes($id)
     {
         $this->dispatch('asignar', $id);
@@ -30,7 +37,7 @@ class AdminPostulaciones extends Component
 
     public function render()
     {
-        $this->propuestas = $this->getPropuestas();
+        $this->cargarPropuestas();
         return view('livewire.postulaciones.admin-postulaciones');
     }
 }

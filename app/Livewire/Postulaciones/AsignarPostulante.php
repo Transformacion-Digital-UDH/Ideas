@@ -37,6 +37,12 @@ class AsignarPostulante extends Component
         $this->openModal();
     }
 
+    public function cerrarModal()
+    {
+        $this->dispatch('finalizado');
+        $this->closeModal();
+    }
+
     public function asignarPostulante($id)
     {
         DB::beginTransaction();

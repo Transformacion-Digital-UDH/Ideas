@@ -13,5 +13,5 @@
 
     @livewire('proyectos.ver-responsable')
     @livewire('proyectos.ver-propuestas')
-    @livewire('postulaciones.reportar-propuesta')
+    @livewire('proyectos.reportar-avance')
 </x-app-layout>

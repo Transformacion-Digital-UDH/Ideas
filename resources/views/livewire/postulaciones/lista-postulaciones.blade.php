@@ -18,7 +18,7 @@
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th scope="row"
                                 class="px-6 py-5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $i + 1 }}
+                                {{ count($postulaciones) - $i }}
                             </th>
                             <td class="px-6 py-5">
                                 <strong class="text-gray-900">{{ $postulacion->propuesta->pro_titulo }}</strong>
@@ -33,12 +33,6 @@
                                 <x-estadoPostulacion :status="$postulacion->estado" />
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap text-center">
-                                @if ($postulacion->pro_proceso != 'Postulación')
-                                    <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
-                                        wire:click="reportarEstado({{ $postulacion->propuesta->pro_id }})">
-                                        Reportar
-                                    </x-button-icon>
-                                @endif
                                 <x-button-icon class="px-1 h-6 w-6 bg-udh_1"
                                     wire:click="cargarVer({{ $postulacion->propuesta->pro_id }})">
                                     <i class="fas fa-eye"></i>

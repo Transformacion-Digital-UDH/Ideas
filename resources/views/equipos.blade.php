@@ -26,6 +26,7 @@
 
     @livewire('equipos.editar-equipo')
     @livewire('equipos.ver-equipo')
+    @livewire('equipos.eliminar-equipo')
     @livewire('componentes.buscar-equipo')
 
 </x-app-layout>

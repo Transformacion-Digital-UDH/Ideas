@@ -44,7 +44,8 @@
                                 wire:click="abrirModal({{ $proyectista->id }})">
                                 <i class="fa-solid fa-pencil"></i>
                             </x-button-icon>
-                            <x-button-icon class="px-2 h-7 bg-red-600" wire:loading.attr="disabled">
+                            <x-button-icon class="px-2 h-7 bg-red-600" wire:loading.attr="disabled"
+                                wire:click="eliminarProyectista({{ $proyectista->id }})">
                                 <i class="fa-solid fa-trash"></i>
                             </x-button-icon>
                         </td>

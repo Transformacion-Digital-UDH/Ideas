@@ -40,7 +40,7 @@
                             wire:click='verNecesidad({{ $necesidad->nec_id }})'>
                             <i class="fas fa-eye text-white"></i>
                         </x-button-icon>
-                        <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
+                        <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
                             wire:click='abriModalCorreo({{ $necesidad->nec_id }})'>
                             <i class="fa-regular fa-paper-plane"></i>
                         </x-button-icon>

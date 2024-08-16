@@ -15,6 +15,11 @@
             }
         }
     }">
+        <pre>
+        @php
+            print_r($proyectos->toArray());
+        @endphp
+    </pre>
         <div class="mx-auto  {{ $los_dos ? 'max-w-screen-2xl' : 'max-w-4xl' }}">
             @if ($es_responsable || $es_proyecto)
                 <div class="grid gap-6 {{ $los_dos ? 'sm:grid-cols-2' : 'grid-col-1' }}">
@@ -55,7 +60,7 @@
                                                             wire:click='verResponsable({{ $necesidad->nec_id }})'>
                                                             <i class="fas fa-eye text-white"></i>
                                                         </x-button-icon>
-                                                        <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
+                                                        <x-button-icon class="px-2 h-6 bg-gray-500 uppercase"
                                                             wire:loading.attr="disabled"
                                                             wire:click='verPropuestas({{ $necesidad->nec_id }})'>
                                                             Propuestas
@@ -84,38 +89,39 @@
                                 </div>
                             @endif
                             <div class="grid grid-cols-1 gap-3" x-show="openFaq2">
-                                @if (count($responsables) > 0)
-                                    @foreach ($responsables as $necesidad)
+                                @if (count($proyectos) > 0)
+                                    @foreach ($proyectos as $post)
                                         <div
                                             class="bg-white shadow-sm rounded-lg p-3 flex justify-between items-center card-item">
                                             <div class="w-full">
                                                 <div class="flex justify-between items-center">
                                                     <p class="text-sm font-medium mb-1 text-blue-950">
-                                                        {{ $necesidad->nec_tipo }}: {{ $necesidad->nec_entidad }}
+                                                        Responsable: PEPITO PEREZ
                                                     </p>
                                                     <p class="text-gray-400 text-xs font-bold hidden sm:block">
-                                                        Registrado el
-                                                        {{ $necesidad->nec_created->format('d/m/Y') ?? '' }}</p>
+                                                        Asignado el
+                                                        {{ $post->pos_created->format('d/m/Y') ?? '' }}</p>
                                                 </div>
 
                                                 <p class="text-gray-500 line-clamp-3 text-sm">
-                                                    {{ $necesidad->nec_titulo }}
+                                                    {{ $post->propuesta->pro_titulo }}
                                                 </p>
                                                 <div class="flex justify-between items-end mt-1">
                                                     <div class="text-gray-400 text-sm font-bold block md:flex">
-                                                        <x-estadoSociedad :status="$necesidad->nec_proceso" />
+                                                        <x-estadoInterno :status="$post->propuesta->pro_proceso" />
                                                     </div>
                                                     <div>
                                                         <x-button-icon class="px-2 h-6 bg-udh_1 uppercase"
                                                             wire:loading.attr="disabled"
-                                                            wire:click='abrirModal({{ $necesidad->nec_id }})'>
+                                                            wire:click='abrirModal({{ $post->pos_id }})'>
                                                             <i class="fas fa-eye text-white"></i>
                                                         </x-button-icon>
-                                                        <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
-                                                            wire:loading.attr="disabled"
-                                                            wire:click='abrirModal({{ $necesidad->nec_id }})'>
-                                                            Seguimiento
-                                                        </x-button-icon>
+                                                        @if ($post->propuesta->pro_proceso != 'Postulación')
+                                                            <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
+                                                                wire:click="reportarEstado({{ $post->propuesta->pro_id }})">
+                                                                Reportar
+                                                            </x-button-icon>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
