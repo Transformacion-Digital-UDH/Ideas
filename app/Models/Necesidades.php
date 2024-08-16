@@ -40,6 +40,20 @@ class Necesidades extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function setNecEntidadAttribute($value)
+    {
+        $this->attributes['nec_entidad'] = mb_strtoupper(trim($value), 'UTF-8');
+    }
+
+    public function setNecEmailAtribute($value)
+    {
+        $this->attributes['nec_email'] = strtolower($value);
+    }
+
+    public function setNecTelefonoAttribute($value)
+    {
+        $this->attributes['nec_telefono'] = str_replace(' ', '', trim($value));
+    }
     public static function estados()
     {
         return [
@@ -53,6 +67,18 @@ class Necesidades extends Model
             'En Ejecución',
             'En Finalización',
             'Completado'
+        ];
+    }
+
+    public static function tipos_entidad()
+    {
+        return [
+            "Empresa privada",
+            "Institución pública",
+            "Sociedad civil organizada (ONGs)",
+            "Universidad",
+            "Instituto",
+            "Ciudadano"
         ];
     }
 }

@@ -32,9 +32,15 @@ class AsignarPostulante extends Component
             }])->find($pro_id);
 
         $this->existeAsigando = Postulaciones::where('pro_id', $this->pro_id)
-            ->where('pos_asignado', '1')->exists();
+            ->where('pos_asignado', 1)->exists();
 
         $this->openModal();
+    }
+
+    public function cerrarModal()
+    {
+        $this->dispatch('finalizado');
+        $this->closeModal();
     }
 
     public function asignarPostulante($id)
@@ -42,7 +48,7 @@ class AsignarPostulante extends Component
         DB::beginTransaction();
         try {
             $postulacion = Postulaciones::findOrFail($id);
-            $postulacion->pos_asignado = '1';
+            $postulacion->pos_asignado = 1;
             $postulacion->save();
             $this->propuesta->pro_proceso = 'Asignado';
             $this->propuesta->save();

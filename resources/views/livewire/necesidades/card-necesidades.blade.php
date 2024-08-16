@@ -17,16 +17,16 @@
                                 <x-estadoSociedad :status="$necesidad->nec_proceso" />
                             </div>
                             <div>
-                                <button wire:click="verNecesidad({{ $necesidad->nec_id }})"
+                                <button wire:click="verNecesidad({{ $necesidad->nec_id }})" wire:loading.attr="disabled"
                                     class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                     <i class="fas fa-eye text-white"></i>
                                 </button>
                                 @if ($necesidad->nec_proceso == 'En Espera')
-                                    <button wire:click="editarNecesidad({{ $necesidad->nec_id }})"
+                                    <button wire:click="editarNecesidad({{ $necesidad->nec_id }})" wire:loading.attr="disabled"
                                         class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                         <i class="fas fa-edit text-white"></i>
                                     </button>
-                                    <button wire:click="confirmDelete({{ $necesidad->nec_id }})"
+                                    <button wire:click="eliminarNecesidad({{ $necesidad->nec_id }})" wire:loading.attr="disabled"
                                         class="middle px-2 py-1 bg-red-600 border border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                         <i class="fas fa-trash text-white"></i>
                                     </button>
@@ -45,24 +45,5 @@
             </div>
         @endif
     </div>
-    <!-- Modal de confirmación para eliminar-->
-    
-    <x-dialog-modal maxWidth="md" wire:model="showModal">
-        <x-slot name="title">
-            Confirmar Eliminación
-        </x-slot>
-        <x-slot name="content">
-            ¿Estás seguro de eliminar esta necesidad?
-        </x-slot>
-        <x-slot name="footer">
-            <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
-                Cancelar
-            </x-secondary-button>
-            <x-button wire:click="eliminarNecesidad"
-                class="ml-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                Eliminar
-            </x-button>
-        </x-slot>
-    </x-dialog-modal>
 </div>
 

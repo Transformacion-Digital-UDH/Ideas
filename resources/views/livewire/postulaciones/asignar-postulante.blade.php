@@ -78,7 +78,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
+            <x-secondary-button wire:click="cerrarModal" wire:loading.attr="disabled">
                 Cerrar
             </x-secondary-button>
         </x-slot>

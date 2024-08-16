@@ -13,7 +13,7 @@ class CardNecesidades extends Component
     public $necesidades;
     public $necesidadIdDelete = null;
 
-    protected $listeners = ['guardado' => 'getNecesidades',  'actualizado' => 'getNecesidades'];
+    protected $listeners = ['eliminado' => 'getNecesidades', 'guardado' => 'getNecesidades',  'actualizado' => 'getNecesidades'];
 
     public function mount()
     {
@@ -31,22 +31,10 @@ class CardNecesidades extends Component
         $this->necesidadIdDelete = $id;
         $this->openModal();
     }
-    public function eliminarNecesidad()
-    {
-        if ($this->necesidadIdDelete) {
-            // Encuentra la necesidad por ID
-            $necesidad = Necesidades::find($this->necesidadIdDelete);
 
-            if ($necesidad) {
-                // Si se encuentra la necesidad, elimínala
-                $necesidad->nec_estado = 0;
-                $necesidad->save();
-                // Actualiza la lista de necesidades después de la eliminación
-                $this->getNecesidades();
-            }
-            $this->necesidadIdDelete = null;
-            $this->closeModal();
-        }
+    public function eliminarNecesidad($id)
+    {
+        $this->dispatch('eliminarNecesidad', $id);
     }
 
     public function editarNecesidad($id)
