@@ -9,7 +9,7 @@
                     </a>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-5 sm:-my-px sm:ms-10 sm:flex">
                     @can('panel.ver')
                         <x-nav-link href="{{ route('panel') }}" :active="request()->routeIs('panel')">
                             {{ __('Dashboard') }}
@@ -55,10 +55,6 @@
                             {{ __('Equipos') }}
                         </x-nav-link>
                     @endcan
-                    
-                    <x-nav-link href="{{ route('mis-responsabilidades') }}" :active="request()->routeIs('mis-responsabilidades')">
-                        {{ __('Mis responsabilidades') }}
-                    </x-nav-link>
                 </div>
             </div>
 

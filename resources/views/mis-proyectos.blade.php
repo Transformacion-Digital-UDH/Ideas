@@ -15,4 +15,5 @@
     @livewire('proyectos.ver-proyecto')
     @livewire('proyectos.ver-propuestas')
     @livewire('proyectos.reportar-avance')
+    @livewire('necesidades.enviar-correo')
 </x-app-layout>

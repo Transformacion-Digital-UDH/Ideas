@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Responsables;
+namespace App\Livewire\Necesidades;
 
 use Livewire\Component;
 use App\Models\Necesidades;
@@ -59,6 +59,6 @@ class EnviarCorreo extends Component
 
     public function render()
     {
-        return view('livewire.responsables.enviar-correo');
+        return view('livewire.necesidades.enviar-correo');
     }
 }
