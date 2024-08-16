@@ -4,10 +4,11 @@ namespace App\Livewire\Postulaciones;
 
 use App\Models\Propuestas;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AdminPostulaciones extends Component
 {
-    public $propuestas;
+    use WithPagination;
 
     public $listeners = ['finalizado' => 'cargarPropuestas'];
 
@@ -17,7 +18,7 @@ class AdminPostulaciones extends Component
             ->withCount(['postulantes' => function ($query) {
                 $query->where('pos_estado', 1);
             }])->orderBy('pro_id', 'desc')
-            ->get();
+            ->paginate(10);
     }
 
     public function verPropuesta($id)
@@ -27,7 +28,7 @@ class AdminPostulaciones extends Component
 
     public function cargarPropuestas()
     {
-        $this->propuestas = $this->getPropuestas();
+        return $this->getPropuestas();
     }
 
     public function verPostulantes($id)
@@ -38,6 +39,8 @@ class AdminPostulaciones extends Component
     public function render()
     {
         $this->cargarPropuestas();
-        return view('livewire.postulaciones.admin-postulaciones');
+        return view('livewire.postulaciones.admin-postulaciones', [
+            'propuestas' => $this->getPropuestas(),
+        ]);
     }
 }

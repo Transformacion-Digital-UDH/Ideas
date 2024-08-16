@@ -4,16 +4,17 @@ namespace App\Livewire\Necesidades;
 
 use App\Models\Necesidades;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ListaNecesidades extends Component
 {
-    public $necesidades;
+    use WithPagination;
 
     protected $listeners = ['guardado' => 'getNecesidades'];
 
     public function mount()
     {
-        $this->necesidades = $this->getNecesidades();
+        return $this->getNecesidades();
     }
 
     public function abrirModal($id)
@@ -23,7 +24,7 @@ class ListaNecesidades extends Component
 
     public function getNecesidades()
     {
-        $necesidades = Necesidades::where('nec_estado', 1)->orderBy('nec_id', 'desc')->get();
+        $necesidades = Necesidades::where('nec_estado', 1)->orderBy('nec_id', 'desc')->paginate(10);
         return $necesidades ?? [];
     }
     public function verNecesidad($id)
@@ -33,6 +34,8 @@ class ListaNecesidades extends Component
 
     public function render()
     {
-        return view('livewire.necesidades.lista-necesidades');
+        return view('livewire.necesidades.lista-necesidades', [
+            'necesidades' => $this->getNecesidades()
+        ]);
     }
 }

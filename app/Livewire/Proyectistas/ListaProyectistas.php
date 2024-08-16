@@ -5,11 +5,11 @@ namespace App\Livewire\Proyectistas;
 use App\Models\User;
 use App\Traits\GestionarModal;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ListaProyectistas extends Component
 {
-    use GestionarModal;
-    public $proyectistas;
+    use GestionarModal, WithPagination;
 
     protected $listeners = [
         'eliminado' => 'getProyectistas',
@@ -24,7 +24,9 @@ class ListaProyectistas extends Component
 
     public function render()
     {
-        return view('livewire.proyectistas.lista-proyectistas');
+        return view('livewire.proyectistas.lista-proyectistas', [
+            'proyectistas' => $this->getProyectistas(),
+        ]);
     }
 
     public function abrirModal($id)
@@ -44,6 +46,6 @@ class ListaProyectistas extends Component
 
     public function getProyectistas()
     {
-        $this->proyectistas = User::role('PROYECTISTA')->where('estado', 1)->get();
+        return User::role('PROYECTISTA')->where('estado', 1)->orderBy('id', 'desc')->paginate(10);
     }
 }

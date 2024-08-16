@@ -3,15 +3,17 @@
 namespace App\Livewire\Propuestas;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AdminPropuestas extends Component
 {
-    public $propuestas;
+    use WithPagination;
 
     protected $listeners = ['actualizado' => 'getPropuestas'];
+
     public function mount()
     {
-        $this->propuestas = $this->getPropuestas();
+        $this->getPropuestas();
     }
 
     public function abrirModalVer($id)
@@ -26,7 +28,9 @@ class AdminPropuestas extends Component
 
     public function render()
     {
-        return view('livewire.propuestas.admin-propuestas');
+        return view('livewire.propuestas.admin-propuestas', [
+            'propuestas' => $this->getPropuestas(),
+        ]);
     }
 
     public function getPropuestas()
