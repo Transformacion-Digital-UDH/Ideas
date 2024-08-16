@@ -31,6 +31,7 @@ class ListaPostulaciones extends Component
     {
         $postulaciones = Postulaciones::with('propuesta')
             ->where('user_id', Auth::user()->id)
+            ->orderBy('pos_id', 'desc')
             ->get();
 
         $postulaciones = $postulaciones->map(function ($postulacion) {

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('variable_2', 150)->nullable();
             $table->string('pro_tipo', 80);
             $table->string('pro_proceso', 20)->default('En Postulación');
+            $table->boolean('es_oficial')->default(false);
             $table->foreignId('curador_id')->references('id')->on('users');
             $table->foreignId('nec_id')->references('nec_id')->on('necesidades');
             $table->foreignId('tpro_id')->nullable()->constrained('tipo_proyectos', 'tpro_id');

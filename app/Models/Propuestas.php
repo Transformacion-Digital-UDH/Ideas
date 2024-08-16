@@ -31,6 +31,11 @@ class Propuestas extends Model
             ->withPivot('pos_id', 'pos_semestre', 'pos_seccion', 'pos_asignado', 'equ_id', 'pos_estado', 'pos_created', 'pos_updated');
     }
 
+    public function postulaciones()
+    {
+        return $this->hasMany(Postulaciones::class, 'pro_id', 'pro_id');
+    }
+
     public function tipo_proyecto()
     {
         return $this->belongsTo(TipoProyectos::class, 'tip_id', 'tip_id');
