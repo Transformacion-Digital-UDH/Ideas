@@ -4,6 +4,7 @@
             class="table_id w-full text-sm text-left rtl:text-right bg-white dark:bg-gray-800 overflow-hidden shadow-xl">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
+                    <th scope="col" class="px-6 py-3">N°</th>
                     <th scope="col" class="px-6 py-3">Código</th>
                     <th scope="col" class="px-6 py-3">Nombre/Tipo</th>
                     <th scope="col" class="px-6 py-3">Registro</th>
@@ -14,6 +15,10 @@
             <tbody>
                 @foreach ($equipos as $equipo)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $equipo->equ_id }}
+                        </td>
                         <td scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $equipo->equ_codigo }}

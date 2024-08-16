@@ -10,7 +10,9 @@ class ListaNecesidades extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['guardado' => 'getNecesidades'];
+    protected $listeners = [
+        'guardado' => 'getNecesidades',
+    ];
 
     public function mount()
     {
