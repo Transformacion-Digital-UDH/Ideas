@@ -35,12 +35,12 @@
                             @endif
                             <div class="flex items-center justify-between mt-1">
                                 <div>
-                                    @isset($propuesta->es_oficial)
+                                    @if ($propuesta->es_oficial)
                                         <span class="text-white text-xs rounded-md bg-udh_1 px-1 py-[2px]">
                                             <i class="fa-solid fa-star text-yellow-400"></i>
                                             Proyecto oficial
                                         </span>
-                                    @endisset
+                                    @endif
                                 </div>
                                 <x-estadoPropuesta :status="$propuesta->pro_proceso" />
                             </div>
