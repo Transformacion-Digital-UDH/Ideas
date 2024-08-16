@@ -1,16 +1,13 @@
 <div>
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
         <x-slot name="title">
-            <h2 class="text-xl">Reportar avance</h2>
+            <p class="mt-1 text-gray-400 text-base">Linea de tiempo del proyecto</p>
         </x-slot>
         <x-slot name="content">
-            <div class="mb-7">
-                <p class="mt-1 text-gray-400 text-base">Linea de tiempo del proyecto</p>
-            </div>
             <div class="mt-5 pl-2 sm:pl-5">
                 <ol class="relative border-s border-gray-200 dark:border-gray-700">
                     @foreach ($procesos as $proceso)
-                        <li class="mb-10 ms-6">
+                        <li class="mb-8 ms-6">
                             <span
                                 class="absolute flex items-center bg-gray-50 justify-center w-6 h-6 border rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                                 @php

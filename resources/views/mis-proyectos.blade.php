@@ -12,6 +12,7 @@
     </div>
 
     @livewire('proyectos.ver-responsable')
+    @livewire('proyectos.ver-proyecto')
     @livewire('proyectos.ver-propuestas')
     @livewire('proyectos.reportar-avance')
 </x-app-layout>
