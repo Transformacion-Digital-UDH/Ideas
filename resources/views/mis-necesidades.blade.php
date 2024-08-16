@@ -23,5 +23,6 @@
 
     @livewire('necesidades.ver-necesidad')
     @livewire('necesidades.editar-necesidad')
+    @livewire('necesidades.eliminar-necesidad')
     @livewire('componentes.buscar-necesidad-js')
 </x-app-layout>
