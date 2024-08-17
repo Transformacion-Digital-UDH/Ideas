@@ -18,7 +18,7 @@
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $proyectistas->total() - ($proyectistas->perPage() * ($proyectistas->currentPage() - 1)) - $i }}
+                            {{ $proyectistas->total() - $proyectistas->perPage() * ($proyectistas->currentPage() - 1) - $i }}
                         </th>
                         <td class="px-6 py-4">
                             <strong class="text-gray-900">{{ $proyectista->name }}</strong>
@@ -55,7 +55,9 @@
         </table>
     </div>
 
-    <div class="mt-4">
-        {{ $proyectistas->links() }}
-    </div>
+    @if ($proyectistas->hasPages())
+        <div class="mt-4">
+            {{ $proyectistas->links() }}
+        </div>
+    @endif
 </div>
