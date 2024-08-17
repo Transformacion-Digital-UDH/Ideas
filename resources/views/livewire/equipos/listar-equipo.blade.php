@@ -53,8 +53,10 @@
             </tbody>
         </table>
     </div>
-    
-    <div class="mt-4">
-        {{ $equipos->links() }}
-    </div>
+
+    @if ($equipos->hasPages())
+        <div class="mt-4">
+            {{ $equipos->links() }}
+        </div>
+    @endif
 </div>
