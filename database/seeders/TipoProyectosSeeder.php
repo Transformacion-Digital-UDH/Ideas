@@ -17,9 +17,11 @@ class TipoProyectosSeeder extends Seeder
             'Proyectos de investigación básica',
             'Proyectos de investigación aplicada',
             'Proyectos de desarrollo tecnológico',
+            'Proyectos de Validación y Demostración en Entornos Reales',
+            'Proyectos de despliegue comercial inicial',
+            'Proyectos de implementación de normativas de gestión de calidad',
             'Proyectos de inversión',
-            'Proyectos de certificación de calidad',
-            'Proyectos sociales',
+            'Proyectos Sociales',
         ];
 
         foreach ($tipos as $tipo) {
