@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Curaciones;
 
+use App\Http\Controllers\PropuestasController;
 use App\Models\Necesidades;
 use App\Models\Propuestas;
 use Illuminate\Support\Facades\Auth;
@@ -68,6 +69,10 @@ class GuardarTesis extends Component
             $propuestas->nec_id = $this->nec_id;
             $propuestas->curador_id = Auth::user()->id;
             $propuestas->save();
+            $codigo = PropuestasController::codigoUnico($propuestas->pro_id . 'TES');
+            $propuestas->pro_codigo = $codigo;
+            $propuestas->save();
+
             Necesidades::where('nec_proceso', 'En Espera')
                 ->where('nec_id', $this->nec_id)
                 ->update(['nec_proceso' => 'Curado']);
