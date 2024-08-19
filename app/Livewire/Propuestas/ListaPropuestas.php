@@ -58,7 +58,7 @@ class ListaPropuestas extends Component
         } else {
             $propuestas = Propuestas::where('pro_estado', 1)
                 ->where('pro_tipo', $tipo)
-                ->where('pro_proceso', 'En Postulación')
+                ->whereIn('pro_proceso', ['En Postulación', 'Postulado'])
                 ->orderBy('pro_id', 'desc')
                 ->get();
         }
