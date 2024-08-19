@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('propuestas', function (Blueprint $table) {
             $table->bigIncrements('pro_id');
+            $table->string('pro_codigo', 20)->nullable();
             $table->string('pro_titulo');
             $table->text('pro_descripcion')->nullable();
             $table->string('pro_lugar')->nullable();

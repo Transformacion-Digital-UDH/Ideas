@@ -7,7 +7,6 @@ use App\Models\Propuestas;
 use App\Traits\GestionarModal;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use PhpParser\Node\Stmt\TryCatch;
 
 class AsignarPostulante extends Component
 {
@@ -17,6 +16,7 @@ class AsignarPostulante extends Component
     public $pro_id;
     public $propuesta;
     public $existeAsigando;
+    public $confirmar = false;
 
     public function mount()
     {
@@ -39,7 +39,6 @@ class AsignarPostulante extends Component
 
     public function cerrarModal()
     {
-        $this->dispatch('finalizado');
         $this->closeModal();
     }
 
@@ -53,9 +52,20 @@ class AsignarPostulante extends Component
             $this->propuesta->pro_proceso = 'Asignado';
             $this->propuesta->save();
             DB::commit();
+            $this->dispatch('finalizado');
             $this->existeAsigando = true;
         } catch (\Throwable $th) {
         }
+    }
+
+    public function confirmacion()
+    {
+        $this->confirmar = true;
+    }
+
+    public function cancelar()
+    {
+        $this->confirmar = false;
     }
 
     public function render()
