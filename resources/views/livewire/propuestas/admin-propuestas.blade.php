@@ -5,6 +5,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">N°</th>
+                    <th scope="col" class="px-6 py-3">Código</th>
                     <th scope="col" class="px-6 py-3">Necesidad / Propuesta</th>
                     <th scope="col" class="px-6 py-3">Curación</th>
                     <th scope="col" class="px-6 py-3">Tipo</th>
@@ -18,6 +19,10 @@
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $propuesta->pro_id }}
+                        </th>
+                        <th scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $propuesta->pro_codigo }}
                         </th>
                         <td class="px-6 py-4">
                             <strong class="text-gray-900">

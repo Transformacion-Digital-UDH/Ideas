@@ -18,6 +18,7 @@ class PropuestasFactory extends Factory
     public function definition(): array
     {
         return [
+            'pro_codigo' => $this->faker->regexify('[A-Z0-9]{10}'),
             'pro_titulo' => $this->faker->sentence,
             'pro_descripcion' => $this->faker->paragraph,
             'pro_lugar' => $this->faker->city,

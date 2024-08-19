@@ -54,10 +54,22 @@
                                                     </span>
                                                 @endif
                                             @else
-                                                <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                                    wire:click="asignarPostulante({{ $postulacion->pivot->pos_id }})">
-                                                    Asignar
-                                                </x-button-icon>
+                                                @if ($confirmar)
+                                                    <x-button-icon class="px-2 h-7 bg-red-500 uppercase"
+                                                        wire:click="cancelar">
+                                                        X
+                                                    </x-button-icon>
+                                                    <x-button-icon class="px-2 h-7 ml-2 bg-udh_3 uppercase"
+                                                        wire:click="asignarPostulante('{{ $postulacion->pivot->pos_id }}')">
+                                                        <i class="fas fa-check mr-2"></i>
+                                                        Confirmar
+                                                    </x-button-icon>
+                                                @else
+                                                    <x-button-icon class="px-2 h-7 bg-udh_3"
+                                                        wire:loading.attr="disabled" wire:click="confirmacion">
+                                                        Asignar
+                                                    </x-button-icon>
+                                                @endif
                                             @endif
 
                                         </td>
