@@ -19,7 +19,7 @@
                     <span class="text-sm text-gray-500">{{ $existOficial['responsable']->email ?? '-' }}</span>
                 @else
                     <label class="flex items-center select-none max-w-min whitespace-nowrap">
-                        <input type="checkbox" wire:model="oficial" wire:change="changeOficial"
+                        <input type="checkbox" wire:model="tempOficial" wire:change="changeOficial"
                             class="rounded border-gray-300  text-udh_1 shadow-sm focus:text-udh_1">
                         <span
                             class="ms-3 text-sm text-gray-600 dark:text-gray-400">{{ __('Elegir proyecto como oficial') }}</span>
