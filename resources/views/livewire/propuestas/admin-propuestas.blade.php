@@ -6,7 +6,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">N°</th>
                     <th scope="col" class="px-6 py-3">Código</th>
-                    <th scope="col" class="px-6 py-3">Necesidad / Propuesta</th>
+                    <th scope="col" class="px-6 py-3">Propuesta / Necesidad</th>
                     <th scope="col" class="px-6 py-3">Curación</th>
                     <th scope="col" class="px-6 py-3">Tipo</th>
                     <th scope="col" class="px-6 py-3">Estado</th>
@@ -26,11 +26,11 @@
                                 {{ $propuesta->pro_codigo }}
                             </th>
                             <td class="px-6 py-4">
-                                <strong class="text-gray-900">
-                                    {{ $propuesta->necesidad->nec_titulo }}
-                                </strong>
+                                {{ $propuesta->necesidad->nec_titulo }}
                                 <br>
-                                {{ $propuesta->pro_titulo }}
+                                <strong class="text-gray-900">
+                                    {{ $propuesta->pro_titulo }}
+                                </strong>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $propuesta->pro_created->format('Y-m-d') }}<br>
