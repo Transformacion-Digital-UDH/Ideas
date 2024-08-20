@@ -282,5 +282,13 @@ return [
         'es_financiado'            => 'Financiamiento',
         'nec_persona'              => 'Nombres',
         'nec_empresa'              => 'Nombres',
+        'pro_titulo'               => 'Título',
+        'pro_descripcion'          => 'Descripción',
+        'pos_justificar'           => 'Justificación',
+        'equ_id'                   => 'Curso o Equipo',
+        'pos_seccion'              => 'Sección',
+        'equ_tipo'                 => 'Tipo de Equipo',
+        'equ_codigo'               => 'Código o Resolución',
+        'equ_nombre'               => 'Nombre',
     ],
 ];
