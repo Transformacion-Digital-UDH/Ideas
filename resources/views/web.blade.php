@@ -1,156 +1,346 @@
-<!doctype html>
-<html lang="en">
+<div class="p-10 h-screen bg-gray-700 text-white">
+    <div class="mb-4">
+        <p class="text-xl font-bold mp-2">Select field with Search (Tailwind & AlpineJS)</p>
+        <ul>
+            <li>- click outside to close.</li>
+            <li>- click on the select input to toggle.</li>
+            <li>- click on selected item to clear selection.</li>
+            <li>- selected value will be saved on text input called (selectfield).</li>
+            <li> </li>
+        </ul>
+    </div>
+    <div class="relative text-black" x-data="selectmenu(datalist())" @click.away="close()">
+        <input type="text" x-model="selectedkey" name="selectfield" id="selectfield" class="hidden">
+        <span class="inline-block w-full rounded-md shadow-sm"
+            @click="toggle(); $nextTick(() => $refs.filterinput.focus());">
+            <button
+                class="relative z-0 w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md cursor-default focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                <span class="block truncate" x-text="selectedlabel ?? 'Please Select'"></span>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hero Section | TailGrids</title>
-    <link rel="shortcut icon" href="../../assets/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="../../assets/css/tailwind.css" />
+                <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                        <path d="M7 7l3-3 3 3m0 6l-3 3-3-3" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+            </button>
+        </span>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+        <div x-show="state" class="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg p-2">
+            <input type="text" class="w-full rounded-md py-1 px-2 mb-1 border border-gray-400" x-model="filter"
+                x-ref="filterinput">
+            <ul
+                class="py-1 overflow-auto text-base leading-6 rounded-md shadow-xs max-h-60 focus:outline-none sm:text-sm sm:leading-5">
 
-<body>
-    <!-- ====== Navbar Section Start -->
-    <header x-data="{
-        navbarOpen: false,
-    }" class="absolute left-0 top-0 z-50 w-full">
-        <div class="container mx-auto">
-            <div class="relative -mx-4 flex items-center justify-between">
-                <div class="w-60 max-w-full px-4">
-                    <a href="/" class="block w-full py-5">
-                        <img src="{{ asset('logo.webp') }}" alt="logo" class="block w-full dark:hidden" />
-                        <img src="{{ asset('logo.webp') }}" alt="logo" class="hidden w-full dark:block" />
-                    </a>
-                </div>
-                <div class="flex w-full items-center justify-between px-4">
-                    <div>
-                        <button @click="navbarOpen = !navbarOpen" :class="navbarOpen && 'navbarTogglerActive'"
-                            id="navbarToggler"
-                            class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden">
-                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-                        </button>
-                        <nav x-transition :class="!navbarOpen && 'hidden'" id="navbarCollapse"
-                            class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow transition-all lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none xl:ml-11 dark:bg-dark-2">
-                            <ul class="block lg:flex">
-                                <li>
-                                    <a href="/"
-                                        class="flex py-2 text-base font-medium text-dark hover:text-primary lg:ml-10 lg:inline-flex dark:text-white">
-                                        Inicio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/"
-                                        class="flex py-2 text-base font-medium text-dark hover:text-primary lg:ml-10 lg:inline-flex dark:text-white">
-                                        Nosotros
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="hidden justify-end">
-                        <a href="{{ route('login') }}"
-                            class="px-5 py-2 text-base font-medium border-2 border-udh_3 text-dark hover:text-primary text-udh_3 rounded-md">
-                            {{ __('Login') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- ====== Navbar Section End -->
+                <template x-for="(value, key) in getlist()" :key="key">
 
-    <!-- ====== Hero Section Start -->
-    <div class="relative bg-white pb-[110px] pt-[120px] lg:pt-[150px] dark:bg-dark">
-        <div class="container mx-auto px-4">
-            <div class="-mx-4 flex flex-wrap items-center">
-                <div class="w-full px-4 lg:w-5/12">
-                    <div class="hero-content">
-                        <h1
-                            class="mb-5 text-4xl font-bold !leading-[1.208] text-udh_3 sm:text-[42px] lg:text-[40px] xl:text-5xl dark:text-white">
-                            De Necesidades <br>
-                            Sociales a Soluciones <br> Tecnológicas
-                        </h1>
-                        <p class="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
-                            Transformamos problemas sociales en soluciones concretas mediante investigación y proyectos
-                            de transformación digital.
-                        </p>
-                        <ul class="flex flex-wrap items-center">
-                            <li>
-                                <a href="javascript:void(0)"
-                                    class="inline-flex items-center justify-center rounded-md bg-udh_1 px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7">
-                                    Ingresa tu necesidad
-                                    <i class="ml-2">--></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="clients pt-16">
-                            <h6 class="mb-6 flex items-center text-sm font-normal text-udh_3">
-                                Comunidad de Colaboradores
-                                <span class="ml-3 inline-block h-px w-8 bg-body-color"></span>
-                            </h6>
-                            <div class="flex items-center gap-4 xl:gap-[50px]">
-                                <a href="http://udh.edu.pe" class="block py-3" target="_blank">
-                                    <img src="{{ asset('recursos/udh.webp') }}" width="110" alt="UDH" />
-                                </a>
-                                <a href="https://investigacion.udh.edu.pe" class="block py-3" target="_blank">
-                                    <img src="{{ asset('recursos/vri.webp') }}" width="140" alt="VRI" />
-                                </a>
-                                <a href="https://www.facebook.com/MerakT01" class="block py-3" target="_blank">
-                                    <img src="{{ asset('recursos/merakt.webp') }}" alt="Merakt" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden px-4 lg:block lg:w-1/12"></div>
-                <div class="w-full px-4 lg:w-6/12">
-                    <div class="lg:ml-auto lg:text-right">
-                        <div class="relative z-10 inline-block pt-11 lg:pt-0">
-                            <img src="../images/hero/hero-image-01.png" alt="hero" class="max-w-full lg:ml-auto" />
-                            <span class="absolute -bottom-8 -left-8 z-[-1]">
-                                <svg width="93" height="93" viewBox="0 0 93 93" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="2.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="2.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="2.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="2.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="2.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="24.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="24.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="24.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="24.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="24.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="46.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="46.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="46.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="46.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="46.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="68.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="68.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="68.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="68.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="68.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="90.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="90.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="90.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                    <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <li @click="select(value, key)" :class="{ 'bg-gray-100': isselected(key) }"
+                        class="relative py-1 pl-3 mb-1 text-gray-900 select-none pr-9 hover:bg-gray-100 cursor-pointer rounded-md">
+                        <span x-text="value" class="block font-normal truncate"></span>
+
+                        <span x-show="isselected(key)"
+                            class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-700">
+                            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </li>
+                </template>
+            </ul>
         </div>
     </div>
-    <!-- ====== Hero Section End -->
-</body>
+</div>
 
-</html>
+<script>
+    function selectmenu(datalist) {
+        return {
+            state: false,
+            filter: '',
+            list: datalist,
+            selectedkey: null,
+            selectedlabel: null,
+            toggle: function() {
+                this.state = !this.state;
+                this.filter = '';
+            },
+            close: function() {
+                this.state = false;
+            },
+            select: function(value, key) {
+                if (this.selectedkey == key) {
+                    this.selectedlabel = null;
+                    this.selectedkey = null;
+                } else {
+                    this.selectedlabel = value;
+                    this.selectedkey = key;
+                    this.state = false;
+                }
+            },
+            isselected: function(key) {
+                return this.selectedkey == key;
+            },
+            getlist: function() {
+                if (this.filter == '') {
+                    return this.list;
+                }
+                var filtered = Object.entries(this.list).filter(([key, value]) => value.toLowerCase().includes(this
+                    .filter.toLowerCase()));
+
+                var result = Object.fromEntries(filtered);
+                return result;
+            }
+        };
+    }
+
+    function datalist() {
+        return {
+            AF: 'Afghanistan',
+            AX: 'Aland Islands',
+            AL: 'Albania',
+            DZ: 'Algeria',
+            AS: 'American Samoa',
+            AD: 'Andorra',
+            AO: 'Angola',
+            AI: 'Anguilla',
+            AQ: 'Antarctica',
+            AG: 'Antigua And Barbuda',
+            AR: 'Argentina',
+            AM: 'Armenia',
+            AW: 'Aruba',
+            AU: 'Australia',
+            AT: 'Austria',
+            AZ: 'Azerbaijan',
+            BS: 'Bahamas',
+            BH: 'Bahrain',
+            BD: 'Bangladesh',
+            BB: 'Barbados',
+            BY: 'Belarus',
+            BE: 'Belgium',
+            BZ: 'Belize',
+            BJ: 'Benin',
+            BM: 'Bermuda',
+            BT: 'Bhutan',
+            BO: 'Bolivia',
+            BA: 'Bosnia And Herzegovina',
+            BW: 'Botswana',
+            BV: 'Bouvet Island',
+            BR: 'Brazil',
+            IO: 'British Indian Ocean Territory',
+            BN: 'Brunei Darussalam',
+            BG: 'Bulgaria',
+            BF: 'Burkina Faso',
+            BI: 'Burundi',
+            KH: 'Cambodia',
+            CM: 'Cameroon',
+            CA: 'Canada',
+            CV: 'Cape Verde',
+            KY: 'Cayman Islands',
+            CF: 'Central African Republic',
+            TD: 'Chad',
+            CL: 'Chile',
+            CN: 'China',
+            CX: 'Christmas Island',
+            CC: 'Cocos (Keeling) Islands',
+            CO: 'Colombia',
+            KM: 'Comoros',
+            CG: 'Congo',
+            CD: 'Congo, Democratic Republic',
+            CK: 'Cook Islands',
+            CR: 'Costa Rica',
+            CI: 'Cote D\'Ivoire',
+            HR: 'Croatia',
+            CU: 'Cuba',
+            CY: 'Cyprus',
+            CZ: 'Czech Republic',
+            DK: 'Denmark',
+            DJ: 'Djibouti',
+            DM: 'Dominica',
+            DO: 'Dominican Republic',
+            EC: 'Ecuador',
+            EG: 'Egypt',
+            SV: 'El Salvador',
+            GQ: 'Equatorial Guinea',
+            ER: 'Eritrea',
+            EE: 'Estonia',
+            ET: 'Ethiopia',
+            FK: 'Falkland Islands (Malvinas)',
+            FO: 'Faroe Islands',
+            FJ: 'Fiji',
+            FI: 'Finland',
+            FR: 'France',
+            GF: 'French Guiana',
+            PF: 'French Polynesia',
+            TF: 'French Southern Territories',
+            GA: 'Gabon',
+            GM: 'Gambia',
+            GE: 'Georgia',
+            DE: 'Germany',
+            GH: 'Ghana',
+            GI: 'Gibraltar',
+            GR: 'Greece',
+            GL: 'Greenland',
+            GD: 'Grenada',
+            GP: 'Guadeloupe',
+            GU: 'Guam',
+            GT: 'Guatemala',
+            GG: 'Guernsey',
+            GN: 'Guinea',
+            GW: 'Guinea-Bissau',
+            GY: 'Guyana',
+            HT: 'Haiti',
+            HM: 'Heard Island & Mcdonald Islands',
+            VA: 'Holy See (Vatican City State)',
+            HN: 'Honduras',
+            HK: 'Hong Kong',
+            HU: 'Hungary',
+            IS: 'Iceland',
+            IN: 'India',
+            ID: 'Indonesia',
+            IR: 'Iran, Islamic Republic Of',
+            IQ: 'Iraq',
+            IE: 'Ireland',
+            IM: 'Isle Of Man',
+            IL: 'Israel',
+            IT: 'Italy',
+            JM: 'Jamaica',
+            JP: 'Japan',
+            JE: 'Jersey',
+            JO: 'Jordan',
+            KZ: 'Kazakhstan',
+            KE: 'Kenya',
+            KI: 'Kiribati',
+            KR: 'Korea',
+            KW: 'Kuwait',
+            KG: 'Kyrgyzstan',
+            LA: 'Lao People\'s Democratic Republic',
+            LV: 'Latvia',
+            LB: 'Lebanon',
+            LS: 'Lesotho',
+            LR: 'Liberia',
+            LY: 'Libyan Arab Jamahiriya',
+            LI: 'Liechtenstein',
+            LT: 'Lithuania',
+            LU: 'Luxembourg',
+            MO: 'Macao',
+            MK: 'Macedonia',
+            MG: 'Madagascar',
+            MW: 'Malawi',
+            MY: 'Malaysia',
+            MV: 'Maldives',
+            ML: 'Mali',
+            MT: 'Malta',
+            MH: 'Marshall Islands',
+            MQ: 'Martinique',
+            MR: 'Mauritania',
+            MU: 'Mauritius',
+            YT: 'Mayotte',
+            MX: 'Mexico',
+            FM: 'Micronesia, Federated States Of',
+            MD: 'Moldova',
+            MC: 'Monaco',
+            MN: 'Mongolia',
+            ME: 'Montenegro',
+            MS: 'Montserrat',
+            MA: 'Morocco',
+            MZ: 'Mozambique',
+            MM: 'Myanmar',
+            NA: 'Namibia',
+            NR: 'Nauru',
+            NP: 'Nepal',
+            NL: 'Netherlands',
+            AN: 'Netherlands Antilles',
+            NC: 'New Caledonia',
+            NZ: 'New Zealand',
+            NI: 'Nicaragua',
+            NE: 'Niger',
+            NG: 'Nigeria',
+            NU: 'Niue',
+            NF: 'Norfolk Island',
+            MP: 'Northern Mariana Islands',
+            NO: 'Norway',
+            OM: 'Oman',
+            PK: 'Pakistan',
+            PW: 'Palau',
+            PS: 'Palestinian Territory, Occupied',
+            PA: 'Panama',
+            PG: 'Papua New Guinea',
+            PY: 'Paraguay',
+            PE: 'Peru',
+            PH: 'Philippines',
+            PN: 'Pitcairn',
+            PL: 'Poland',
+            PT: 'Portugal',
+            PR: 'Puerto Rico',
+            QA: 'Qatar',
+            RE: 'Reunion',
+            RO: 'Romania',
+            RU: 'Russian Federation',
+            RW: 'Rwanda',
+            BL: 'Saint Barthelemy',
+            SH: 'Saint Helena',
+            KN: 'Saint Kitts And Nevis',
+            LC: 'Saint Lucia',
+            MF: 'Saint Martin',
+            PM: 'Saint Pierre And Miquelon',
+            VC: 'Saint Vincent And Grenadines',
+            WS: 'Samoa',
+            SM: 'San Marino',
+            ST: 'Sao Tome And Principe',
+            SA: 'Saudi Arabia',
+            SN: 'Senegal',
+            RS: 'Serbia',
+            SC: 'Seychelles',
+            SL: 'Sierra Leone',
+            SG: 'Singapore',
+            SK: 'Slovakia',
+            SI: 'Slovenia',
+            SB: 'Solomon Islands',
+            SO: 'Somalia',
+            ZA: 'South Africa',
+            GS: 'South Georgia And Sandwich Isl.',
+            ES: 'Spain',
+            LK: 'Sri Lanka',
+            SD: 'Sudan',
+            SR: 'Suriname',
+            SJ: 'Svalbard And Jan Mayen',
+            SZ: 'Swaziland',
+            SE: 'Sweden',
+            CH: 'Switzerland',
+            SY: 'Syrian Arab Republic',
+            TW: 'Taiwan',
+            TJ: 'Tajikistan',
+            TZ: 'Tanzania',
+            TH: 'Thailand',
+            TL: 'Timor-Leste',
+            TG: 'Togo',
+            TK: 'Tokelau',
+            TO: 'Tonga',
+            TT: 'Trinidad And Tobago',
+            TN: 'Tunisia',
+            TR: 'Turkey',
+            TM: 'Turkmenistan',
+            TC: 'Turks And Caicos Islands',
+            TV: 'Tuvalu',
+            UG: 'Uganda',
+            UA: 'Ukraine',
+            AE: 'United Arab Emirates',
+            GB: 'United Kingdom',
+            US: 'United States',
+            UM: 'United States Outlying Islands',
+            UY: 'Uruguay',
+            UZ: 'Uzbekistan',
+            VU: 'Vanuatu',
+            VE: 'Venezuela',
+            VN: 'Viet Nam',
+            VG: 'Virgin Islands, British',
+            VI: 'Virgin Islands, U.S.',
+            WF: 'Wallis And Futuna',
+            EH: 'Western Sahara',
+            YE: 'Yemen',
+            ZM: 'Zambia',
+            ZW: 'Zimbabwe'
+        };
+    }
+</script>
