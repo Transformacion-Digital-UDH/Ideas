@@ -14,35 +14,39 @@
 
             <h3 class="text-base font-bold pb-3">Responsable</h3>
             <div class="mb-6">
-                <label class="flex items-center select-none max-w-min whitespace-nowrap">
-                    <input type="checkbox" wire:model="oficial" wire:change="changeOficial"
-                        class="rounded border-gray-300  text-udh_1 shadow-sm focus:text-udh_1">
-                    <span
-                        class="ms-3 text-sm text-gray-600 dark:text-gray-400">{{ __('Elegir proyecto como oficial') }}</span>
-                </label>
+                @if ($existOficial['existe'])
+                    <p class="mt-1 text-sm">{{ $existOficial['responsable']->name ?? '-' }}</p>
+                    <span class="text-sm text-gray-500">{{ $existOficial['responsable']->email ?? '-' }}</span>
+                @else
+                    <label class="flex items-center select-none max-w-min whitespace-nowrap">
+                        <input type="checkbox" wire:model="oficial" wire:change="changeOficial"
+                            class="rounded border-gray-300  text-udh_1 shadow-sm focus:text-udh_1">
+                        <span
+                            class="ms-3 text-sm text-gray-600 dark:text-gray-400">{{ __('Elegir proyecto como oficial') }}</span>
+                    </label>
+                    @if ($tempOficial)
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                            <div>
+                                <x-select class="block mt-1 w-full" wire:model="responsable_id">
+                                    <option value="" selected hidden>Seleccionar responsable</option>
+                                    @foreach ($responsables as $res)
+                                        <option value="{{ $res->id }}">{{ $res->name }}</option>
+                                    @endforeach
+                                </x-select>
+                                <x-input-error for="responsable_id" class="mt-2" />
+                            </div>
 
-                @if ($oficial)
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        <div>
-                            <x-select class="block mt-1 w-full" wire:model="responsable_id">
-                                <option value="" selected hidden>Seleccionar responsable</option>
-                                @foreach ($responsables as $res)
-                                    <option value="{{ $res->id }}">{{ $res->name }}</option>
-                                @endforeach
-                            </x-select>
-                            <x-input-error for="responsable_id" class="mt-2" />
+                            <div class="flex justify-end items-end">
+                                <x-button-icon class="px-2 h-7 bg-red-500 uppercase" wire:click="xOficial">
+                                    X
+                                </x-button-icon>
+                                <x-button-icon class="px-2 h-7 ml-2 bg-udh_1 uppercase" wire:click="saveResponsable">
+                                    <i class="fas fa-check mr-2"></i>
+                                    guardar
+                                </x-button-icon>
+                            </div>
                         </div>
-
-                        <div class="flex justify-end items-end">
-                            <x-button-icon class="px-2 h-7 bg-red-500 uppercase" wire:click="xOficial">
-                                X
-                            </x-button-icon>
-                            <x-button-icon class="px-2 h-7 ml-2 bg-udh_3 uppercase" wire:click="saveResponsable">
-                                <i class="fas fa-check mr-2"></i>
-                                Confirmar
-                            </x-button-icon>
-                        </div>
-                    </div>
+                    @endif
                 @endif
             </div>
 

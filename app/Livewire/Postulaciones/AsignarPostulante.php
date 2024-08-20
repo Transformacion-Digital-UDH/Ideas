@@ -16,7 +16,7 @@ class AsignarPostulante extends Component
 
     protected $listeners = ['asignar'];
     public $pro_id;
-    public $oficial = false;
+    public $tempOficial = false;
     public $propuesta;
     public $existeAsigando;
     public $confirmar = false;
@@ -25,6 +25,10 @@ class AsignarPostulante extends Component
     public $responsables;
     public $responsable_id;
 
+    public $existOficial = [
+        'existe' => false
+    ];
+
     public function mount()
     {
         $this->propuesta = new Propuestas();
@@ -32,6 +36,7 @@ class AsignarPostulante extends Component
 
     public function asignar($pro_id)
     {
+        // Asignación de postulante
         $this->pro_id = $pro_id;
         $this->propuesta = Propuestas::where('pro_proceso', 'Postulado')
             ->with(['postulantes' => function ($query) {
@@ -40,6 +45,11 @@ class AsignarPostulante extends Component
 
         $this->existeAsigando = Postulaciones::where('pro_id', $this->pro_id)
             ->where('pos_asignado', 1)->exists();
+
+        $this->proyectoOficial();
+
+        // Verificar Responsable
+        $this->existOficial['responsable'] = Necesidades::where('nec_id', $this->propuesta->nec_id)->first()->responsable;
 
         $this->openModal();
     }
@@ -51,7 +61,6 @@ class AsignarPostulante extends Component
 
     public function asignarPostulante($id)
     {
-        exit;
         DB::beginTransaction();
         try {
             $postulacion = Postulaciones::findOrFail($id);
@@ -83,7 +92,7 @@ class AsignarPostulante extends Component
 
     public function xOficial()
     {
-        $this->oficial = false;
+        $this->tempOficial = false;
     }
 
     public function saveResponsable()
@@ -96,7 +105,7 @@ class AsignarPostulante extends Component
         );
         $this->propuesta->es_oficial = true;
         $this->propuesta->save();
-        $this->render();
+        $this->proyectoOficial();
     }
 
     public function render()
@@ -112,5 +121,11 @@ class AsignarPostulante extends Component
         })
             ->where('name', 'like', '%' . $this->search . '%')
             ->get();
+    }
+
+    protected function proyectoOficial()
+    {
+        $this->existOficial['existe'] = Propuestas::where('nec_id', $this->propuesta->nec_id)
+            ->where('es_oficial', 1)->exists();
     }
 }

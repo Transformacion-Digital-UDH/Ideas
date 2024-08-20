@@ -41,9 +41,9 @@
                         </tr>
                     @endforeach
                 @else
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td colspan="6" class="px-6 py-4">Usted no tiene postulaciones</td>
-                    </tr>
+                    <x-empty-table colspan="6">
+                        Usted no tiene postulaciones. 😊
+                    </x-empty-table>
                 @endif
             </tbody>
         </table>

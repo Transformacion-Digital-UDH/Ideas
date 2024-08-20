@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UserSeeder::class,
             EstadoProcesoSeeder::class,
-            NecesidadesSeeder::class,
-            ProyectistasSeeder::class,
+            // NecesidadesSeeder::class,
+            // ProyectistasSeeder::class,
             TipoProyectosSeeder::class,
-            PropuestasSeeder::class,
+            // PropuestasSeeder::class,
             EquiposSeeder::class,
         ]);
     }
