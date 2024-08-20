@@ -1,19 +1,15 @@
 <div>
     <x-dialog-modal wire:model="showModal" maxWidth="5xl">
-        <x-slot name="title">
-            Editar Necesidad
-        </x-slot>
-
         <x-slot name="content">
             <div class="flex flex-wrap">
                 <!-- Columna izquierda (60%) -->
-                <div class="w-full lg:w-3/6 pt-4 lg:pr-5 lg:border-r">
+                <div class="w-full lg:w-3/6 lg:pr-5 lg:border-r">
                     <div class="mb-6">
-                        <h2 class="text-md font-bold text-sky-700">INFORMACIÓN DE SOLICITANTE</h2>
+                        <h2 class="text-md font-bold text-udh_1">INFORMACIÓN DE SOLICITANTE</h2>
                         <ul class="mt-5 list-disc list-inside">
                             <li class="flex items-center">
                                 <div
-                                    class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+                                    class="bg-[#e6e6e6cf] text-udh_3 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                                     <i class="fa fa-address-book" aria-hidden="true"></i>
                                 </div>
                                 <div class="text-md ml-3">
@@ -23,7 +19,7 @@
                             </li>
                             <li class="flex items-center pt-6">
                                 <div
-                                    class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+                                    class="bg-[#e6e6e6cf] text-udh_3 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                                     <i class="fa fa-mobile" aria-hidden="true"></i>
                                 </div>
                                 <div class="text-md ml-2">
@@ -33,7 +29,7 @@
                             </li>
                             <li class="flex items-center pt-4">
                                 <div
-                                    class="bg-[#e6e6e6cf] text-sky-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+                                    class="bg-[#e6e6e6cf] text-udh_3 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                                     <i class="fa fa-diamond" aria-hidden="true"></i>
                                 </div>
                                 <div class="text-md ml-3">
@@ -52,7 +48,7 @@
                         </ul>
                     </div>
                     <div class="mt-6">
-                        <h2 class="text-md font-bold text-sky-700">PROBLEMÁTICA</h2>
+                        <h2 class="text-md font-bold text-udh_1">PROBLEMÁTICA</h2>
                         <div class="border border-gray-300 text-sm p-2 mt-3 w-100">
                             {{ $necesidad->nec_titulo }}
                         </div>
@@ -62,7 +58,7 @@
                         </div>
                     </div>
                     <div class="mt-6">
-                        <h2 class="text-md font-bold text-sky-700">DOCUMENTOS</h2>
+                        <h2 class="text-md font-bold text-udh_1">DOCUMENTOS</h2>
                         <ul class="list-disc list-inside mt-3">
                             <li class="pb-2"><a href="#">2020254258752.pdf</a></li>
                             <li class="pb-2"><a href="#">15265587445555.jpg</a></li>
@@ -78,25 +74,26 @@
                         <div class="mt-1 flex justify-between gap-2 text-center">
                             @role('ESCUELA')
                                 @if ($propuesta->pro_tipo == 'Curso')
-                                    <div class="flex-1 py-2 px-3 bg-blue-500 text-white border
+                                    <div
+                                        class="flex-1 py-2 px-3 bg-udh_1 text-white border
                                          border-gray-300 rounded-md shadow-sm focus:outline-none
-                                          focus:ring-indigo-500 focus:border-indigo-500 text-sm">
-                                    Curso
+                                          focus:ring-udh_1 focus:border-udh_1 text-sm">
+                                        Curso
                                     </div>
                                 @else
                                     <div
-                                        class="flex-1 py-2 px-3 bg-blue-500 text-white border
+                                        class="flex-1 py-2 px-3 bg-udh_1 text-white border
                                          border-gray-300 rounded-md shadow-sm focus:outline-none
-                                          focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                          focus:ring-udh_1 focus:border-udh_1 text-sm">
                                         Tesis
                                     </div>
                                 @endrole
                             @endif
                             @role('VRI')
                                 <div
-                                    class="flex-1 py-2 px-3 border bg-blue-500 text-white
+                                    class="flex-1 py-2 px-3 border bg-udh_1 text-white
                                      border-gray-300 rounded-md shadow-sm focus:outline-none
-                                      focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                      focus:ring-udh_1 focus:border-udh_1 text-sm">
                                     Proyecto
                                 </div>
                             @endrole
@@ -108,7 +105,7 @@
                         @role('ESCUELA')
                             @if ($propuesta->pro_tipo == 'Curso')
                                 <form id="curso-form">
-                                    
+
                                     <div class="mt-5">
                                         <x-input class="block mt-1 w-full" type="text" wire:model="pro_titulo"
                                             placeholder="Ingrese un título tentativo" />
@@ -144,8 +141,7 @@
                                     </div>
                                     <div class="mt-2">
                                         <x-input class="block mt-1 w-full" type="text"
-                                            wire:model.defer="pro_beneficiarios"
-                                            placeholder="A quiénes va a beneficiar" />
+                                            wire:model.defer="pro_beneficiarios" placeholder="A quiénes va a beneficiar" />
                                         <x-input-error for="pro_beneficiarios" class="mt-2" />
                                     </div>
                                     <div class="mt-2">
