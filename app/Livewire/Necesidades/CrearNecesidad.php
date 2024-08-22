@@ -26,6 +26,7 @@ class CrearNecesidad extends Component
     public $nec_descripcion;
     public $es_financiado;
     public $user_id;
+    public $files = [''];
 
     protected $rules = [
         'nec_tipo' => ['required', 'string'],
@@ -78,6 +79,19 @@ class CrearNecesidad extends Component
         }
         $necesidad->save();
 
+        foreach ($this->files as $file) {
+            if ($file) {
+                $nombreoriginal = $file->getClientOriginalName();
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('problemas', $filename, 'public');
+                $necesidad->documentos()->create([
+                    'doc_nombre' => $nombreoriginal,
+                    'doc_file' => $filename,
+                    'nec_id' => $necesidad->nec_id,
+                ]);
+            }
+        }
+
         $this->dispatch('guardado');
         $this->resetValidation();
         $this->reset();
@@ -96,5 +110,18 @@ class CrearNecesidad extends Component
     public function render()
     {
         return view('livewire.necesidades.crear-necesidad');
+    }
+
+    // Carga de Archivos
+    public function agregarFile()
+    {
+        $this->files[] = '';
+    }
+
+    public function quitarFile($index)
+    {
+        unset($this->files[$index]);
+        $this->files = array_values($this->files);
+        $this->resetValidation("files.$index");
     }
 }
