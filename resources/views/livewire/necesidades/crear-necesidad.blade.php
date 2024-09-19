@@ -138,10 +138,12 @@
                             <x-input-error for="files.{{ $index }}" class="mt-2" />
                         @endforeach
 
-                        <p wire:click="agregarFile" class="cursor-pointer text-udh_1 hover:underline font-bold">
-                            <i class="fa-solid fa-plus"></i>
-                            Añadir archivo
-                        </p>
+                        @if (count($files) < 4)
+                            <p wire:click="agregarFile" class="cursor-pointer text-udh_1 hover:underline font-bold">
+                                <i class="fa-solid fa-plus"></i>
+                                Añadir archivo
+                            </p>
+                        @endif
                     </div>
                 </form>
             </section>

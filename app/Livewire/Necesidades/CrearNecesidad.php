@@ -115,7 +115,9 @@ class CrearNecesidad extends Component
     // Carga de Archivos
     public function agregarFile()
     {
-        $this->files[] = '';
+        if (count($this->files) < 4) {
+            $this->files[] = '';
+        }
     }
 
     public function quitarFile($index)
