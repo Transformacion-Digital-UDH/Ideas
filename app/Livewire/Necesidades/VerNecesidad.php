@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Necesidades;
 
+use App\Models\Documentos;
 use Livewire\Component;
 use App\Models\Necesidades;
 use App\Traits\GestionarModal;
+use Illuminate\Support\Facades\File;
 
 class VerNecesidad extends Component
 {
@@ -22,7 +24,22 @@ class VerNecesidad extends Component
     public function ver($id)
     {
         $this->openModal();
-        $this->necesidad = Necesidades::with('propuestas', 'documentos')->find($id);
+        $this->necesidad = Necesidades::with(['propuestas', 'documentos' => function ($query) {
+            $query->where('doc_estado', 1);
+        }])->find($id);
+    }
+
+    public function descargar($file)
+    {
+        $doc = Documentos::where('doc_file', $file)->where('doc_estado', 1)->first();
+        if ($doc) {
+            $name = $doc->doc_nombre;
+            $file = $doc->doc_file;
+            $filePath = storage_path('app/problemas/' . $file);
+            if (File::exists($filePath)) {
+                return response()->download($filePath, $name);
+            }
+        }
     }
 
     public function closeModal()

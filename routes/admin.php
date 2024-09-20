@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\MisNecesidadesController;
 use App\Http\Controllers\MisPostulaciones;
@@ -45,5 +46,9 @@ Route::middleware([
 
     Route::controller(MisProyectosController::class)->group(function () {
         Route::get('/mis-proyectos', 'index')->name('mis-proyectos');
+    });
+
+    Route::controller(DocumentosController::class)->group(function () {
+        Route::get('/documentos/ver/{file}', 'ver')->name('documentos.ver');
     });
 });

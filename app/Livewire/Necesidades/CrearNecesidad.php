@@ -83,7 +83,7 @@ class CrearNecesidad extends Component
             if ($file) {
                 $nombreoriginal = $file->getClientOriginalName();
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('problemas', $filename, 'public');
+                $file->storeAs('problemas', $filename);
                 $necesidad->documentos()->create([
                     'doc_nombre' => $nombreoriginal,
                     'doc_file' => $filename,

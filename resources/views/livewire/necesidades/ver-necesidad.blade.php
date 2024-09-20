@@ -71,15 +71,27 @@
                         <p class="mt-2 text-sm">No hay propuestas para esta necesidad.</p>
                     @endif
                 @endrole
-                <h3 class="pt-5 font-bold text-md text-sky-700">Documentos</h3>
-                @foreach ($necesidad->documentos as $doc)
-                    <div class="px-3 py-2 my-3 border border-gray-300 flex justify-between items-center">
-                        <a href="#">{{ $doc->doc_nombre }}</a>
-                        <a href="#" class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-gray-600 text-white">
-                            Ver
-                        </a>
-                    </div>
-                @endforeach
+                @if (count($necesidad->documentos) > 0)
+                    <h3 class="pt-5 font-bold text-md text-sky-700">Documentos</h3>
+                    @foreach ($necesidad->documentos as $doc)
+                        <div class="px-3 py-2 my-3 border border-gray-300 flex justify-between items-center">
+                            <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank">
+                                {{ $doc->doc_nombre }}
+                            </a>
+                            <div>
+                                <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank"
+                                    class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-gray-600 text-white">
+                                    Ver
+                                </a>
+                                <button
+                                    class="mt-1 ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white"
+                                    wire:click="descargar('{{ $doc->doc_file }}')">
+                                    Descargar
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </x-slot>
 
