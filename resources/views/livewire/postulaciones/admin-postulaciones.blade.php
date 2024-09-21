@@ -35,7 +35,7 @@
                                 <x-estadoInterno :status="$propuesta->pro_proceso" />
                             </td>
                             <td class="px-6 py-4 text-center whitespace-nowrap">
-                                @if ($propuesta->pro_tipo == 'Proyecto')
+                                @if ($propuesta->pro_tipo == 'Gestor UDH')
                                     @role('VRI')
                                         <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
                                             wire:click="verPostulantes({{ $propuesta->pro_id }})">

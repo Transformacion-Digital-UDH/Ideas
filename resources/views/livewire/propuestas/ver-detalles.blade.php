@@ -46,11 +46,16 @@
                             </tr>
                             
                             @endif
-                        @elseif($propuesta->pro_tipo == 'Proyecto')
+                        @elseif($propuesta->pro_tipo == 'Gestor UDH')
                             <tr>
                                 <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Justificación</td>
                                 <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                     {{ $propuesta->pro_justificacion }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Tipo de proyecto</td>
+                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                    {{ $propuesta->tipo_proyecto->tpro_nombre ?? 'N/A' }}</td>
                             </tr>
                         @endif
                         <tr>

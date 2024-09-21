@@ -23,7 +23,7 @@
                                     <i class="fa fa-mobile" aria-hidden="true"></i>
                                 </div>
                                 <div class="text-md ml-2">
-                                    <p class="text-sm">Celular: <b>901231876</b></p>
+                                    <p class="text-sm">Celular: <b>{{ $necesidad->nec_telefono }}</b></p>
                                     <p class="text-sm">Email: <b>{{ $necesidad->nec_email }}</b></p>
                                 </div>
                             </li>
@@ -59,11 +59,28 @@
                     </div>
                     <div class="mt-6">
                         <h2 class="text-md font-bold text-udh_1">DOCUMENTOS</h2>
-                        <ul class="list-disc list-inside mt-3">
-                            <li class="pb-2"><a href="#">2020254258752.pdf</a></li>
-                            <li class="pb-2"><a href="#">15265587445555.jpg</a></li>
-                            <li class="pb-2"><a href="#">5588555555555147.pdf</a></li>
-                        </ul>
+                        @if (count($documentos) > 0)
+                            @foreach ($documentos as $doc)
+                                <div class="px-3 py-2 my-3 border border-gray-300 flex justify-between items-center">
+                                    <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank">
+                                        {{ $doc->doc_nombre }}
+                                    </a>
+                                    <div>
+                                        <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank"
+                                            class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white">
+                                            Ver
+                                        </a>
+                                        <button
+                                            class="mt-1 ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white"
+                                            wire:click="descargar('{{ $doc->doc_file }}')">
+                                            <i class="fa-solid fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <p class="mt-2">No hay documentos cargados.</p>
+                        @endif
                     </div>
                 </div>
 

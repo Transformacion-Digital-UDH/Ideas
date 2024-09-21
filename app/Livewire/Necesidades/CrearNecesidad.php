@@ -40,9 +40,7 @@ class CrearNecesidad extends Component
         'nec_titulo' => ['required', 'string', 'min:10', 'max:100'],
         'nec_descripcion' => ['required', 'string', 'min:20'],
         'es_financiado' => ['required'],
-        /* 'file_2' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-        'file_3' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-        'file_4' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],*/
+        'files.*' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf.docx', 'max:5048'],
     ];
 
     public function mount()

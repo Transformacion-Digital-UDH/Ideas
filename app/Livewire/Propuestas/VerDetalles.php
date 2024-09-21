@@ -4,6 +4,7 @@ namespace App\Livewire\Propuestas;
 
 use App\Models\Postulaciones;
 use App\Models\Propuestas;
+use App\Models\TipoProyectos;
 use App\Traits\GestionarModal;
 use Livewire\Component;
 
@@ -25,7 +26,7 @@ class VerDetalles extends Component
     public function ver($id)
     {
         $this->openModal(); // Abre el modal
-        $this->propuesta = Propuestas::find($id);
+        $this->propuesta = Propuestas::with('tipo_proyecto:tpro_id,tpro_nombre')->find($id);
         $validar = in_array($id, Postulaciones::postulaciones_ids());
         if ($validar) {
             $this->mostrarBtnPostular = false;

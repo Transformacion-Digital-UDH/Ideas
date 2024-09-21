@@ -14,14 +14,14 @@ class TipoProyectosSeeder extends Seeder
     public function run(): void
     {
         $tipos = [
-            'Proyectos de investigación básica',
-            'Proyectos de investigación aplicada',
-            'Proyectos de desarrollo tecnológico',
-            'Proyectos de Validación y Demostración en Entornos Reales',
-            'Proyectos de despliegue comercial inicial',
-            'Proyectos de implementación de normativas de gestión de calidad',
-            'Proyectos de inversión',
-            'Proyectos Sociales',
+            'Proyecto de investigación básica',
+            'Proyecto de investigación aplicada',
+            'Proyecto de desarrollo tecnológico',
+            'Proyecto de Validación y Demostración en Entornos Reales',
+            'Proyecto de despliegue comercial inicial',
+            'Proyecto de implementación de normativas de gestión de calidad',
+            'Proyecto de inversión',
+            'Proyecto Sociales',
         ];
 
         foreach ($tipos as $tipo) {

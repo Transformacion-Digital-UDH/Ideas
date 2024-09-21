@@ -24,7 +24,7 @@ class EPropuestas extends Component
         $propuestas = Propuestas::select('pro_tipo', DB::raw('count(*) as total'))
             ->where('pro_estado', 1)
             ->where('es_oficial', 0)
-            ->whereIn('pro_tipo', ['Curso', 'Tesis', 'Proyecto'])
+            ->whereIn('pro_tipo', ['Curso', 'Tesis', 'Gestor UDH'])
             ->groupBy('pro_tipo')
             ->get();
 
@@ -39,7 +39,7 @@ class EPropuestas extends Component
         $propuestas = Propuestas::select('pro_tipo', DB::raw('count(*) as total'))
             ->where('pro_estado', 1)
             ->where('es_oficial', 1)
-            ->whereIn('pro_tipo', ['Curso', 'Tesis', 'Proyecto'])
+            ->whereIn('pro_tipo', ['Curso', 'Tesis', 'Gestor UDH'])
             ->groupBy('pro_tipo')
             ->get();
 

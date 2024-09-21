@@ -99,7 +99,7 @@
                                         </td>
                                     </tr>
                                 @endif
-                            @elseif($postulacion->propuesta->pro_tipo == 'Proyecto')
+                            @elseif($postulacion->propuesta->pro_tipo == 'Gestor UDH')
                                 <tr>
                                     <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
                                         Justificación</td>

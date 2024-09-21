@@ -42,10 +42,10 @@
                             Proyectos
                         </td>
                         <td class="py-1 text-center">
-                            {{ $oficial['Proyecto'] ?? '-' }}
+                            {{ $oficial['Gestor UDH'] ?? '-' }}
                         </td>
                         <td class="py-1 text-center">
-                            {{ $no_oficial['Proyecto'] ?? '-' }}
+                            {{ $no_oficial['Gestor UDH'] ?? '-' }}
                         </td>
                     </tr>
                     <tr class="border-t">

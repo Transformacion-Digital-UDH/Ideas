@@ -130,9 +130,25 @@
                                 </div>
                             @endforeach
                         @endif
-                        <input type="file" wire:model="doc_nombre"
-                            class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
-                        <x-input-error for="doc_nombre" class="mt-2" />
+                        @foreach ($files as $index => $file)
+                            <div class="flex space-x-2 items-center">
+                                <input type="file" wire:model="files.{{ $index }}"
+                                    class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
+
+                                <x-button-icon wire:click="quitarFile({{ $index }})"
+                                    class="text-red-500 bg-red-500 px-3 h-12">
+                                    X
+                                </x-button-icon>
+                            </div>
+
+                            <x-input-error for="files.{{ $index }}" class="mt-2" />
+                        @endforeach
+                        @if ($n_docs + count($files) < 4)
+                            <p wire:click="agregarFile" class="cursor-pointer text-udh_1 hover:underline font-bold">
+                                <i class="fa-solid fa-plus"></i>
+                                Añadir archivo
+                            </p>
+                        @endif
                     </div>
                 </form>
             </section>

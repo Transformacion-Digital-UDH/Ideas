@@ -6,10 +6,11 @@ use App\Models\Documentos;
 use Livewire\Component;
 use App\Models\Necesidades;
 use App\Traits\GestionarModal;
+use Livewire\WithFileUploads;
 
 class EditarNecesidad extends Component
 {
-    use GestionarModal;
+    use GestionarModal, WithFileUploads;
 
     public $necesidad;
     public $documentos = [];
@@ -29,6 +30,9 @@ class EditarNecesidad extends Component
     public $es_financiado;
     public $nec_proceso;
 
+    public $files = [];
+    public $n_docs = 0;
+
     protected $listeners = ['editar'];
 
     protected $rules = [
@@ -43,6 +47,7 @@ class EditarNecesidad extends Component
         'nec_titulo' => ['required', 'string', 'min:10', 'max:100'],
         'nec_descripcion' => ['required', 'string', 'min:20'],
         'es_financiado' => ['required'],
+        'files.*' => ['file', 'mimes:pdf,jpg,jpeg,png,docx', 'max:5048'],
     ];
 
     public function mount()
@@ -99,6 +104,19 @@ class EditarNecesidad extends Component
         }
         $necesidad->save();
 
+        foreach ($this->files as $file) {
+            if ($file) {
+                $nombreoriginal = $file->getClientOriginalName();
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('problemas', $filename);
+                $necesidad->documentos()->create([
+                    'doc_nombre' => $nombreoriginal,
+                    'doc_file' => $filename,
+                    'nec_id' => $necesidad->nec_id,
+                ]);
+            }
+        }
+
         $this->dispatch('actualizado');
         $this->resetValidation();
         $this->reset();
@@ -132,6 +150,7 @@ class EditarNecesidad extends Component
     {
         $this->documentos = Documentos::where('nec_id', $this->nec_id)
             ->where('doc_estado', 1)->get();
+        $this->n_docs = $this->documentos ? count($this->documentos) : 0;
     }
 
     public function eliminar($file)
@@ -142,5 +161,20 @@ class EditarNecesidad extends Component
             $doc->save();
             $this->getDocumentos();
         }
+    }
+
+    // Carga de Archivos
+    public function agregarFile()
+    {
+        if (($this->n_docs + count($this->files)) < 4) {
+            $this->files[] = '';
+        }
+    }
+
+    public function quitarFile($index)
+    {
+        unset($this->files[$index]);
+        $this->files = array_values($this->files);
+        $this->resetValidation("files.$index");
     }
 }

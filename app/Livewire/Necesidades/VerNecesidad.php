@@ -13,6 +13,7 @@ class VerNecesidad extends Component
     use GestionarModal;
 
     public $necesidad;
+    public $documentos = [];
 
     protected $listeners = ['ver'];
 
@@ -24,9 +25,8 @@ class VerNecesidad extends Component
     public function ver($id)
     {
         $this->openModal();
-        $this->necesidad = Necesidades::with(['propuestas', 'documentos' => function ($query) {
-            $query->where('doc_estado', 1);
-        }])->find($id);
+        $this->necesidad = Necesidades::with('propuestas')->find($id);
+        $this->getDocumentos();
     }
 
     public function descargar($file)
@@ -50,5 +50,12 @@ class VerNecesidad extends Component
     public function render()
     {
         return view('livewire.necesidades.ver-necesidad');
+    }
+
+    public function getDocumentos()
+    {
+        $this->documentos = Documentos::where('doc_estado', 1)
+            ->where('nec_id', $this->necesidad->nec_id)
+            ->get();
     }
 }
