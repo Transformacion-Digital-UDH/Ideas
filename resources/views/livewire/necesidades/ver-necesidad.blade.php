@@ -9,7 +9,7 @@
                 <p class="mt-1 text-sm text-gray-400">{{ $necesidad->nec_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
-                <h3 class="font-bold text-md text-sky-700">Detalles de la necesidad</h3>
+                <h3 class="font-bold text-md text-udh_1">Detalles de la necesidad</h3>
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
@@ -56,7 +56,7 @@
                     </tbody>
                 </table>
                 @role('VRI|ESCUELA')
-                    <h3 class="pt-5 font-bold text-md text-sky-700">Propuestas</h3>
+                    <h3 class="pt-5 font-bold text-md text-udh_1">Propuestas</h3>
                     @if (count($necesidad->propuestas) > 0)
                         @foreach ($necesidad->propuestas as $propuesta)
                             <div class="px-3 py-2 my-3 border border-gray-300">
@@ -72,7 +72,7 @@
                     @endif
                 @endrole
                 @if (count($necesidad->documentos) > 0)
-                    <h3 class="pt-5 font-bold text-md text-sky-700">Documentos</h3>
+                    <h3 class="pt-5 font-bold text-md text-udh_1">Documentos</h3>
                     @foreach ($necesidad->documentos as $doc)
                         <div class="px-3 py-2 my-3 border border-gray-300 flex justify-between items-center">
                             <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank">
@@ -80,13 +80,13 @@
                             </a>
                             <div>
                                 <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank"
-                                    class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-gray-600 text-white">
+                                    class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white">
                                     Ver
                                 </a>
                                 <button
                                     class="mt-1 ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white"
                                     wire:click="descargar('{{ $doc->doc_file }}')">
-                                    Descargar
+                                    <i class="fa-solid fa-download"></i>
                                 </button>
                             </div>
                         </div>

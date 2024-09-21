@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Necesidades;
 
+use App\Models\Documentos;
 use Livewire\Component;
 use App\Models\Necesidades;
 use App\Traits\GestionarModal;
@@ -11,8 +12,10 @@ class EditarNecesidad extends Component
     use GestionarModal;
 
     public $necesidad;
+    public $documentos = [];
     public $es_institucion = true;
 
+    public $nec_id;
     public $nec_tipo;
     public $nec_empresa;
     public $nec_persona;
@@ -52,6 +55,7 @@ class EditarNecesidad extends Component
         $this->openModal(); // Abre el modal
 
         $this->necesidad = Necesidades::find($id);
+        $this->nec_id = $this->necesidad->nec_id;
         $this->nec_tipo = $this->necesidad->nec_tipo;
         $this->nec_email = $this->necesidad->nec_email;
         $this->nec_telefono = $this->necesidad->nec_telefono;
@@ -60,7 +64,7 @@ class EditarNecesidad extends Component
         $this->nec_descripcion = $this->necesidad->nec_descripcion;
         $this->es_financiado = $this->necesidad->es_financiado;
         $this->nec_proceso = $this->necesidad->nec_proceso;
-
+        $this->getDocumentos();
         if ($this->nec_tipo == 'Ciudadano') {
             $this->es_institucion = false;
             $this->nec_dni = $this->necesidad->nec_documento;
@@ -122,5 +126,21 @@ class EditarNecesidad extends Component
         return view('livewire.necesidades.editar-necesidad', [
             'isEditable' => $this->isEditable(),
         ]);
+    }
+
+    public function getDocumentos()
+    {
+        $this->documentos = Documentos::where('nec_id', $this->nec_id)
+            ->where('doc_estado', 1)->get();
+    }
+
+    public function eliminar($file)
+    {
+        $doc = Documentos::where('doc_file', $file)->first();
+        if ($doc) {
+            $doc->doc_estado = 0;
+            $doc->save();
+            $this->getDocumentos();
+        }
     }
 }
