@@ -9,51 +9,60 @@
                 <p class="mt-1 text-gray-400 text-base">{{ $propuesta->pro_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
-                <h3 class="text-base font-bold">Detalles de la propuesta</h3>
+                <h3 class="font-bold mt-3 text-udh_1">Detalles de la propuesta</h3>
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @if($propuesta->pro_tipo == 'Curso' || $propuesta->pro_tipo == 'Tesis')
+                        @if ($propuesta->pro_tipo == 'Curso' || $propuesta->pro_tipo == 'Tesis')
                             <tr>
                                 <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Lugar</td>
-                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_lugar }}
+                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                    {{ $propuesta->pro_lugar }}
                                 </td>
                             </tr>
                             <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problemáticas</td>
+                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Problemáticas
+                                </td>
                                 <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                     {{ $propuesta->problematicas }}</td>
                             </tr>
-                            @if($propuesta->pro_tipo == 'Tesis')
-                            <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Beneficiarios</td>
-                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                    {{ $propuesta->pro_beneficiarios }}</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Causas</td>
-                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_causas }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Consecuencias</td>
-                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                    {{ $propuesta->pro_consecuencias }}</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Aportes</td>
-                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600">{{ $propuesta->pro_aportes }}
-                                </td>
-                            </tr>
-                            
+                            @if ($propuesta->pro_tipo == 'Tesis')
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
+                                        Beneficiarios</td>
+                                    <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                        {{ $propuesta->pro_beneficiarios }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Causas
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                        {{ $propuesta->pro_causas }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
+                                        Consecuencias</td>
+                                    <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                        {{ $propuesta->pro_consecuencias }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Aportes
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                        {{ $propuesta->pro_aportes }}
+                                    </td>
+                                </tr>
                             @endif
                         @elseif($propuesta->pro_tipo == 'Gestor UDH')
                             <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Justificación</td>
+                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Justificación
+                                </td>
                                 <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                     {{ $propuesta->pro_justificacion }}</td>
                             </tr>
                             <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Tipo de proyecto</td>
+                                <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Tipo de
+                                    proyecto</td>
                                 <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                     {{ $propuesta->tipo_proyecto->tpro_nombre ?? 'N/A' }}</td>
                             </tr>
@@ -80,6 +89,56 @@
                         </tr>
                     </tbody>
                 </table>
+
+                @role('VRI|ESCUELA')
+                    @if (!empty($asignado) || !empty($responsable))
+                        <h3 class="font-bold mt-3 text-udh_1">Ejecutado por</h3>
+                        <table class="min-w-full bg-white">
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @if (!empty($asignado))
+                                    <tr>
+                                        @if ($propuesta->pro_tipo == 'Tesis')
+                                            <td class="px-6 py-4 font-medium text-gray-800">Tesista</td>
+                                            <td class="px-6 py-4 text-gray-600">
+                                                <p class="font-bold">{{ $asignado->postulante->name }}</p>
+                                                <p>Correo: {{ $asignado->postulante->email }}</p>
+                                                <p>Telefono: {{ $asignado->postulante->telefono }}</p>
+                                            </td>
+                                        @elseif($propuesta->pro_tipo == 'Gestor UDH')
+                                            <td class="px-6 py-4 font-medium text-gray-800">Gestor UDH</td>
+                                            <td class="px-6 py-4 text-gray-600">
+                                                <p class="font-bold">{{ $asignado->postulante->name }}</p>
+                                                <p>Correo: {{ $asignado->postulante->email }}</p>
+                                                <p>Telefono: {{ $asignado->postulante->telefono }}</p>
+                                            </td>
+                                        @else
+                                            <td class="px-6 py-4 font-medium text-gray-800">Curso</td>
+                                            <td class="px-6 py-4 text-gray-600">
+                                                <p class="font-bold">
+                                                    {{ $asignado->equipo->equ_nombre . ' (' . $asignado->pos_seccion . ')' }}
+                                                </p>
+                                                <p>Docente: {{ $asignado->postulante->name }}</p>
+                                                <p>Correo: {{ $asignado->postulante->email }}</p>
+                                                <p>Telefono: {{ $asignado->postulante->telefono }}</p>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endif
+                                @if (!empty($responsable))
+                                    <tr>
+                                        <td class="px-6 py-4 text-gray-800">Responsable
+                                        </td>
+                                        <td class="px-6 py-4 text-gray-600">
+                                            <p class="font-bold">{{ $responsable->name }}</p>
+                                            <p>Correo: {{ $responsable->email }}</p>
+                                            <p>Telefono: {{ $responsable->telefono }}</p><br>
+                                        </td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    @endif
+                @endrole
             </div>
         </x-slot>
 
@@ -88,12 +147,12 @@
                 Cerrar
             </x-secondary-button>
             @role('PROYECTISTA|ESTUDIANTE|DOCENTE')
-            @if ($mostrarBtnPostular)
-                <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})"
-                    wire:loading.attr="disabled">
-                    Postular
-                </x-button>
-            @endif
+                @if ($mostrarBtnPostular)
+                    <x-button class="ml-2" wire:click="abrirModalPostular({{ $propuesta->pro_id }})"
+                        wire:loading.attr="disabled">
+                        Postular
+                    </x-button>
+                @endif
             @endrole
         </x-slot>
     </x-dialog-modal>
