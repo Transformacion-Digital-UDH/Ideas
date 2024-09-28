@@ -49,7 +49,7 @@ class GuardarProyecto extends Component
             //$propuestas->proyectista_id = $this->proy_id;
             $propuestas->tpro_id = $this->tpro_id;
             $propuestas->pro_proceso = 'En Postulación';
-            $propuestas->pro_tipo = 'Proyecto';
+            $propuestas->pro_tipo = 'Gestor UDH';
             $propuestas->nec_id = $this->nec_id;
             $propuestas->curador_id = Auth::user()->id;
             $propuestas->save();

@@ -28,7 +28,7 @@
         </div>
         <div class="mt-8 text-right">
             <x-button type="button" class="ml-2" wire:click="curarProyecto" wire:loading.attr="disabled">
-                Curar para Proyecto
+                Curar para Gestor UDH
             </x-button>
         </div>
     </form>

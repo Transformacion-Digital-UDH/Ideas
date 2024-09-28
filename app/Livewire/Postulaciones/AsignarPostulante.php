@@ -19,7 +19,7 @@ class AsignarPostulante extends Component
     public $tempOficial = false;
     public $propuesta;
     public $existeAsigando;
-    public $confirmar = false;
+    public $confirmar = [];
 
     public $search;
     public $responsables;
@@ -38,18 +38,15 @@ class AsignarPostulante extends Component
     {
         // Asignación de postulante
         $this->pro_id = $pro_id;
-        $this->propuesta = Propuestas::where('pro_proceso', 'Postulado')
-            ->with(['postulantes' => function ($query) {
-                $query->where('pos_estado', 1);
-            }])->find($pro_id);
+        // where('pro_proceso', 'Postulado')
+        $this->propuesta = Propuestas::with(['postulantes' => function ($query) {
+            $query->where('pos_estado', 1);
+        }])->find($pro_id);
 
         $this->existeAsigando = Postulaciones::where('pro_id', $this->pro_id)
             ->where('pos_asignado', 1)->exists();
 
         $this->proyectoOficial();
-
-        // Verificar Responsable
-        $this->existOficial['responsable'] = Necesidades::where('nec_id', $this->propuesta->nec_id)->first()->responsable;
 
         $this->openModal();
     }
@@ -75,14 +72,15 @@ class AsignarPostulante extends Component
         }
     }
 
-    public function confirmacion()
+    public function confirmacion($pos_id)
     {
-        $this->confirmar = true;
+        $this->confirmar = [];
+        $this->confirmar[$pos_id] = true;
     }
 
-    public function cancelar()
+    public function cancelar($pos_id)
     {
-        $this->confirmar = false;
+        $this->confirmar[$pos_id] = false;
     }
 
     public function changeOficial()
@@ -127,5 +125,7 @@ class AsignarPostulante extends Component
     {
         $this->existOficial['existe'] = Propuestas::where('nec_id', $this->propuesta->nec_id)
             ->where('es_oficial', 1)->exists();
+        // Extraer Responsable
+        $this->existOficial['responsable'] = Necesidades::where('nec_id', $this->propuesta->nec_id)->first()->responsable;
     }
 }

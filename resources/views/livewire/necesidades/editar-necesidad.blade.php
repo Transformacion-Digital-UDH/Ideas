@@ -39,8 +39,7 @@
                     @else
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="nec_persona" placeholder="Nombres completos"
-                                    class="text-center" />
+                                <x-input wire:model="nec_persona" placeholder="Nombres completos" class="text-center" />
                                 <x-input-error for="nec_persona" />
                             </div>
                             <div class="sm:w-2/4 px-1">
@@ -67,11 +66,12 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1 text-center" />
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección"
+                            class="block mt-1 text-center" />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
 
-                    <div class="rounded-lg shadow-lg p-8 space-y-6 bg-gray-100 mb-8">
+                    <div class="rounded-lg shadow-lg p-8 space-y-6 bg-gray-100">
                         <h2 class="text-2xl font-bold text-center text-udh_3">
                             Detalles del Problema
                         </h2>
@@ -114,10 +114,41 @@
                             Opcionalmente, puede proporcionar más información sobre su problema para una mejor solución,
                             puede adjuntar un archivo haciendo click en el siguiente apartado.
                         </p>
+                        @if (isset($documentos))
+                            @foreach ($documentos as $doc)
+                                <div class="px-3 py-2 my-3 border border-gray-300 flex justify-between items-center">
+                                    <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank">
+                                        {{ $doc->doc_nombre }}
+                                    </a>
+                                    <div>
+                                        <button type="button"
+                                            class="mt-1 ml-2 px-2 py-1 bg-red-500 border rounded-md hover:bg-red-600 text-white"
+                                            wire:click="eliminar('{{ $doc->doc_file }}')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                        @foreach ($files as $index => $file)
+                            <div class="flex space-x-2 items-center">
+                                <input type="file" wire:model="files.{{ $index }}"
+                                    class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
 
-                        <input type="file" wire:model="doc_nombre"
-                            class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
-                        <x-input-error for="doc_nombre" class="mt-2" />
+                                <x-button-icon wire:click="quitarFile({{ $index }})"
+                                    class="text-red-500 bg-red-500 px-3 h-12">
+                                    X
+                                </x-button-icon>
+                            </div>
+
+                            <x-input-error for="files.{{ $index }}" class="mt-2" />
+                        @endforeach
+                        @if ($n_docs + count($files) < 4)
+                            <p wire:click="agregarFile" class="cursor-pointer text-udh_1 hover:underline font-bold">
+                                <i class="fa-solid fa-plus"></i>
+                                Añadir archivo
+                            </p>
+                        @endif
                     </div>
                 </form>
             </section>
@@ -127,9 +158,7 @@
             <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="actualizar" 
-                wire:loading.attr="disabled" 
-                :disabled="!$isEditable">
+            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled" :disabled="!$isEditable">
                 Actualizar
             </x-button>
         </x-slot>

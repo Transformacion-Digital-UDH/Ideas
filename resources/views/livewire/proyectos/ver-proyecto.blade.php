@@ -2,23 +2,23 @@
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
         <x-slot name="content">
             <div class="overflow-x-auto">
-                <h3 class="font-bold text-md text-udh_1">Detalles de la necesidad</h3>
+                <h3 class="font-bold text-md text-udh_1 mb-3">Detalles de la necesidad</h3>
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-gray-200">
                         @if ($postulacion->propuesta)
                             <tr>
-                                <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">
+                                <td class="px-6 pb-2 font-medium text-gray-800 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_tipo == 'Ciudadano' ? 'DNI' : 'RUC' }}
                                 </td>
-                                <td class="px-6 py-4 text-gray-600 whitespace-normal text-md">
+                                <td class="px-6 pb-2 text-gray-600 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_documento ?? '' }}
                                 </td>
                             </tr>
                             <tr class="border-b">
-                                <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">
+                                <td class="px-6 pb-2 font-medium text-gray-800 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_tipo ?? '' }}
                                 </td>
-                                <td class="px-6 py-4 text-gray-600 whitespace-normal text-md">
+                                <td class="px-6 pb-2 text-gray-600 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_entidad ?? '' }}
                                 </td>
                             </tr>
@@ -99,7 +99,7 @@
                                         </td>
                                     </tr>
                                 @endif
-                            @elseif($postulacion->propuesta->pro_tipo == 'Proyecto')
+                            @elseif($postulacion->propuesta->pro_tipo == 'Gestor UDH')
                                 <tr>
                                     <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
                                         Justificación</td>

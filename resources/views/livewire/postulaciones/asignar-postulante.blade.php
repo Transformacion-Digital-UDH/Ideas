@@ -71,7 +71,7 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @if ($propuesta->postulantes->count() > 0)
-                            @foreach ($propuesta->postulantes as $postulacion)
+                            @foreach ($propuesta->postulantes as $key => $postulacion)
                                 <div class="border-green-400 border-1">
                                     <tr>
                                         <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">
@@ -96,24 +96,24 @@
                                                     </span>
                                                 @endif
                                             @else
-                                                @if ($confirmar)
+                                                @if (!empty($confirmar[$key]) && $confirmar[$key] == true)
                                                     <x-button-icon class="px-2 h-7 bg-red-500 uppercase"
-                                                        wire:click="cancelar">
+                                                        wire:click="cancelar('{{ $key }}')">
                                                         X
                                                     </x-button-icon>
-                                                    <x-button-icon class="px-2 h-7 ml-2 bg-udh_3 uppercase"
+                                                    <x-button-icon class="px-2 h-7 ml-2 bg-udh_1 uppercase"
                                                         wire:click="asignarPostulante('{{ $postulacion->pivot->pos_id }}')">
                                                         <i class="fas fa-check mr-2"></i>
                                                         Confirmar
                                                     </x-button-icon>
                                                 @else
                                                     <x-button-icon class="px-2 h-7 bg-udh_3"
-                                                        wire:loading.attr="disabled" wire:click="confirmacion">
+                                                        wire:loading.attr="disabled"
+                                                        wire:click="confirmacion('{{ $key }}')">
                                                         Asignar
                                                     </x-button-icon>
                                                 @endif
                                             @endif
-
                                         </td>
                                     </tr>
                                 </div>

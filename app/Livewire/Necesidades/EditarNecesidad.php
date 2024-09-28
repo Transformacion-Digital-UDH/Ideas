@@ -2,17 +2,21 @@
 
 namespace App\Livewire\Necesidades;
 
+use App\Models\Documentos;
 use Livewire\Component;
 use App\Models\Necesidades;
 use App\Traits\GestionarModal;
+use Livewire\WithFileUploads;
 
 class EditarNecesidad extends Component
 {
-    use GestionarModal;
+    use GestionarModal, WithFileUploads;
 
     public $necesidad;
+    public $documentos = [];
     public $es_institucion = true;
 
+    public $nec_id;
     public $nec_tipo;
     public $nec_empresa;
     public $nec_persona;
@@ -25,6 +29,9 @@ class EditarNecesidad extends Component
     public $nec_descripcion;
     public $es_financiado;
     public $nec_proceso;
+
+    public $files = [];
+    public $n_docs = 0;
 
     protected $listeners = ['editar'];
 
@@ -40,6 +47,7 @@ class EditarNecesidad extends Component
         'nec_titulo' => ['required', 'string', 'min:10', 'max:100'],
         'nec_descripcion' => ['required', 'string', 'min:20'],
         'es_financiado' => ['required'],
+        'files.*' => ['file', 'mimes:pdf,jpg,jpeg,png,docx', 'max:5048'],
     ];
 
     public function mount()
@@ -52,6 +60,7 @@ class EditarNecesidad extends Component
         $this->openModal(); // Abre el modal
 
         $this->necesidad = Necesidades::find($id);
+        $this->nec_id = $this->necesidad->nec_id;
         $this->nec_tipo = $this->necesidad->nec_tipo;
         $this->nec_email = $this->necesidad->nec_email;
         $this->nec_telefono = $this->necesidad->nec_telefono;
@@ -60,7 +69,7 @@ class EditarNecesidad extends Component
         $this->nec_descripcion = $this->necesidad->nec_descripcion;
         $this->es_financiado = $this->necesidad->es_financiado;
         $this->nec_proceso = $this->necesidad->nec_proceso;
-
+        $this->getDocumentos();
         if ($this->nec_tipo == 'Ciudadano') {
             $this->es_institucion = false;
             $this->nec_dni = $this->necesidad->nec_documento;
@@ -95,6 +104,19 @@ class EditarNecesidad extends Component
         }
         $necesidad->save();
 
+        foreach ($this->files as $file) {
+            if ($file) {
+                $nombreoriginal = $file->getClientOriginalName();
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('problemas', $filename);
+                $necesidad->documentos()->create([
+                    'doc_nombre' => $nombreoriginal,
+                    'doc_file' => $filename,
+                    'nec_id' => $necesidad->nec_id,
+                ]);
+            }
+        }
+
         $this->dispatch('actualizado');
         $this->resetValidation();
         $this->reset();
@@ -122,5 +144,37 @@ class EditarNecesidad extends Component
         return view('livewire.necesidades.editar-necesidad', [
             'isEditable' => $this->isEditable(),
         ]);
+    }
+
+    public function getDocumentos()
+    {
+        $this->documentos = Documentos::where('nec_id', $this->nec_id)
+            ->where('doc_estado', 1)->get();
+        $this->n_docs = $this->documentos ? count($this->documentos) : 0;
+    }
+
+    public function eliminar($file)
+    {
+        $doc = Documentos::where('doc_file', $file)->first();
+        if ($doc) {
+            $doc->doc_estado = 0;
+            $doc->save();
+            $this->getDocumentos();
+        }
+    }
+
+    // Carga de Archivos
+    public function agregarFile()
+    {
+        if (($this->n_docs + count($this->files)) < 4) {
+            $this->files[] = '';
+        }
+    }
+
+    public function quitarFile($index)
+    {
+        unset($this->files[$index]);
+        $this->files = array_values($this->files);
+        $this->resetValidation("files.$index");
     }
 }

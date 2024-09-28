@@ -19,4 +19,9 @@ class Documentos extends Model
     {
         return $this->belongsTo(Necesidades::class, 'nec_id', 'nec_id');
     }
+
+    public function setDocNombreAttribute($value)
+    {
+        $this->attributes['doc_nombre'] = ucfirst(trim($value));
+    }
 }

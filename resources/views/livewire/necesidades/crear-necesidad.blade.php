@@ -72,7 +72,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección" class="block mt-1 text-center " />
+                        <x-input type="text" wire:model="nec_direccion" placeholder="Dirección"
+                            class="block mt-1 text-center " />
                         <x-input-error for="nec_direccion" class="mt-2" />
                     </div>
 
@@ -121,9 +122,28 @@
                             puede adjuntar un archivo haciendo click en el siguiente apartado.
                         </p>
 
-                        <input type="file" wire:model="doc_nombre"
-                            class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
-                        <x-input-error for="doc_nombre" class="mt-2" />
+                        @foreach ($files as $index => $file)
+                            <div class="flex space-x-2 items-center">
+                                <input type="file" wire:model="files.{{ $index }}"
+                                    class="block w-full text-center p-2 h-12 border-2 bg-gray-200" />
+
+                                @if ($index > 0)
+                                    <x-button-icon wire:click="quitarFile({{ $index }})"
+                                        class="text-red-500 bg-red-500 px-3 h-12">
+                                        X
+                                    </x-button-icon>
+                                @endif
+                            </div>
+
+                            <x-input-error for="files.{{ $index }}" class="mt-2" />
+                        @endforeach
+
+                        @if (count($files) < 4)
+                            <p wire:click="agregarFile" class="cursor-pointer text-udh_1 hover:underline font-bold">
+                                <i class="fa-solid fa-plus"></i>
+                                Añadir archivo
+                            </p>
+                        @endif
                     </div>
                 </form>
             </section>

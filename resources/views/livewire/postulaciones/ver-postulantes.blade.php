@@ -10,7 +10,7 @@
                     <p class="mt-1 text-base text-gray-400"></p>
                 </div>
                 <div class="overflow-x-auto">
-                    <h3 class="text-base font-bold">Detalles de las Postulaciones</h3>
+                    <h3 class="text-base font-bold text-udh_1">Detalles de las Postulaciones</h3>
                     <table class="min-w-full bg-white">
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($postulantes as $postulacion)

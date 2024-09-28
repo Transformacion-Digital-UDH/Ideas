@@ -46,7 +46,7 @@ class ListaPropuestas extends Component
         } else if (User::esRol('DOCENTE')) {
             $tipo = 'Curso';
         } else if (User::esRol('PROYECTISTA')) {
-            $tipo = 'Proyecto';
+            $tipo = 'Gestor UDH';
         } else {
             $tipo = 'Todo';
         }
