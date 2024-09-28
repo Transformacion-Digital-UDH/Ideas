@@ -2,16 +2,19 @@
 
 namespace App\Livewire\Propuestas;
 
+use App\Models\Documentos;
 use Livewire\Component;
 use App\ModelS\Propuestas;
 use App\Traits\GestionarModal;
 use App\Models\Necesidades;
+use Illuminate\Support\Facades\File;
 
 class EditarPropuesta extends Component
 {
     use GestionarModal;
     public $propuesta;
     public $necesidad;
+    public $documentos = [];
 
     public $pro_titulo;
     public $pro_descripcion;
@@ -58,6 +61,7 @@ class EditarPropuesta extends Component
         $this->pro_tipo = $this->propuesta->pro_tipo;
         $this->pro_estado = $this->propuesta->pro_estado;
         $this->necesidad = Necesidades::find($this->propuesta->nec_id);
+        $this->getDocumentos();
     }
 
     public function actualizarPropuesta()
@@ -92,5 +96,24 @@ class EditarPropuesta extends Component
     public function render()
     {
         return view('livewire.propuestas.editar-propuesta');
+    }
+
+    public function getDocumentos()
+    {
+        $this->documentos = Documentos::where('doc_estado', 1)
+            ->where('nec_id', $this->necesidad->nec_id)->get();
+    }
+
+    public function descargar($file)
+    {
+        $doc = Documentos::where('doc_file', $file)->where('doc_estado', 1)->first();
+        if ($doc) {
+            $name = $doc->doc_nombre;
+            $file = $doc->doc_file;
+            $filePath = storage_path('app/problemas/' . $file);
+            if (File::exists($filePath)) {
+                return response()->download($filePath, $name);
+            }
+        }
     }
 }

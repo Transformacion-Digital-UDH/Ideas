@@ -1,7 +1,7 @@
 <div>
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
         <x-slot name="title">
-            <p class="mt-1 text-gray-400 text-base">Linea de tiempo del proyecto</p>
+            <p class="mt-1 text-base">Linea de tiempo del proyecto</p>
         </x-slot>
         <x-slot name="content">
             <div class="mt-5 pl-2 sm:pl-5">

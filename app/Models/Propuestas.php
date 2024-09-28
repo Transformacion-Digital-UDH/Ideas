@@ -38,7 +38,7 @@ class Propuestas extends Model
 
     public function tipo_proyecto()
     {
-        return $this->belongsTo(TipoProyectos::class, 'tip_id', 'tip_id');
+        return $this->belongsTo(TipoProyectos::class, 'tpro_id', 'tpro_id');
     }
 
     public static function estados()

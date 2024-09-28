@@ -31,7 +31,7 @@ class PropuestasFactory extends Factory
             'pro_justificacion' => $this->faker->paragraph,
             'variable_1' => $this->faker->word,
             'variable_2' => $this->faker->word,
-            'pro_tipo' => $this->faker->randomElement(['Curso', 'Tesis', 'Proyecto']),
+            'pro_tipo' => $this->faker->randomElement(['Curso', 'Tesis', 'Gestor UDH']),
             'pro_proceso' => $this->faker->randomElement(Propuestas::estados()),
             'nec_id' => \App\Models\Necesidades::factory(),
             'tpro_id' => \App\Models\TipoProyectos::factory(),

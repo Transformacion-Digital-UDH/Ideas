@@ -26,6 +26,7 @@ class CrearNecesidad extends Component
     public $nec_descripcion;
     public $es_financiado;
     public $user_id;
+    public $files = [''];
 
     protected $rules = [
         'nec_tipo' => ['required', 'string'],
@@ -39,9 +40,7 @@ class CrearNecesidad extends Component
         'nec_titulo' => ['required', 'string', 'min:10', 'max:100'],
         'nec_descripcion' => ['required', 'string', 'min:20'],
         'es_financiado' => ['required'],
-        /* 'file_2' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-        'file_3' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-        'file_4' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],*/
+        'files.*' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf,docx', 'max:5048'],
     ];
 
     public function mount()
@@ -78,6 +77,19 @@ class CrearNecesidad extends Component
         }
         $necesidad->save();
 
+        foreach ($this->files as $file) {
+            if ($file) {
+                $nombreoriginal = $file->getClientOriginalName();
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('problemas', $filename);
+                $necesidad->documentos()->create([
+                    'doc_nombre' => $nombreoriginal,
+                    'doc_file' => $filename,
+                    'nec_id' => $necesidad->nec_id,
+                ]);
+            }
+        }
+
         $this->dispatch('guardado');
         $this->resetValidation();
         $this->reset();
@@ -96,5 +108,20 @@ class CrearNecesidad extends Component
     public function render()
     {
         return view('livewire.necesidades.crear-necesidad');
+    }
+
+    // Carga de Archivos
+    public function agregarFile()
+    {
+        if (count($this->files) < 4) {
+            $this->files[] = '';
+        }
+    }
+
+    public function quitarFile($index)
+    {
+        unset($this->files[$index]);
+        $this->files = array_values($this->files);
+        $this->resetValidation("files.$index");
     }
 }
