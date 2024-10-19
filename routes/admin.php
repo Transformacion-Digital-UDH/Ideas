@@ -21,7 +21,7 @@ Route::middleware([
     Route::get('/panel', [PanelController::class, 'index'])->name('panel');
 
     Route::controller(NecesidadesController::class)->group(function () {
-        Route::get('/necesidades', 'index')->name('necesidades');
+        Route::get('/nec', 'index')->name('necesidades');
     });
     Route::controller(PropuestasController::class)->group(function () {
         Route::get('/propuestas', 'index')->name('propuestas');
