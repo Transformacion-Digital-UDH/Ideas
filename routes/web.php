@@ -9,7 +9,7 @@ Route::middleware(['guest'])->controller(GoogleController::class)->group(functio
     Route::get('/google/callback', 'callback');
 });
 
-Route::get('/', function () {
+Route::get('', function () {
     return view('welcome');
 })->name('welcome');
 
