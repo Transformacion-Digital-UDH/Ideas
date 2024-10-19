@@ -11,7 +11,7 @@ Route::middleware(['guest'])->controller(GoogleController::class)->group(functio
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 // Route::post('enviar-correo', function (Illuminate\Http\Request $request) {
 //     // Capturar los datos del formulario
