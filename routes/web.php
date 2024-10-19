@@ -33,12 +33,12 @@ Route::controller(LanginpageController::class)->group(function () {
     Route::get('/contactos', 'contactos')->name('contactos');
 });
 
-// Livewire::setUpdateRoute(function ($handle) {
-//     return Route::post('/necesidades/livewire/update', $handle);
-// });
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/necesidades/livewire/update', $handle);
+});
 
-// Livewire::setScriptRoute(function ($handle) {
-//     return Route::get('/necesidades/livewire/livewire.js', $handle);
-// });
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get('/necesidades/livewire/livewire.js', $handle);
+});
 
 require __DIR__ . '/admin.php';
