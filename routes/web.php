@@ -34,7 +34,7 @@ Route::controller(LanginpageController::class)->group(function () {
 });
 
 Livewire::setUpdateRoute(function ($handle) {
-    return Route::post('/necesidades/livewire/update', $handle)->name('necesidades.livewire.update');
+    return Route::post('/necesidades/livewire/update', $handle);
 });
 
 Livewire::setScriptRoute(function ($handle) {
