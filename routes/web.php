@@ -3,9 +3,9 @@
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LanginpageController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\EnviarCorreo;
 use Livewire\Livewire;
+
+Livewire::forceAssetInjection();
 
 Route::middleware(['guest'])->controller(GoogleController::class)->group(function () {
     Route::get('/google/redirect', 'redirect')->name('google');
@@ -34,7 +34,7 @@ Route::controller(LanginpageController::class)->group(function () {
 });
 
 Livewire::setUpdateRoute(function ($handle) {
-    return Route::post('/necesidades/livewire/update', $handle)->name('custom-livewire.update');
+    return Route::post('/necesidades/livewire/update', $handle);
 });
 
 Livewire::setScriptRoute(function ($handle) {
