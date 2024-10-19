@@ -48,7 +48,7 @@
     @stack('modals')
 
     {{-- @livewireScripts --}}
-    <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
+    <script src="{{ asset('vendor/livewire/livewire.js') }}" data-update-uri="livewire/update"></script>
 </body>
 
 </html>
