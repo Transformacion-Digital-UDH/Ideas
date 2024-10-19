@@ -2,7 +2,7 @@
     <div class="container mx-auto">
         <div class="relative flex items-center justify-between">
             <div class="w-60 max-w-full">
-                <a href="/" class="block w-full py-5">
+                <a href="{{ route('welcome') }}" class="block w-full py-5">
                     <img src="{{ asset('logo.webp') }}" alt="logo" class="block w-full dark:hidden" />
                     <img src="{{ asset('logo.webp') }}" alt="logo" class="hidden w-full dark:block" />
                 </a>

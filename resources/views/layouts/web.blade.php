@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
+    {{-- @livewireStyles --}}
 </head>
 
 <body class="font-sans antialiased">
@@ -32,7 +32,8 @@
     </main>
 
     <x-web-footer />
-    @livewireScripts
+    {{-- @livewireScripts --}}
+    <script src="{{ asset('livewire.js') }}" data-update-uri="livewire/update"></script>
 </body>
 
 </html>

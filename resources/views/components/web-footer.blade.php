@@ -2,7 +2,7 @@
     <div class="container mx-auto pt-6">
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
-                <a href="/" class="flex items-center">
+                <a href="{{  route('welcome') }}" class="flex items-center">
                     <img src="{{ asset('logo.webp') }}" class="mr-3 h-8" alt="Copiloto UDH">
                 </a>
             </div>
