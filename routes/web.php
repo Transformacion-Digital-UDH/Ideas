@@ -4,14 +4,14 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\LanginpageController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
 Route::middleware(['guest'])->controller(GoogleController::class)->group(function () {
     Route::get('/google/redirect', 'redirect')->name('google');
     Route::get('/google/callback', 'callback');
 });
-
-Route::get('', function () {
-    return view('welcome');
-})->name('welcome');
 
 // Route::post('enviar-correo', function (Illuminate\Http\Request $request) {
 //     // Capturar los datos del formulario
