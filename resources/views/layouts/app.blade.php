@@ -47,9 +47,7 @@
 
     @stack('modals')
 
-    <script src="livewire/livewire.js?id=cc800bf4" data-csrf="Flcv5yFfnDErvKZLpDq7TI7L71mh0hdYn7PDP6DG"
-        data-update-uri="livewire/update" data-navigate-once="true"></script>
-    {{-- @livewireScripts --}}
+    @livewireScripts
 </body>
 
 </html>
