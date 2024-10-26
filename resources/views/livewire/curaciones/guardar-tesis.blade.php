@@ -1,8 +1,7 @@
 <div>
     <form>
         <div class="mt-4">
-            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_lugar"
-                placeholder="Dónde." />
+            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_lugar" placeholder="Dónde." />
             <x-input-error for="pro_lugar" class="mt-2" />
         </div>
         <div class="mt-2">
@@ -16,8 +15,7 @@
             <x-input-error for="problematicas" class="mt-2" />
         </div>
         <div class="mt-2">
-            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_causas"
-                placeholder="Causas." />
+            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_causas" placeholder="Causas." />
             <x-input-error for="pro_causas" class="mt-2" />
         </div>
         <div class="mt-2">
@@ -26,8 +24,7 @@
             <x-input-error for="pro_consecuencias" class="mt-2" />
         </div>
         <div class="mt-2">
-            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_aportes"
-                placeholder="Aporte." />
+            <x-input class="block mt-1 w-full" type="text" wire:model.defer="pro_aportes" placeholder="Aporte." />
             <x-input-error for="pro_aportes" class="mt-2" />
         </div>
 
@@ -56,7 +53,7 @@
             </div>
         </div>
         <div class="mt-2">
-            <x-textarea class="block mt-1 w-full" rows="2"  wire:model.defer="pro_descripcion"
+            <x-textarea class="block mt-1 w-full" rows="2" wire:model.defer="pro_descripcion"
                 placeholder="Descripción de la propuesta." />
             <x-input-error for="pro_descripcion" class="mt-2" />
         </div>

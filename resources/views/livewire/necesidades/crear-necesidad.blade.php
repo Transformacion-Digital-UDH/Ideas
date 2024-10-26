@@ -5,7 +5,7 @@
                 <i class="fas fa-spinner fa-spin mr-2"></i> Cargando...
             </span>
             <span wire:loading.remove wire:target="abrirModal">
-                Agregar Necesidad
+                Agregar idea
             </span>
         </x-button-icon>
         

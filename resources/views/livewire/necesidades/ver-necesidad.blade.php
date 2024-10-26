@@ -9,7 +9,7 @@
                 <p class="mt-1 text-sm text-gray-400">{{ $necesidad->nec_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
-                <h3 class="font-bold text-md text-udh_1">Detalles de la necesidad</h3>
+                <h3 class="font-bold text-md text-udh_1">Detalles de la idea</h3>
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
@@ -76,7 +76,7 @@
                             </div>
                         @endforeach
                     @else
-                        <p class="mt-2 text-sm">No hay propuestas para esta necesidad.</p>
+                        <p class="mt-2 text-sm">No hay propuestas para esta idea.</p>
                     @endif
                 @endrole
                 @if (count($documentos) > 0)

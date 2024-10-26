@@ -6,7 +6,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">N°</th>
                     <th scope="col" class="px-6 py-3">Solicitante</th>
-                    <th scope="col" class="px-6 py-3">Necesidad</th>
+                    <th scope="col" class="px-6 py-3">Idea</th>
                     <th scope="col" class="px-6 py-3">Registro</th>
                     <th scope="col" class="px-6 py-3">Financiamiento</th>
                     <th scope="col" class="px-6 py-3 text-left">Estado</th>
@@ -53,7 +53,7 @@
                     @endforeach
                 @else
                     <x-empty-table colspan="7">
-                        Por el momento, no hay necesidades. 😊
+                        Por el momento, no hay ideas. 😊
                     </x-empty-table>
                 @endif
             </tbody>

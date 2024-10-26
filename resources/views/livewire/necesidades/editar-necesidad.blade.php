@@ -4,7 +4,7 @@
             <section>
                 <h2 class="text-2xl font-bold text-center text-udh_3 mb-4">Información General</h2>
                 <p class="text-sm text-gray-600 text-left mb-8">
-                    Por favor, actualice la información relacionada con la necesidad que desea editar.
+                    Por favor, actualice la información relacionada con la idea que desea editar.
                 </p>
 
                 <form wire:submit.prevent="actualizar" enctype="multipart/form-data">
