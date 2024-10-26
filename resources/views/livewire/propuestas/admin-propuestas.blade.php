@@ -6,7 +6,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">N°</th>
                     <th scope="col" class="px-6 py-3">Código</th>
-                    <th scope="col" class="px-6 py-3">Propuesta / Necesidad</th>
+                    <th scope="col" class="px-6 py-3">Necesidad / Propuesta</th>
                     <th scope="col" class="px-6 py-3">Curación</th>
                     <th scope="col" class="px-6 py-3">Tipo</th>
                     <th scope="col" class="px-6 py-3">Estado</th>

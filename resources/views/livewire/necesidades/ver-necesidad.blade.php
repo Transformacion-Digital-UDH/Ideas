@@ -30,6 +30,14 @@
                         </tr>
                         <tr>
                             <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">
+                                Dirección
+                            </td>
+                            <td class="px-6 py-4 text-gray-600 whitespace-normal text-md">
+                                {{ $necesidad->nec_direccion }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">
                                 ¿Es financiado?
                             </td>
                             <td class="px-6 py-4 text-gray-600 whitespace-normal text-md">

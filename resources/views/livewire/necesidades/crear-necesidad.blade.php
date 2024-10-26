@@ -1,8 +1,14 @@
 <div>
     <div class="flex justify-center">
-        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled">
-            Agregar Necesidad
+        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled" wire:target="abrirModal">
+            <span wire:loading wire:target="abrirModal">
+                <i class="fas fa-spinner fa-spin mr-2"></i> Cargando...
+            </span>
+            <span wire:loading.remove wire:target="abrirModal">
+                Agregar Necesidad
+            </span>
         </x-button-icon>
+        
     </div>
     <x-dialog-modal wire:model="showModal">
         <x-slot name="content">
@@ -20,8 +26,7 @@
                             <option value="Empresa privada">Empresa privada</option>
                             <option value="Institución pública">Institución pública</option>
                             <option value="ONG">Sociedad civil organizada (ONGs)</option>
-                            <option value="Universidad">Universidad</option>
-                            <option value="Instituto">Instituto</option>
+                            <option value="Universidad / Instituto">Universidad / Instituto</option>
                             <option value="Ciudadano">Ciudadano</option>
                         </x-select>
                         <x-input-error for="nec_tipo" class="mt-2" />
@@ -30,7 +35,7 @@
                     @if ($es_institucion)
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="nec_empresa" placeholder="Nombre de la institución"
+                                <x-input wire:model="nec_empresa" placeholder="Nombre o Razón social"
                                     class="text-center" />
                                 <x-input-error for="nec_empresa" />
                             </div>

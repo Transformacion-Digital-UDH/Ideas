@@ -24,7 +24,7 @@
                     @if ($es_institucion)
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="nec_empresa" placeholder="Nombre de la institución"
+                                <x-input wire:model="nec_empresa" placeholder="Nombre o Razón social"
                                     class="text-center" />
                                 <x-input-error for="nec_empresa" />
                             </div>
