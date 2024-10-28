@@ -12,8 +12,8 @@
                     </svg>
                 </span>
                 <div class="grow">
-                    <h3 class="mb-2 text-lg font-bold text-udh_3 dark:text-neutral-200"> Eliminar necesidad </h3>
-                    <p class="text-gray-500 dark:text-neutral-500 text-md"> Estas a punto de eliminar la necesidad de
+                    <h3 class="mb-2 text-lg font-bold text-udh_3 dark:text-neutral-200"> Eliminar idea </h3>
+                    <p class="text-gray-500 dark:text-neutral-500 text-md"> Estas a punto de eliminar la idea de
                         <b class="text-udh_3">{{ $necesidad->nec_entidad }}</b>.
                         Presione <b class="text-udh_3">eliminar</b> si desea continuar.
                     </p>

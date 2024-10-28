@@ -22,11 +22,13 @@
                                     <i class="fas fa-eye text-white"></i>
                                 </button>
                                 @if ($necesidad->nec_proceso == 'En Espera')
-                                    <button wire:click="editarNecesidad({{ $necesidad->nec_id }})" wire:loading.attr="disabled"
+                                    <button wire:click="editarNecesidad({{ $necesidad->nec_id }})"
+                                        wire:loading.attr="disabled"
                                         class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                         <i class="fas fa-edit text-white"></i>
                                     </button>
-                                    <button wire:click="eliminarNecesidad({{ $necesidad->nec_id }})" wire:loading.attr="disabled"
+                                    <button wire:click="eliminarNecesidad({{ $necesidad->nec_id }})"
+                                        wire:loading.attr="disabled"
                                         class="middle px-2 py-1 bg-red-600 border border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                                         <i class="fas fa-trash text-white"></i>
                                     </button>
@@ -39,11 +41,10 @@
         @else
             <div class="bg-white shadow-sm rounded-lg p-6">
                 <p class="pb-3">¡Bienvenido, <b class="text-udh_3">{{ auth()->user()->name }}</b>!</p>
-                <p class="pb-5">Haz clic en el botón <b class="text-udh_3">Agregar Necesidad</b>
+                <p class="pb-5">Haz clic en el botón <b class="text-udh_3">Agregar Idea</b>
                     para comenzar y compartir lo que necesitas.</p>
                 <i class="text-udh_3 text-right">¡Gracias por ser parte de esta comunidad! 🌟</i>
             </div>
         @endif
     </div>
 </div>
-

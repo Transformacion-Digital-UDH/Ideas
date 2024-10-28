@@ -2,7 +2,7 @@
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
         <x-slot name="content">
             <div class="overflow-x-auto">
-                <h3 class="font-bold text-md text-udh_1 mb-3">Detalles de la necesidad</h3>
+                <h3 class="font-bold text-md text-udh_1 mb-3">Detalles de la idea</h3>
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-gray-200">
                         @if ($postulacion->propuesta)

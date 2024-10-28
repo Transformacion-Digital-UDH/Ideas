@@ -14,8 +14,6 @@ class GuardarCurso extends Component
     public $propuestas;
     public $nec_id;
     public $pro_titulo;
-    public $problematicas;
-    public $pro_beneficiarios;
     public $pro_lugar;
     public $pro_descripcion;
 
@@ -32,15 +30,11 @@ class GuardarCurso extends Component
             'pro_titulo' => ['required', 'string', 'max:255'],
             'pro_descripcion' => ['required', 'string', 'max:800'],
             'pro_lugar' => ['required', 'string', 'max:255'],
-            'pro_beneficiarios' => ['required', 'string', 'max:255'],
-            'problematicas' => ['required', 'string', 'max:800'],
         ]);
 
         DB::beginTransaction();
         $propuestas = new Propuestas();
         $propuestas->pro_titulo = $this->pro_titulo;
-        $propuestas->problematicas = $this->problematicas;
-        $propuestas->pro_beneficiarios = $this->pro_beneficiarios;
         $propuestas->pro_lugar = $this->pro_lugar;
         $propuestas->pro_descripcion = $this->pro_descripcion;
         $propuestas->pro_proceso = 'En Postulación';

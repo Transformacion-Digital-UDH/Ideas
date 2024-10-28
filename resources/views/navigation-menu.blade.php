@@ -17,12 +17,12 @@
                     @endcan
                     @can('mis-necesidades.ver')
                         <x-nav-link href="{{ route('mis-necesidades') }}" :active="request()->routeIs('mis-necesidades')">
-                            {{ __('Mis necesidades') }}
+                            {{ __('Mis Ideas') }}
                         </x-nav-link>
                     @endcan
                     @can('necesidades.ver')
                         <x-nav-link href="{{ route('necesidades') }}" :active="request()->routeIs('necesidades')">
-                            {{ __('Necesidades') }}
+                            {{ __('Ideas') }}
                         </x-nav-link>
                     @endcan
                     @can('propuestas.ver')
@@ -203,12 +203,12 @@
             @endcan
             @can('mis-necesidades.ver')
                 <x-responsive-nav-link href="{{ route('mis-necesidades') }}" :active="request()->routeIs('mis-necesidades')">
-                    {{ __('Mis necesidades') }}
+                    {{ __('Mis Ideas') }}
                 </x-responsive-nav-link>
             @endcan
             @can('necesidades.ver')
                 <x-responsive-nav-link href="{{ route('necesidades') }}" :active="request()->routeIs('necesidades')">
-                    {{ __('Necesidades') }}
+                    {{ __('Ideas') }}
                 </x-responsive-nav-link>
             @endcan
             @can('propuestas.ver')

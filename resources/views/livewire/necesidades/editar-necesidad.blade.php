@@ -4,7 +4,7 @@
             <section>
                 <h2 class="text-2xl font-bold text-center text-udh_3 mb-4">Información General</h2>
                 <p class="text-sm text-gray-600 text-left mb-8">
-                    Por favor, actualice la información relacionada con la necesidad que desea editar.
+                    Por favor, actualice la información relacionada con la idea que desea editar.
                 </p>
 
                 <form wire:submit.prevent="actualizar" enctype="multipart/form-data">
@@ -24,7 +24,7 @@
                     @if ($es_institucion)
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center mb-4">
                             <div class="sm:w-2/4 px-1">
-                                <x-input wire:model="nec_empresa" placeholder="Nombre de la institución"
+                                <x-input wire:model="nec_empresa" placeholder="Nombre o Razón social"
                                     class="text-center" />
                                 <x-input-error for="nec_empresa" />
                             </div>

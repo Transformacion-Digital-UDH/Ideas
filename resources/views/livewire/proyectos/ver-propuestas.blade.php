@@ -47,7 +47,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p class="mt-2 text-sm">No hay propuestas para esta necesidad.</p>
+                    <p class="mt-2 text-sm">No hay propuestas para esta idea.</p>
                 @endif
             </div>
         </x-slot>

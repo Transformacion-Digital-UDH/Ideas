@@ -4,10 +4,10 @@
 Le recomendamos leer este documento con atención para comprender cómo tratamos sus datos y cuáles son sus derechos en relación con su privacidad. Al utilizar **Copiloto UDH**, usted acepta las prácticas descritas en esta política.
 
 #### Recopilación de Información
-**Copiloto UDH** recopila información personal y datos relacionados con las necesidades registradas por los usuarios. Esto incluye, pero no se limita a, nombres, direcciones de correo electrónico, y detalles de la necesidad.
+**Copiloto UDH** recopila información personal y datos relacionados con las ideas registradas por los usuarios. Esto incluye, pero no se limita a, nombres, direcciones de correo electrónico, y detalles de la idea.
 
 #### Uso de la Información
-La información recopilada será utilizada únicamente para los fines de **Copiloto UDH**: evaluar y solucionar las necesidades registradas a través de proyectos de tesis, cursos o fondos concursables. La **Universidad de Huánuco** no compartirá esta información con terceros sin el consentimiento previo del usuario, salvo cuando sea requerido por ley.
+La información recopilada será utilizada únicamente para los fines de **Copiloto UDH**: evaluar y solucionar las ideas registradas a través de proyectos de tesis, cursos o fondos concursables. La **Universidad de Huánuco** no compartirá esta información con terceros sin el consentimiento previo del usuario, salvo cuando sea requerido por ley.
 
 #### Protección de Datos
 La **Universidad de Huánuco** implementará medidas de seguridad adecuadas para proteger la información personal del usuario contra accesos no autorizados, alteraciones o divulgaciones.

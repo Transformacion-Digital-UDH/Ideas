@@ -4,18 +4,18 @@
             <div class="hero-content">
                 <h1
                     class="mb-5 text-4xl font-bold !leading-[1.208] text-udh_3 sm:text-[42px] lg:text-[40px] xl:text-5xl dark:text-white">
-                    De Necesidades <br>
-                    Sociales a Soluciones <br> Tecnológicas
+                    Transformamos tus <br>
+                    IDEAS en Soluciones <br> Tecnologicas
                 </h1>
                 <p class="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
-                    Transformamos problemas sociales en soluciones concretas mediante investigación y proyectos
+                    Mediante investigación y proyectos
                     de transformación digital.
                 </p>
                 <ul class="flex flex-wrap items-center">
                     <li>
                         <a href="{{ route('panel') }}"
                             class="inline-flex items-center justify-center rounded-md bg-udh_1 px-6 py-3 text-center text-base font-medium text-white hover:translate-x-6 transition-transform duration-300 ease-in-out lg:px-7">
-                            Ingresa tu necesidad
+                            Ingresa tu IDEA
                             <i class="ml-4 fa-solid fa-arrow-right"></i>
                         </a>
                     </li>
