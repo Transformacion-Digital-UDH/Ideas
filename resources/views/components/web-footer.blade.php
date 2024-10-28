@@ -1,9 +1,9 @@
-<footer class="p-4 bg-gray-50 dark:bg-gray-800">
+<footer class="p-4 bg-gray-100 dark:bg-gray-800">
     <div class="container mx-auto pt-6">
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
-                <a href="{{  route('welcome') }}" class="flex items-center">
-                    <img src="{{ asset('logo.webp') }}" class="mr-3 h-8" alt="Copiloto UDH">
+                <a href="/" class="flex items-center">
+                    <img src="{{ asset('recursos/vri.webp') }}" class="mr-3 h-14" alt="Investigación UDH">
                 </a>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
@@ -35,7 +35,7 @@
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
         <div class="sm:flex sm:items-center sm:justify-between">
             <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© {{ date('Y') }} <a
-                    href="{{ route('welcome') }}" class="hover:underline font-bold text-udh_3">Copiloto UDH</a>.
+                    href="https://copiloto.udh.edu.pe" class="hover:underline font-bold text-udh_3">Copiloto UDH</a>.
                 Todos los derechos reservados.
             </span>
             <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">

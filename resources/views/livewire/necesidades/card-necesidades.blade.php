@@ -2,7 +2,7 @@
     <div class="grid grid-cols-1 gap-6">
         @if (count($necesidades) > 0)
             @foreach ($necesidades as $necesidad)
-                <div class="bg-white shadow-sm rounded-lg p-6 flex justify-between items-center card-item">
+                <div class="bg-white shadow-lg rounded-lg p-6 flex justify-between items-center card-item">
                     <div class="w-full">
                         <div class="flex justify-between items-center">
                             <div></div>
@@ -17,21 +17,19 @@
                                 <x-estadoSociedad :status="$necesidad->nec_proceso" />
                             </div>
                             <div>
-                                <button wire:click="verNecesidad({{ $necesidad->nec_id }})" wire:loading.attr="disabled"
-                                    class="middle px-2 py-1 bg-cyan-500 border text-cyan-600 rounded-lg hover:bg-cyan-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
+                                    wire:click='editarNecesidad({{ $necesidad->nec_id }})'>
                                     <i class="fas fa-eye text-white"></i>
-                                </button>
+                                </x-button-icon>
                                 @if ($necesidad->nec_proceso == 'En Espera')
-                                    <button wire:click="editarNecesidad({{ $necesidad->nec_id }})"
-                                        wire:loading.attr="disabled"
-                                        class="middle px-2 py-1 bg-lime-600 border border-lime-600 text-lime-600 rounded-lg hover:bg-lime-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                    <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
+                                        wire:click='editarNecesidad({{ $necesidad->nec_id }})'>
                                         <i class="fas fa-edit text-white"></i>
-                                    </button>
-                                    <button wire:click="eliminarNecesidad({{ $necesidad->nec_id }})"
-                                        wire:loading.attr="disabled"
-                                        class="middle px-2 py-1 bg-red-600 border border-red-600 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                                    </x-button-icon>
+                                    <x-button-icon class="px-2 h-7 bg-red-600" wire:loading.attr="disabled"
+                                        wire:click='eliminarNecesidad({{ $necesidad->nec_id }})'>
                                         <i class="fas fa-trash text-white"></i>
-                                    </button>
+                                    </x-button-icon>
                                 @endif
                             </div>
                         </div>
