@@ -1,9 +1,9 @@
-<footer class="p-4 bg-gray-50 dark:bg-gray-800">
+<footer class="p-4 bg-gray-100 dark:bg-gray-800">
     <div class="container mx-auto pt-6">
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
                 <a href="/" class="flex items-center">
-                    <img src="{{ asset('logo.webp') }}" class="mr-3 h-8" alt="Copiloto UDH">
+                    <img src="{{ asset('recursos/vri.webp') }}" class="mr-3 h-14" alt="Investigación UDH">
                 </a>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">

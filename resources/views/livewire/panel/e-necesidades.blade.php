@@ -1,5 +1,5 @@
 <div class="bg-white shadow-lg rounded-lg p-6">
-    <h3 class="text-xl font-semibold mb-3">Necesidades</h3>
+    <h3 class="text-xl font-semibold mb-3">Ideas</h3>
     <div class="space-y-2">
         <div class="relative overflow-x-auto sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-righ">

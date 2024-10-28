@@ -42,7 +42,7 @@
                                                         Registrado el
                                                         {{ $necesidad->nec_created->format('d/m/Y') ?? '' }}</p>
                                                 </div>
-                                                <span class="text-sm font-medium mb-1 text-blue-950">Necesidad:</span>
+                                                <span class="text-sm font-medium mb-1 text-blue-950">Idea:</span>
                                                 <p class="text-gray-500 line-clamp-3 text-sm">
                                                     {{ $necesidad->nec_titulo }}
                                                 </p>

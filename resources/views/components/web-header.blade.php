@@ -1,4 +1,4 @@
-<header x-data="{ navbarOpen: false, }" class="absolute px-4 left-0 top-0 z-50 w-full shadow-sm border-b">
+<header x-data="{ navbarOpen: false, }" class="absolute px-4 left-0 top-0 z-50 w-full shadow-md border-b">
     <div class="container mx-auto">
         <div class="relative flex items-center justify-between">
             <div class="w-60 max-w-full">
