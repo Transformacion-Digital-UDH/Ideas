@@ -1,6 +1,7 @@
 <div>
     <div class="flex justify-center">
-        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled" wire:target="abrirModal">
+        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled"
+            wire:target="abrirModal">
             <span wire:loading wire:target="abrirModal">
                 <i class="fas fa-spinner fa-spin mr-2"></i> Cargando...
             </span>
@@ -8,7 +9,6 @@
                 Agregar idea
             </span>
         </x-button-icon>
-        
     </div>
     <x-dialog-modal wire:model="showModal">
         <x-slot name="content">

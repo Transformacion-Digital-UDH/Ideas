@@ -18,7 +18,7 @@
                             </div>
                             <div>
                                 <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
-                                    wire:click='editarNecesidad({{ $necesidad->nec_id }})'>
+                                    wire:click='verNecesidad({{ $necesidad->nec_id }})'>
                                     <i class="fas fa-eye text-white"></i>
                                 </x-button-icon>
                                 @if ($necesidad->nec_proceso == 'En Espera')
