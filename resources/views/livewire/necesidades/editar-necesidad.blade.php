@@ -14,8 +14,7 @@
                             <option value="Empresa privada">Empresa privada</option>
                             <option value="Institución pública">Institución pública</option>
                             <option value="ONG">Sociedad civil organizada (ONGs)</option>
-                            <option value="Universidad">Universidad</option>
-                            <option value="Instituto">Instituto</option>
+                            <option value="Universidad / Instituto">Universidad / Instituto</option>
                             <option value="Ciudadano">Ciudadano</option>
                         </x-select>
                         <x-input-error for="nec_tipo" class="mt-2" />
@@ -158,8 +157,13 @@
             <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled" :disabled="!$isEditable">
-                Actualizar
+            <x-button class="ml-2" wire:click="actualizar" wire:loading.attr="disabled" wire:target="actualizar">
+                <span wire:loading wire:target="actualizar">
+                    <i class="fas fa-spinner fa-spin mr-1"></i> Actualizando...
+                </span>
+                <span wire:loading.remove wire:target="actualizar">
+                    Actualizar
+                </span>
             </x-button>
         </x-slot>
     </x-dialog-modal>

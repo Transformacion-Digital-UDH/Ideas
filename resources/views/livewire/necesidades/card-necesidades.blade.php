@@ -17,18 +17,51 @@
                                 <x-estadoSociedad :status="$necesidad->nec_proceso" />
                             </div>
                             <div>
-                                <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
-                                    wire:click='verNecesidad({{ $necesidad->nec_id }})'>
-                                    <i class="fas fa-eye text-white"></i>
+                                <x-button-icon class="px-2 h-7 bg-udh_1"
+                                    wire:click="verNecesidad({{ $necesidad->nec_id }})" wire:loading.attr="disabled"
+                                    wire:target="verNecesidad({{ $necesidad->nec_id }})">
+                                    <span wire:loading wire:target="verNecesidad({{ $necesidad->nec_id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="verNecesidad({{ $necesidad->nec_id }})">
+                                        <i class="fas fa-eye text-white"></i>
+                                    </span>
                                 </x-button-icon>
+
+                                @if (isset($necesidad->responsable))
+                                    <pre>
+                                    @php
+                                        print_r($necesidad->responsable->toArray());
+                                    @endphp
+                                </pre>
+                                @endif
+
+
                                 @if ($necesidad->nec_proceso == 'En Espera')
-                                    <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                        wire:click='editarNecesidad({{ $necesidad->nec_id }})'>
-                                        <i class="fas fa-edit text-white"></i>
+                                    <x-button-icon class="px-2 h-7 bg-udh_3"
+                                        wire:click="editarNecesidad({{ $necesidad->nec_id }})"
+                                        wire:loading.attr="disabled"
+                                        wire:target="editarNecesidad({{ $necesidad->nec_id }})">
+                                        <span wire:loading wire:target="editarNecesidad({{ $necesidad->nec_id }})">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                        </span>
+                                        <span wire:loading.remove
+                                            wire:target="editarNecesidad({{ $necesidad->nec_id }})">
+                                            <i class="fas fa-edit text-white"></i>
+                                        </span>
                                     </x-button-icon>
-                                    <x-button-icon class="px-2 h-7 bg-red-600" wire:loading.attr="disabled"
-                                        wire:click='eliminarNecesidad({{ $necesidad->nec_id }})'>
-                                        <i class="fas fa-trash text-white"></i>
+
+                                    <x-button-icon class="px-2 h-7 bg-red-600"
+                                        wire:click="eliminarNecesidad({{ $necesidad->nec_id }})"
+                                        wire:loading.attr="disabled"
+                                        wire:target="eliminarNecesidad({{ $necesidad->nec_id }})">
+                                        <span wire:loading wire:target="eliminarNecesidad({{ $necesidad->nec_id }})">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                        </span>
+                                        <span wire:loading.remove
+                                            wire:target="eliminarNecesidad({{ $necesidad->nec_id }})">
+                                            <i class="fas fa-trash text-white"></i>
+                                        </span>
                                     </x-button-icon>
                                 @endif
                             </div>
@@ -38,9 +71,13 @@
             @endforeach
         @else
             <div class="bg-white shadow-sm rounded-lg p-6">
-                <p class="pb-3">¡Bienvenido, <b class="text-udh_3">{{ auth()->user()->name }}</b>!</p>
-                <p class="pb-5">Haz clic en el botón <b class="text-udh_3">Agregar Idea</b>
-                    para comenzar y compartir lo que necesitas.</p>
+                <p class="pb-3">¡Bienvenido,
+                    <b class="text-udh_3">{{ auth()->user()->name }}</b>!
+                </p>
+                <p class="pb-5">Haz clic en el botón
+                    <b class="text-udh_3">Agregar Idea</b>
+                    para comenzar y compartir lo que necesitas.
+                </p>
                 <i class="text-udh_3 text-right">¡Gracias por ser parte de esta comunidad! 🌟</i>
             </div>
         @endif
