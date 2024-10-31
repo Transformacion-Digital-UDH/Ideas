@@ -1,12 +1,12 @@
 <div>
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
         <x-slot name="title">
-            <h2 class="text-xl">{{ $propuesta->pro_titulo }}</h2>
+            <h2 class="text-base">{{ $propuesta->pro_titulo }}</h2>
         </x-slot>
 
         <x-slot name="content">
             <div class="mb-7">
-                <p class="mt-1 text-gray-400 text-base">{{ $propuesta->pro_descripcion }}</p>
+                <p class="text-sm">{{ $propuesta->pro_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
                 <h3 class="font-bold mt-3 text-udh_1">Detalles de la propuesta</h3>

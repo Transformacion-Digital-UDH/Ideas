@@ -14,6 +14,6 @@
     }
 @endphp
 
-<div class="inline px-2 py-1 text-sm font-normal rounded-full {{ $clase }} gap-x-2 text-center">
+<div class="inline px-2 py-1 text-xs font-semibold rounded-full {{ $clase }} text-center">
     {{ $status }}
 </div>

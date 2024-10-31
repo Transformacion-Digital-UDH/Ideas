@@ -6,7 +6,7 @@
 
         <x-slot name="content">
             <div class="mb-7">
-                <p class="mt-1 text-sm text-gray-400">{{ $necesidad->nec_descripcion }}</p>
+                <p class="text-sm">{{ $necesidad->nec_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
                 <h3 class="font-bold text-md text-udh_1">Detalles de la idea</h3>
@@ -88,11 +88,11 @@
                             </a>
                             <div>
                                 <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank"
-                                    class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white">
+                                    class="ml-2 px-2 py-1 bg-gray-500 rounded-md hover:bg-udh_3 text-white">
                                     Ver
                                 </a>
                                 <button
-                                    class="mt-1 ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white"
+                                    class="mt-1 ml-2 px-2 py-1 bg-gray-500 rounded-md hover:bg-udh_3 text-white"
                                     wire:click="descargar('{{ $doc->doc_file }}')">
                                     <i class="fa-solid fa-download"></i>
                                 </button>

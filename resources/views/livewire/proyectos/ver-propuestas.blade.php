@@ -36,7 +36,7 @@
                             <div class="flex items-center justify-between mt-1">
                                 <div>
                                     @if ($propuesta->es_oficial)
-                                        <span class="text-white text-xs rounded-md bg-udh_1 px-1 py-[2px]">
+                                        <span class="text-white text-xs rounded-md bg-udh_1 px-2 py-1 block mt-1">
                                             <i class="fa-solid fa-star text-yellow-400"></i>
                                             Proyecto oficial
                                         </span>

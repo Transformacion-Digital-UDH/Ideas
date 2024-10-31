@@ -9,7 +9,7 @@
                     </a>
                 </div>
 
-                <div class="hidden space-x-5 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-5 sm:-my-px sm:ms-10 md:flex">
                     @can('panel.ver')
                         <x-nav-link href="{{ route('panel') }}" :active="request()->routeIs('panel')">
                             {{ __('Dashboard') }}
@@ -119,11 +119,15 @@
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <button
-                                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    <img class="h-8 w-8 rounded-full object-cover"
-                                        src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                                </button>
+                                <div class="flex items-center">
+                                    <span class="text-gray-500 text-sm font-medium max-w-max">{{ Auth::user()->name }}</span> 
+                                    <button
+                                        class="ml-2 flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                        <img class="h-8 w-8 rounded-full object-cover"
+                                            src="{{ Auth::user()->profile_photo_url }}"
+                                            alt="{{ Auth::user()->name }}" />
+                                    </button>
+                                </div>
                             @else
                                 <span class="inline-flex rounded-md">
                                     <button type="button"

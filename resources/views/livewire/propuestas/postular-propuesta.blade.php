@@ -34,9 +34,7 @@
             <div class="mt-6">
                 <x-label for="pos_justificar" value="{{ __('Justificación') }}" />
                 <x-textarea id="pos_justificar" class="block mt-1 w-full" type="text"
-                    wire:model.defer="pos_justificar"
-                    placeholder="¿Por qué te eligirian a ti? Justifica." required
-                />
+                    wire:model.defer="pos_justificar" placeholder="¿Por qué te eligirian a ti? Justifica." required />
                 <x-input-error for="pos_justificar" class="mt-2" />
             </div>
 
@@ -47,8 +45,14 @@
             <x-secondary-button wire:click="$set('showModal', null)" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="guardar" wire:loading.attr="disabled">
-                Postular
+            <x-button class="ml-2 bg-udh_1" wire:click="guardar"
+                wire:loading.attr="disabled" wire:target="guardar">
+                <span wire:loading wire:target="guardar">
+                    <i class="fas fa-spinner fa-spin mr-1"></i> Cargando
+                </span>
+                <span wire:loading.remove wire:target="guardar">
+                    Postular
+                </span>
             </x-button>
         </x-slot>
     </x-dialog-modal>

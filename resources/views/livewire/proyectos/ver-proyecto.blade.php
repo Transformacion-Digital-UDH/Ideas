@@ -6,27 +6,27 @@
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-gray-200">
                         @if ($postulacion->propuesta)
-                            <tr>
-                                <td class="px-6 pb-2 font-medium text-gray-800 whitespace-normal text-md">
+                            <tr class="border-b">
+                                <td class="px-6 py-3 font-medium text-gray-800 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_tipo == 'Ciudadano' ? 'DNI' : 'RUC' }}
                                 </td>
-                                <td class="px-6 pb-2 text-gray-600 whitespace-normal text-md">
+                                <td class="px-6 py-3 text-gray-600 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_documento ?? '' }}
                                 </td>
                             </tr>
                             <tr class="border-b">
-                                <td class="px-6 pb-2 font-medium text-gray-800 whitespace-normal text-md">
+                                <td class="px-6 py-3 font-medium text-gray-800 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_tipo ?? '' }}
                                 </td>
-                                <td class="px-6 pb-2 text-gray-600 whitespace-normal text-md">
+                                <td class="px-6 py-3 text-gray-600 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->nec_entidad ?? '' }}
                                 </td>
                             </tr>
                             <tr class="border-b">
-                                <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">
+                                <td class="px-6 py-3 font-medium text-gray-800 whitespace-normal text-md">
                                     Responsable
                                 </td>
-                                <td class="px-6 py-4 text-gray-600 whitespace-normal text-md">
+                                <td class="px-6 py-3 text-gray-600 whitespace-normal text-md">
                                     {{ $postulacion->propuesta->necesidad->responsable->name ?? 'POR DEFINIR' }}
                                     @isset($postulacion->propuesta->necesidad->responsable->email)
                                         <br> <b>Correo:</b>
@@ -50,33 +50,41 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Propuesta</td>
                                 <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                    {{ $postulacion->propuesta->pro_titulo }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-normal text-md text-gray-600" colspan="2">
+                                    <p>{{ $postulacion->propuesta->pro_titulo }}</p>
+                                    <p class="mt-2 font-semibold">Descripcion:</p>
                                     {{ $postulacion->propuesta->pro_descripcion }}
                                 </td>
                             </tr>
                             @if ($postulacion->propuesta->pro_tipo == 'Curso' || $postulacion->propuesta->pro_tipo == 'Tesis')
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Lugar</td>
-                                    <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                        {{ $postulacion->propuesta->pro_lugar }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                        Problemáticas</td>
-                                    <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                        {{ $postulacion->propuesta->problematicas }}</td>
-                                </tr>
+                                @if ($postulacion->propuesta->pro_tipo == 'Curso')
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Lugar
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                            {{ $postulacion->propuesta->pro_lugar }}
+                                        </td>
+                                    </tr>
+                                @endif
                                 @if ($postulacion->propuesta->pro_tipo == 'Tesis')
                                     <tr>
+                                        <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Donde
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                            {{ $postulacion->propuesta->pro_lugar }}
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                            Beneficiarios</td>
+                                            Quienes</td>
                                         <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                             {{ $postulacion->propuesta->pro_beneficiarios }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
+                                            Problema
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                            {{ $postulacion->propuesta->problematicas }}</td>
                                     </tr>
                                     <tr>
                                         <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Causas
@@ -92,8 +100,8 @@
                                             {{ $postulacion->propuesta->pro_consecuencias }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                            Aportes</td>
+                                        <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Aporte
+                                        </td>
                                         <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                             {{ $postulacion->propuesta->pro_aportes }}
                                         </td>

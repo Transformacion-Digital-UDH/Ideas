@@ -13,8 +13,9 @@
                 </span>
                 <div class="grow">
                     <h3 class="mb-2 text-lg font-bold text-udh_3 dark:text-neutral-200"> Eliminar equipo </h3>
-                    <p class="text-gray-500 dark:text-neutral-500 text-md"> Estas a punto de eliminar al equipo
+                    <p class="text-gray-500 dark:text-neutral-500 text-md">Estas a punto de eliminar al equipo
                         <b class="text-udh_3">{{ $equipo->equ_nombre }}</b>.
+                        <br><br>
                         Presione <b class="text-udh_3">eliminar</b> si desea continuar.
                     </p>
                 </div>
