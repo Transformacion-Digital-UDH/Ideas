@@ -48,22 +48,42 @@
                             </p>
                             @if ($bandera)
                                 @if ($confimar)
-                                    <x-button-icon class="px-4 py-2 ml-4 bg-red-500 uppercase" wire:click="cancelar">
-                                        X
+                                    <x-button-icon class="px-4 py-2 ml-4 bg-red-500 uppercase" wire:click="cancelar"
+                                        wire:loading.attr="disabled" wire:target="cancelar">
+                                        <span wire:loading wire:target="cancelar">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                        </span>
+                                        <span wire:loading.remove wire:target="cancelar">
+                                            X
+                                        </span>
                                     </x-button-icon>
                                     <x-button-icon class="px-4 py-2 ml-4 bg-udh_3 uppercase"
-                                        wire:click="confirmar('{{ $nexEstado }}')">
-                                        <i class="fas fa-check mr-2"></i>
-                                        Confirmar
+                                        wire:click="confirmar('{{ $nexEstado }}')" wire:loading.attr="disabled"
+                                        wire:target="confirmar('{{ $nexEstado }}')">
+                                        <span wire:loading wire:target="confirmar('{{ $nexEstado }}')">
+                                            <i class="fas fa-spinner fa-spin mr-1"></i>
+                                            Procesando...
+                                        </span>
+                                        <span wire:loading.remove wire:target="confirmar('{{ $nexEstado }}')">
+                                            <i class="fas fa-check mr-2"></i>
+                                            Confirmar
+                                        </span>
                                     </x-button-icon>
                                 @else
-                                    <x-button-icon class="px-4 py-2 bg-udh_1 uppercase" wire:click="completar">
-                                        <i class="fas fa-check mr-2"></i>
-                                        @if ($propuesta->pro_proceso == 'Asignado')
-                                            Iniciar proyecto
-                                        @else
-                                            Completar
-                                        @endif
+                                    <x-button-icon class="px-4 py-2 bg-udh_1 uppercase" wire:click="completar"
+                                        wire:loading.attr="disabled" wire:target="completar">
+                                        <span wire:loading wire:target="completar">
+                                            <i class="fas fa-spinner fa-spin mr-1"></i>
+                                            Cargando...
+                                        </span>
+                                        <span wire:loading.remove wire:target="completar">
+                                            <i class="fas fa-check mr-2"></i>
+                                            @if ($propuesta->pro_proceso == 'Asignado')
+                                                Iniciar proyecto
+                                            @else
+                                                Completar
+                                            @endif
+                                        </span>
                                     </x-button-icon>
                                 @endif
                             @endif

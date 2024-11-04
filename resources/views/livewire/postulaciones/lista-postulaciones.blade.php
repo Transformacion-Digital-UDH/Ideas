@@ -33,10 +33,23 @@
                                 <x-estadoPostulacion :status="$postulacion->estado" class="!text-xs" />
                             </td>
                             <td class="px-6 py-5 whitespace-nowrap text-center">
-                                <x-button-icon class="px-1 h-6 w-6 bg-udh_1"
-                                    wire:click="cargarVer({{ $postulacion->propuesta->pro_id }})">
-                                    <i class="fas fa-eye"></i>
+                                <x-button-icon class="px-2 h-7 bg-udh_1"
+                                    wire:click="cargarVer({{ $postulacion->propuesta->pro_id }})"
+                                    wire:loading.attr="disabled"
+                                    wire:target="cargarVer({{ $postulacion->propuesta->pro_id }})">
+                                    <span wire:loading wire:target="cargarVer({{ $postulacion->propuesta->pro_id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove
+                                        wire:target="cargarVer({{ $postulacion->propuesta->pro_id }})">
+                                        <i class="fas fa-eye text-white"></i>
+                                    </span>
                                 </x-button-icon>
+                                @if ($postulacion->estado == 'Aprobado')
+                                    <x-button-link class="px-2 h-7 bg-udh_1" href="{{ route('mis-proyectos') }}">
+                                        <i class="fa-solid fa-person-walking-arrow-right"></i>
+                                    </x-button-link>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

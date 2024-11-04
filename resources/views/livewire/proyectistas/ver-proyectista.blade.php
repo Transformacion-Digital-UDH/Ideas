@@ -1,20 +1,16 @@
 <div>
-    <x-dialog-modal wire:model="showModal" maxWidth="md">
+    <x-dialog-modal wire:model="showModal">
         <x-slot name="title">
-            <h2 class="text-base">Detalles del Proyectista</h2>
+            <h2 class="text-base">Detalles del proyectista</h2>
         </x-slot>
 
         <x-slot name="content">
-            <div class="mb-7">
-                <p class="mt-1 text-gray-400 text-sm">{{ $proyectista->name }}</p>
-            </div>
             <div class="overflow-x-auto">
-                <h3 class="text-md font-bold text-sky-700">Detalles del Proyectista</h3>
                 <table class="min-w-full bg-white">
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                Nombre Completo
+                                Nombre completo
                             </td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                 {{ $proyectista->name }}
@@ -22,7 +18,7 @@
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
-                                Email
+                                Correo
                             </td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                 {{ $proyectista->email }}
@@ -45,11 +41,26 @@
                             </td>
                         </tr>
                         <tr>
+                            <td
+                                class="px-6 py-4 whitespace-normal text-md font-medium
+                             text-gray-800">
+                                Estado</td>
+                            <td class="px-6 py-4 whitespace-normal text-base">
+                                <x-estadoItem :status="$proyectista->estado" />
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">
                                 Más detalles
                             </td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                 {{ $proyectista->descripcion }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Registrado el</td>
+                            <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
+                                {{ fechaHora($proyectista->created_at) }}
                             </td>
                         </tr>
                     </tbody>

@@ -17,13 +17,6 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
-                <x-label for="name" value="{{ __('Nombres completos') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                    required autofocus autocomplete="name" />
-                <x-input-error for="name" class="mt-2" />
-            </div>
-
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
@@ -51,8 +44,8 @@
                         <div class="flex items-center">
                             <x-checkbox name="terms" id="terms" required />
 
-                            <div class="ms-3 text-xs">
-                                Acepto los
+                            <div class="ms-3 text-sm">
+                                Al registrame, acepto los
                                 <a target="_blank" href="{{ route('terms.show') }}"
                                     class="underline text-gray-600 hover:text-udh_1 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-udh_1">
                                     {{ __('Terms of Use') }}
@@ -60,7 +53,7 @@
                                 <a target="_blank" href="{{ route('policy.show') }}"
                                     class="underline text-gray-600 hover:text-udh_1 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-udh_1">
                                     {{ __('Privacy Policy') }}
-                                </a>
+                                </a>.
                             </div>
                         </div>
                     </x-label>

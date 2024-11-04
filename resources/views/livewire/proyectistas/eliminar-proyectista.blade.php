@@ -13,8 +13,10 @@
                 </span>
                 <div class="grow">
                     <h3 class="mb-2 text-lg font-bold text-udh_3 dark:text-neutral-200"> Eliminar proyectista </h3>
-                    <p class="text-gray-500 dark:text-neutral-500 text-md"> Estas a punto de eliminar al proyectista
+                    <p class="text-gray-500 dark:text-neutral-500 text-md">
+                        Estas a punto de eliminar al proyectista
                         <b class="text-udh_3">{{ $proyectista->name }}</b>.
+                        <br><br>
                         Presione <b class="text-udh_3">eliminar</b> si desea continuar.
                     </p>
                 </div>
@@ -25,9 +27,14 @@
         <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
             Cancelar
         </x-secondary-button>
-        <x-button wire:click="confirmarDelete"
-            class="ml-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-            Eliminar
+        <x-button class="ml-2 text-white hover:bg-red-700" wire:click="confirmarDelete" wire:loading.attr="disabled"
+            wire:target="confirmarDelete">
+            <span wire:loading wire:target="confirmarDelete">
+                <i class="fas fa-spinner fa-spin mr-1"></i> Eliminando...
+            </span>
+            <span wire:loading.remove wire:target="confirmarDelete">
+                Eliminar
+            </span>
         </x-button>
     </x-slot>
 </x-dialog-modal>

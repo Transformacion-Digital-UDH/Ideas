@@ -136,7 +136,7 @@
                                 <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Fecha de
                                     publicación</td>
                                 <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                    {{ \Carbon\Carbon::parse($postulacion->propuesta->pro_created)->format('d/m/Y \a \l\a\s H:i') }}
+                                    {{ fechaHora($postulacion->propuesta->pro_created) }}
                                 </td>
                             </tr>
                         @endif

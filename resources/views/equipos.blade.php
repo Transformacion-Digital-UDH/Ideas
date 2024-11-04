@@ -13,7 +13,7 @@
                         @livewire('equipos.crear-equipo')
                     </div>
                     <x-input-buscar data-table="table_id" type="text" placeholder="Buscar..."
-                        class="light-table-filter " />
+                        class="light-table-filter hidden sm:block" />
 
                 </div>
                 @livewire('equipos.listar-equipo')

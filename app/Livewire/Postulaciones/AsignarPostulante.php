@@ -115,7 +115,7 @@ class AsignarPostulante extends Component
     public function buscar()
     {
         $this->responsables = User::whereHas('roles', function ($query) {
-            $query->whereIn('name', ['DOCENTE', 'PROYECTISTA', 'VRI', 'ESCUELA']);
+            $query->whereIn('name', ['DOCENTE', 'PROYECTISTA']);
         })
             ->where('name', 'like', '%' . $this->search . '%')
             ->get();

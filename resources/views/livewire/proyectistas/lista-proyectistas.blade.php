@@ -8,7 +8,6 @@
                     <th scope="col" class="px-6 py-3">Proyectista</th>
                     <th scope="col" class="px-6 py-3">teléfono</th>
                     <th scope="col" class="px-6 py-3">Correo</th>
-                    <th scope="col" class="px-6 py-3 text-center">Registro</th>
                     <th scope="col" class="px-6 py-3 text-center">Estado</th>
                     <th scope="col" class="px-6 py-3 text-center">Acciones</th>
                 </tr>
@@ -22,7 +21,7 @@
                                 {{ $proyectistas->total() - $i }}
                             </th>
                             <td class="px-6 py-4">
-                                <strong class="text-gray-900">{{ $proyectista->name }}</strong>
+                                <span class="text-gray-900 font-medium">{{ $proyectista->name }}</span>
                             </td>
                             <td class="px-6 py-4">
                                 {{ $proyectista->telefono }}
@@ -31,23 +30,39 @@
                                 {{ $proyectista->email }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                {{ $proyectista->created_at->format('Y-m-d') }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center">
                                 <x-estadoItem :status="$proyectista->estado" />
                             </td>
                             <td class="px-6 py-4 text-center whitespace-nowrap">
-                                <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
-                                    wire:click="abrirModalVer({{ $proyectista->id }})">
-                                    <i class="fa-solid fa-eye"></i>
+                                <x-button-icon class="px-2 h-7 bg-udh_1"
+                                    wire:click="abrirModalVer({{ $proyectista->id }})" wire:loading.attr="disabled"
+                                    wire:target="abrirModalVer({{ $proyectista->id }})">
+                                    <span wire:loading wire:target="abrirModalVer({{ $proyectista->id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="abrirModalVer({{ $proyectista->id }})">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </span>
                                 </x-button-icon>
-                                <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                    wire:click="abrirModal({{ $proyectista->id }})">
-                                    <i class="fa-solid fa-pencil"></i>
+                                <x-button-icon class="px-2 h-7 bg-udh_3" wire:click="abrirModal({{ $proyectista->id }})"
+                                    wire:loading.attr="disabled" wire:target="abrirModal({{ $proyectista->id }})">
+                                    <span wire:loading wire:target="abrirModal({{ $proyectista->id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="abrirModal({{ $proyectista->id }})">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </span>
                                 </x-button-icon>
-                                <x-button-icon class="px-2 h-7 bg-red-600" wire:loading.attr="disabled"
-                                    wire:click="eliminarProyectista({{ $proyectista->id }})">
-                                    <i class="fa-solid fa-trash"></i>
+                                <x-button-icon class="px-2 h-7 bg-red-600"
+                                    wire:click="eliminarProyectista({{ $proyectista->id }})"
+                                    wire:loading.attr="disabled"
+                                    wire:target="eliminarProyectista({{ $proyectista->id }})">
+                                    <span wire:loading wire:target="eliminarProyectista({{ $proyectista->id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove
+                                        wire:target="eliminarProyectista({{ $proyectista->id }})">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </span>
                                 </x-button-icon>
                             </td>
                         </tr>

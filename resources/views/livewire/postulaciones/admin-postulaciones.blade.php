@@ -38,9 +38,17 @@
                                 <td class="px-6 py-4 text-center whitespace-nowrap">
                                     @if ($propuesta->pro_tipo == 'Gestor UDH')
                                         @role('VRI')
-                                            <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                                wire:click="verPostulantes({{ $propuesta->pro_id }})">
-                                                Asignar
+                                            <x-button-icon class="px-2 h-7 bg-udh_3"
+                                                wire:click="verPostulantes({{ $propuesta->pro_id }})"
+                                                wire:loading.attr="disabled"
+                                                wire:target="verPostulantes({{ $propuesta->pro_id }})">
+                                                <span wire:loading wire:target="verPostulantes({{ $propuesta->pro_id }})">
+                                                    <i class="fas fa-spinner fa-spin px-4"></i>
+                                                </span>
+                                                <span wire:loading.remove
+                                                    wire:target="verPostulantes({{ $propuesta->pro_id }})">
+                                                    Asignar
+                                                </span>
                                             </x-button-icon>
                                             @elserole('ESCUELA')
                                             <x-button-icon class="px-2 h-7 bg-gray-400 cursor-not-allowed">
@@ -49,9 +57,17 @@
                                         @endrole
                                     @elseif($propuesta->pro_tipo == 'Curso' || $propuesta->pro_tipo == 'Tesis')
                                         @role('ESCUELA')
-                                            <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                                wire:click="verPostulantes({{ $propuesta->pro_id }})">
-                                                Asignar
+                                            <x-button-icon class="px-2 h-7 bg-udh_3"
+                                                wire:click="verPostulantes({{ $propuesta->pro_id }})"
+                                                wire:loading.attr="disabled"
+                                                wire:target="verPostulantes({{ $propuesta->pro_id }})">
+                                                <span wire:loading wire:target="verPostulantes({{ $propuesta->pro_id }})">
+                                                    <i class="fas fa-spinner fa-spin px-4"></i>
+                                                </span>
+                                                <span wire:loading.remove
+                                                    wire:target="verPostulantes({{ $propuesta->pro_id }})">
+                                                    Asignar
+                                                </span>
                                             </x-button-icon>
                                             @elserole('VRI')
                                             <x-button-icon class="px-2 h-7 bg-gray-400 cursor-not-allowed">
@@ -59,9 +75,16 @@
                                             </x-button-icon>
                                         @endrole
                                     @endif
-                                    <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
-                                        wire:click='verPropuesta({{ $propuesta->pro_id }})'>
-                                        <i class="fas fa-eye text-white"></i>
+                                    <x-button-icon class="px-2 h-7 bg-udh_1"
+                                        wire:click="verPropuesta({{ $propuesta->pro_id }})"
+                                        wire:loading.attr="disabled"
+                                        wire:target="verPropuesta({{ $propuesta->pro_id }})">
+                                        <span wire:loading wire:target="verPropuesta({{ $propuesta->pro_id }})">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                        </span>
+                                        <span wire:loading.remove wire:target="verPropuesta({{ $propuesta->pro_id }})">
+                                            <i class="fas fa-eye text-white"></i>
+                                        </span>
                                     </x-button-icon>
                                 </td>
                             </tr>
@@ -74,9 +97,9 @@
                 </tbody>
             </table>
         @else
-        <div class="px-6 py-5 bg-white dark:bg-gray-800">
-            En este momento, no hay postulaciones disponibles. 😊
-        </div>
+            <div class="px-6 py-5 bg-white text-gray-600 font-medium">
+                En este momento, no hay postulaciones disponibles. 😊
+            </div>
         @endif
     </div>
     @if ($propuestas->hasPages())

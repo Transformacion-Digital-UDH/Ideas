@@ -180,7 +180,7 @@
                 </div>
             @else
                 <div class="bg-white shadow-sm rounded-lg p-6">
-                    <i class="text-udh_3 text-right">¡No tiene proyectos por el momento! 😊</i>
+                    <span class="text-udh_3 text-right">¡No tiene proyectos por el momento! 😊</span>
                 </div>
             @endif
         </div>

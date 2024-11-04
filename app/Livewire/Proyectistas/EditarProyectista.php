@@ -29,7 +29,8 @@ class EditarProyectista extends Component
 
     public function editar($id)
     {
-        $this->openModal(); // Abre el modal
+        $this->reset();
+        $this->resetValidation();
         $this->id = $id;
         $this->proyectista = User::find($id);
         $this->name = $this->proyectista->name;
@@ -37,6 +38,7 @@ class EditarProyectista extends Component
         $this->telefono = $this->proyectista->telefono;
         $this->profesion = $this->proyectista->profesion;
         $this->descripcion = $this->proyectista->descripcion;
+        $this->openModal(); // Abre el modal
     }
 
     public function actualizar()
@@ -45,8 +47,8 @@ class EditarProyectista extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->proyectista->id)],
             'telefono' => ['required', 'string', 'max:255'],
-            'profesion' => ['required', 'string', 'max:255'],
-            'descripcion' => ['required', 'string', 'max:255'],
+            'profesion' => ['nullable', 'string', 'max:255'],
+            'descripcion' => ['nullable', 'string', 'max:255'],
         ]);
 
         $this->proyectista->update([
