@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
-use Laravel\Fortify\Http\Requests\VerifyEmailRequest;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,14 +32,8 @@ class AppServiceProvider extends ServiceProvider
         Request::macro('hasValidSignature', function () {
             $uploading = strpos(URL::current(), '/livewire/upload-file');
             $previewing = strpos(URL::current(), '/livewire/preview-file');
-            if ($uploading || $previewing) {
-                return true;
-            }
-        });
-
-        VerifyEmailRequest::macro('authorize', function () {
-            $emailVerifying = strpos(URL::current(), '/email/verificar/*');
-            if ($emailVerifying) {
+            $emailVerifying = Str::contains(URL::current(), '/email/verificar/');
+            if ($uploading || $previewing || $emailVerifying) {
                 return true;
             }
         });
