@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Propuestas;
 use App\Observers\EstadoPropuestaObserver;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Propuestas::observe(EstadoPropuestaObserver::class);
+        Request::macro('hasValidSignature', function () {
+            $uploading = strpos(URL::current(), '/livewire/upload-file');
+            $previewing = strpos(URL::current(), '/livewire/preview-file');
+            if ($uploading || $previewing) {
+                return true;
+            }
+        });
     }
 }
