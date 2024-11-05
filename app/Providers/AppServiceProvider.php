@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         VerifyEmailRequest::macro('authorize', function () {
-            $emailVerifying = strpos(URL::current(), '/email/verificar');
+            $emailVerifying = strpos(URL::current(), '/email/verificar/*');
             if ($emailVerifying) {
                 return true;
             }
