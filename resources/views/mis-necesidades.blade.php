@@ -12,8 +12,8 @@
                     <div class="mb-4 sm:mb-0">
                         @livewire('necesidades.crear-necesidad')
                     </div>
-                    <x-input-buscar data-table="table_id" type="text" placeholder="Buscar ..."
-                        class="light-table-filter" />
+                    {{-- <x-input-buscar data-table="table_id" type="text" placeholder="Buscar ..."
+                        class="light-table-filter" /> --}}
                 </div>
 
                 @livewire('necesidades.card-necesidades')

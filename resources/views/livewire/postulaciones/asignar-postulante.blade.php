@@ -2,12 +2,12 @@
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
 
         <x-slot name="title">
-            <h2 class="text-md">{{ $propuesta->pro_titulo }}</h2>
+            <h2 class="text-base">{{ $propuesta->pro_titulo }}</h2>
         </x-slot>
 
         <x-slot name="content">
             <div class="mb-7">
-                <p class="mt-1 text-sm text-gray-400">{{ $propuesta->pro_descripcion }}</p>
+                <p class="mt-1 text-sm">{{ $propuesta->pro_descripcion }}</p>
             </div>
 
             <hr class="mb-4">
@@ -24,10 +24,19 @@
                         <span
                             class="ms-3 text-sm text-gray-600 dark:text-gray-400">{{ __('Elegir proyecto como oficial') }}</span>
                     </label>
+                    <div wire:loading wire:target="changeOficial">
+                        <span class="block text-center mt-4">
+                            <i class="fas fa-spinner fa-spin mr-2"></i>
+                            Cargando...
+                        </span>
+                    </div>
+
                     @if ($tempOficial)
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4" wire:loading.remove
+                            wire:target="changeOficial">
                             <div>
-                                <x-select class="block mt-1 w-full" wire:model="responsable_id">
+                                <x-select class="block mt-1 w-full" wire:model="responsable_id"
+                                    wire:loading.attr="disabled" wire:target="saveResponsable">
                                     <option value="" selected hidden>Seleccionar responsable</option>
                                     @foreach ($responsables as $res)
                                         <option value="{{ $res->id }}">{{ $res->name }}</option>
@@ -37,12 +46,25 @@
                             </div>
 
                             <div class="flex justify-end items-end">
-                                <x-button-icon class="px-2 h-7 bg-red-500 uppercase" wire:click="xOficial">
-                                    X
+                                <x-button-icon class="px-2 h-7 bg-red-500 uppercase" wire:click="xOficial"
+                                    wire:loading.attr="disabled" wire:target="xOficial">
+                                    <span wire:loading wire:target="xOficial">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="xOficial">
+                                        X
+                                    </span>
                                 </x-button-icon>
-                                <x-button-icon class="px-2 h-7 ml-2 bg-udh_1 uppercase" wire:click="saveResponsable">
-                                    <i class="fas fa-check mr-2"></i>
-                                    guardar
+                                <x-button-icon class="px-2 h-7 ml-2 bg-udh_1 uppercase" wire:click="saveResponsable"
+                                    wire:loading.attr="disabled" wire:target="saveResponsable">
+                                    <span wire:loading wire:target="saveResponsable">
+                                        <i class="fas fa-spinner fa-spin mr-1"></i>
+                                        Guardar
+                                    </span>
+                                    <span wire:loading.remove wire:target="saveResponsable">
+                                        <i class="fas fa-check mr-1"></i>
+                                        Guardar
+                                    </span>
                                 </x-button-icon>
                             </div>
                         </div>
@@ -98,19 +120,46 @@
                                             @else
                                                 @if (!empty($confirmar[$key]) && $confirmar[$key] == true)
                                                     <x-button-icon class="px-2 h-7 bg-red-500 uppercase"
-                                                        wire:click="cancelar('{{ $key }}')">
-                                                        X
+                                                        wire:click="cancelar('{{ $key }}')"
+                                                        wire:loading.attr="disabled"
+                                                        wire:target="cancelar('{{ $key }}')">
+                                                        <span wire:loading
+                                                            wire:target="cancelar('{{ $key }}')">
+                                                            <i class="fas fa-spinner fa-spin"></i>
+                                                        </span>
+                                                        <span wire:loading.remove
+                                                            wire:target="cancelar('{{ $key }}')">
+                                                            X
+                                                        </span>
                                                     </x-button-icon>
                                                     <x-button-icon class="px-2 h-7 ml-2 bg-udh_1 uppercase"
-                                                        wire:click="asignarPostulante('{{ $postulacion->pivot->pos_id }}')">
-                                                        <i class="fas fa-check mr-2"></i>
-                                                        Confirmar
+                                                        wire:click="asignarPostulante('{{ $postulacion->pivot->pos_id }}')"
+                                                        wire:loading.attr="disabled"
+                                                        wire:target="asignarPostulante('{{ $postulacion->pivot->pos_id }}')">
+                                                        <span wire:loading
+                                                            wire:target="asignarPostulante('{{ $postulacion->pivot->pos_id }}')">
+                                                            <i class="fas fa-spinner fa-spin mr-1"></i>
+                                                            Confirmar
+                                                        </span>
+                                                        <span wire:loading.remove
+                                                            wire:target="asignarPostulante('{{ $postulacion->pivot->pos_id }}')">
+                                                            <i class="fas fa-check mr-1"></i>
+                                                            Confirmar
+                                                        </span>
                                                     </x-button-icon>
                                                 @else
                                                     <x-button-icon class="px-2 h-7 bg-udh_3"
+                                                        wire:click="confirmacion('{{ $key }}')"
                                                         wire:loading.attr="disabled"
-                                                        wire:click="confirmacion('{{ $key }}')">
-                                                        Asignar
+                                                        wire:target="confirmacion('{{ $key }}')">
+                                                        <span wire:loading
+                                                            wire:target="confirmacion('{{ $key }}')">
+                                                            <i class="fas fa-spinner fa-spin px-4"></i>
+                                                        </span>
+                                                        <span wire:loading.remove
+                                                            wire:target="confirmacion('{{ $key }}')">
+                                                            Asignar
+                                                        </span>
                                                     </x-button-icon>
                                                 @endif
                                             @endif

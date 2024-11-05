@@ -1,14 +1,14 @@
 <div>
     <div class="flex justify-center">
-        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled" wire:target="abrirModal">
+        <x-button-icon class="px-3 py-3 bg-udh_1 uppercase" wire:click="abrirModal" wire:loading.attr="disabled"
+            wire:target="abrirModal">
             <span wire:loading wire:target="abrirModal">
-                <i class="fas fa-spinner fa-spin mr-2"></i> Cargando...
+                <i class="fas fa-spinner fa-spin mr-1"></i> Cargando...
             </span>
             <span wire:loading.remove wire:target="abrirModal">
                 Agregar idea
             </span>
         </x-button-icon>
-        
     </div>
     <x-dialog-modal wire:model="showModal">
         <x-slot name="content">
@@ -157,8 +157,14 @@
             <x-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
                 Cancelar
             </x-secondary-button>
-            <x-button class="ml-2" wire:click="guardarNecesidad" wire:loading.attr="disabled">
-                Guardar
+            <x-button class="ml-2" wire:click="guardarNecesidad" wire:loading.attr="disabled"
+                wire:target="guardarNecesidad">
+                <span wire:loading wire:target="guardarNecesidad">
+                    <i class="fas fa-spinner fa-spin mr-1"></i> Guardando...
+                </span>
+                <span wire:loading.remove wire:target="guardarNecesidad">
+                    Guardar
+                </span>
             </x-button>
         </x-slot>
     </x-dialog-modal>

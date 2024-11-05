@@ -6,7 +6,7 @@
 
         <x-slot name="content">
             <div class="mb-7">
-                <p class="mt-1 text-sm text-gray-400">{{ $necesidad->nec_descripcion }}</p>
+                <p class="text-sm">{{ $necesidad->nec_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
                 <h3 class="font-bold text-md text-udh_1">Detalles de la idea</h3>
@@ -58,16 +58,36 @@
                         <tr>
                             <td class="px-6 py-4 font-medium text-gray-800 whitespace-normal text-md">Registrado el</td>
                             <td class="px-6 py-4 text-gray-600 whitespace-normal text-md">
-                                {{ \Carbon\Carbon::parse($necesidad->nec_created)->format('d/m/Y \a \l\a\s H:i') }}
+                                {{ fechaHora($necesidad->nec_created) }}
                             </td>
                         </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-medium text-gray-800">Responsable
+                            </td>
+                            <td class="px-6 py-4 text-gray-600">
+                                @if (!empty($necesidad->responsable))
+                                    <p class="font-bold">{{ $necesidad->responsable->name }}</p>
+                                    <p>Correo: {{ $necesidad->responsable->email }}</p>
+                                    <p>Telefono: {{ $necesidad->responsable->telefono }}</p><br>
+                                @else
+                                    <p class="font-bold">Por asignar</p>
+                                @endif
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
                 @role('VRI|ESCUELA')
-                    <h3 class="pt-5 font-bold text-md text-udh_1">Propuestas</h3>
+                    <h3 class="font-bold text-md text-udh_1">Propuestas</h3>
                     @if (count($necesidad->propuestas) > 0)
                         @foreach ($necesidad->propuestas as $propuesta)
                             <div class="px-3 py-2 my-3 border border-gray-300">
+                                @if ($propuesta->es_oficial)
+                                    <span class="text-white text-xs rounded-md bg-udh_1 px-2 py-1 block mb-1 max-w-max">
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        Proyecto oficial
+                                    </span>
+                                @endif
                                 <p>{{ $propuesta->pro_titulo }}</p>
                                 <div class="flex items-center justify-between">
                                     <b>{{ $propuesta->pro_tipo }}</b>
@@ -88,11 +108,10 @@
                             </a>
                             <div>
                                 <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank"
-                                    class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white">
+                                    class="ml-2 px-2 py-1 bg-gray-500 rounded-md hover:bg-udh_3 text-white">
                                     Ver
                                 </a>
-                                <button
-                                    class="mt-1 ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white"
+                                <button class="mt-1 ml-2 px-2 py-1 bg-gray-500 rounded-md hover:bg-udh_3 text-white"
                                     wire:click="descargar('{{ $doc->doc_file }}')">
                                     <i class="fa-solid fa-download"></i>
                                 </button>

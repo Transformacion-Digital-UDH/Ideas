@@ -59,6 +59,7 @@ class ReportarAvance extends Component
         $this->propuesta->pro_proceso = $nexProceso;
         $this->propuesta->save();
         $this->getReportes();
+        $this->dispatch('reportado');
         $this->cancelar();
     }
 
@@ -73,8 +74,8 @@ class ReportarAvance extends Component
         return view('livewire.proyectos.reportar-avance');
     }
 
-    public function cerrarReporte(){
-        $this->dispatch('reportado');
+    public function cerrarReporte()
+    {
         $this->closeModal();
     }
 }

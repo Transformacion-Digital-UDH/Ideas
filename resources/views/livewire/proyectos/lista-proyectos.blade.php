@@ -32,7 +32,7 @@
                                 @if (count($responsables) > 0)
                                     @foreach ($responsables as $necesidad)
                                         <div
-                                            class="bg-white shadow-sm rounded-lg p-3 flex justify-between items-center card-item last:mb-6">
+                                            class="bg-white shadow-sm rounded-lg p-4 flex justify-between items-center card-item">
                                             <div class="w-full">
                                                 <div class="flex justify-between items-center">
                                                     <p class="text-sm font-medium mb-1 text-blue-950">
@@ -52,14 +52,30 @@
                                                     </div>
                                                     <div>
                                                         <x-button-icon class="px-2 h-7 bg-udh_3"
+                                                            wire:click="abriModalCorreo({{ $necesidad->nec_id }})"
                                                             wire:loading.attr="disabled"
-                                                            wire:click='abriModalCorreo({{ $necesidad->nec_id }})'>
-                                                            <i class="fa-regular fa-paper-plane"></i>
+                                                            wire:target="abriModalCorreo({{ $necesidad->nec_id }})">
+                                                            <span wire:loading
+                                                                wire:target="abriModalCorreo({{ $necesidad->nec_id }})">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                            </span>
+                                                            <span wire:loading.remove
+                                                                wire:target="abriModalCorreo({{ $necesidad->nec_id }})">
+                                                                <i class="fa-regular fa-paper-plane text-white"></i>
+                                                            </span>
                                                         </x-button-icon>
-                                                        <x-button-icon class="px-2 h-6 bg-udh_1 uppercase"
+                                                        <x-button-icon class="px-2 h-6 bg-udh_1"
+                                                            wire:click="verResponsable({{ $necesidad->nec_id }})"
                                                             wire:loading.attr="disabled"
-                                                            wire:click='verResponsable({{ $necesidad->nec_id }})'>
-                                                            <i class="fas fa-eye text-white"></i>
+                                                            wire:target="verResponsable({{ $necesidad->nec_id }})">
+                                                            <span wire:loading
+                                                                wire:target="verResponsable({{ $necesidad->nec_id }})">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                            </span>
+                                                            <span wire:loading.remove
+                                                                wire:target="verResponsable({{ $necesidad->nec_id }})">
+                                                                <i class="fas fa-eye text-white"></i>
+                                                            </span>
                                                         </x-button-icon>
                                                         <x-button-icon class="px-2 h-6 bg-gray-500 uppercase"
                                                             wire:loading.attr="disabled"
@@ -93,11 +109,11 @@
                                 @if (count($proyectos) > 0)
                                     @foreach ($proyectos as $post)
                                         <div
-                                            class="bg-white shadow-sm rounded-lg p-3 flex justify-between items-center card-item">
+                                            class="bg-white shadow-lg rounded-lg p-4 flex justify-between items-center card-item">
                                             <div class="w-full">
                                                 @if ($post->propuesta->es_oficial)
                                                     <span
-                                                        class="text-white text-xs rounded-md bg-udh_1 px-1 py-[2px] mb-2">
+                                                        class="text-white text-xs rounded-md bg-udh_1 px-2 py-1 mb-1 block max-w-max">
                                                         <i class="fa-solid fa-star text-yellow-400"></i>
                                                         Proyecto oficial
                                                     </span>
@@ -129,10 +145,18 @@
                                                         <x-estadoInterno :status="$post->propuesta->pro_proceso" />
                                                     </div>
                                                     <div class="text-right mt-2 sm:mt-1">
-                                                        <x-button-icon class="px-2 h-6 bg-udh_1 uppercase"
+                                                        <x-button-icon class="px-2 h-6 bg-udh_1"
+                                                            wire:click="verProyecto({{ $post->pos_id }})"
                                                             wire:loading.attr="disabled"
-                                                            wire:click='verProyecto({{ $post->pos_id }})'>
-                                                            <i class="fas fa-eye text-white"></i>
+                                                            wire:target="verProyecto({{ $post->pos_id }})">
+                                                            <span wire:loading
+                                                                wire:target="verProyecto({{ $post->pos_id }})">
+                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                            </span>
+                                                            <span wire:loading.remove
+                                                                wire:target="verProyecto({{ $post->pos_id }})">
+                                                                <i class="fas fa-eye text-white"></i>
+                                                            </span>
                                                         </x-button-icon>
                                                         @if ($post->propuesta->pro_proceso != 'Postulación')
                                                             <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
@@ -156,7 +180,7 @@
                 </div>
             @else
                 <div class="bg-white shadow-sm rounded-lg p-6">
-                    <i class="text-udh_3 text-right">¡No tiene proyectos por el momento! 😊</i>
+                    <span class="text-udh_3 text-right">¡No tiene proyectos por el momento! 😊</span>
                 </div>
             @endif
         </div>

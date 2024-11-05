@@ -35,7 +35,8 @@ class User extends Authenticatable  implements MustVerifyEmail
         'telefono',
         'profesion',
         'descripcion',
-        'estado'
+        'estado',
+        'se_registro',
     ];
 
     public function curaciones()

@@ -2,7 +2,7 @@
     <div class="container mx-auto">
         <div class="relative flex items-center justify-between">
             <div class="w-60 max-w-full">
-                <a href="/" class="block w-full py-5">
+                <a href="{{ route('welcome') }}" class="block w-full py-5">
                     <img src="{{ asset('logo.webp') }}" alt="logo" class="block w-full dark:hidden" />
                     <img src="{{ asset('logo.webp') }}" alt="logo" class="hidden w-full dark:block" />
                 </a>
@@ -20,13 +20,13 @@
                         class="absolute right-4 top-full w-full max-w-[200px] rounded-lg bg-white px-6 py-5 shadow transition-all lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none xl:ml-11 dark:bg-dark-2">
                         <ul class="block lg:flex">
                             <li>
-                                <a href="/"
+                                <a href="{{ route('welcome') }}"
                                     class="flex py-2 font-sm font-bold text-udh_3 hover:text-primary lg:ml-10 lg:inline-flex dark:text-white">
                                     Inicio
                                 </a>
                             </li>
                             <li>
-                                <a href="/"
+                                <a href="{{ route('nosotros') }}"
                                     class="flex py-2 font-sm font-bold text-udh_3 hover:text-primary lg:ml-10 lg:inline-flex dark:text-white">
                                     Nosotros
                                 </a>

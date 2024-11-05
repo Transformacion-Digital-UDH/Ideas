@@ -30,23 +30,40 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $equipo->equ_created->format('Y-m-d') }}<br>
-                                {{ $equipo->equ_created->format('H:i') }}
+                                {{ $equipo->equ_created->format('H:i A') }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
                                 <x-estadoItem :status="$equipo->equ_estado" />
                             </td>
                             <td class="px-6 py-4 text-center whitespace-nowrap">
-                                <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
-                                    wire:click="verEquipo({{ $equipo->equ_id }})">
-                                    <i class="fa-solid fa-eye"></i>
+                                <x-button-icon class="px-2 h-7 bg-udh_1" wire:click="verEquipo({{ $equipo->equ_id }})"
+                                    wire:loading.attr="disabled" wire:target="verEquipo({{ $equipo->equ_id }})">
+                                    <span wire:loading wire:target="verEquipo({{ $equipo->equ_id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="verEquipo({{ $equipo->equ_id }})">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </span>
                                 </x-button-icon>
-                                <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                    wire:click="editarEquipo({{ $equipo->equ_id }})">
-                                    <i class="fa-solid fa-pencil"></i>
+                                <x-button-icon class="px-2 h-7 bg-udh_3"
+                                    wire:click="editarEquipo({{ $equipo->equ_id }})" wire:loading.attr="disabled"
+                                    wire:target="editarEquipo({{ $equipo->equ_id }})">
+                                    <span wire:loading wire:target="editarEquipo({{ $equipo->equ_id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="editarEquipo({{ $equipo->equ_id }})">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </span>
                                 </x-button-icon>
-                                <x-button-icon class="px-2 h-7 bg-red-600" wire:loading.attr="disabled"
-                                    wire:click="eliminarEquipo({{ $equipo->equ_id }})">
-                                    <i class="fa-solid fa-trash"></i>
+                                <x-button-icon class="px-2 h-7 bg-red-600"
+                                    wire:click="eliminarEquipo({{ $equipo->equ_id }})" wire:loading.attr="disabled"
+                                    wire:target="eliminarEquipo({{ $equipo->equ_id }})">
+                                    <span wire:loading wire:target="eliminarEquipo({{ $equipo->equ_id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="eliminarEquipo({{ $equipo->equ_id }})">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </span>
                                 </x-button-icon>
                             </td>
                         </tr>

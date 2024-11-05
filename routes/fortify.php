@@ -81,12 +81,12 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     // Email Verification...
     if (Features::enabled(Features::emailVerification())) {
         if ($enableViews) {
-            Route::get(RoutePath::for('verification.notice', '/email/verify'), [EmailVerificationPromptController::class, '__invoke'])
+            Route::get(RoutePath::for('verification.notice', '/email/verificar'), [EmailVerificationPromptController::class, '__invoke'])
                 ->middleware([config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard')])
                 ->name('verification.notice');
         }
 
-        Route::get(RoutePath::for('verification.verify', '/email/verify/{id}/{hash}'), [VerifyEmailController::class, '__invoke'])
+        Route::get(RoutePath::for('verification.verify', '/email/verificar/{id}/{hash}'), [VerifyEmailController::class, '__invoke'])
             ->middleware([config('fortify.auth_middleware', 'auth') . ':' . config('fortify.guard'), 'signed', 'throttle:' . $verificationLimiter])
             ->name('verification.verify');
 

@@ -28,9 +28,9 @@
                             <td class="px-6 py-4">
                                 {{ $propuesta->necesidad->nec_titulo }}
                                 <br>
-                                <strong class="text-gray-900">
+                                <span class="font-medium">
                                     {{ $propuesta->pro_titulo }}
-                                </strong>
+                                </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $propuesta->pro_created->format('Y-m-d') }}<br>
@@ -45,9 +45,17 @@
                             <td class="px-6 py-4 text-center whitespace-nowrap">
                                 @if ($propuesta->pro_tipo == 'Gestor UDH')
                                     @role('VRI')
-                                        <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                            wire:click="abrirModalEditar({{ $propuesta->pro_id }})">
-                                            <i class="fa-solid fa-pencil"></i>
+                                        <x-button-icon class="px-2 h-7 bg-udh_3"
+                                            wire:click="abrirModalEditar({{ $propuesta->pro_id }})"
+                                            wire:loading.attr="disabled"
+                                            wire:target="abrirModalEditar({{ $propuesta->pro_id }})">
+                                            <span wire:loading wire:target="abrirModalEditar({{ $propuesta->pro_id }})">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                            </span>
+                                            <span wire:loading.remove
+                                                wire:target="abrirModalEditar({{ $propuesta->pro_id }})">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </span>
                                         </x-button-icon>
                                         @elserole('ESCUELA')
                                         <x-button-icon class="px-2 h-7 bg-gray-400 cursor-not-allowed">
@@ -56,9 +64,17 @@
                                     @endrole
                                 @elseif($propuesta->pro_tipo == 'Curso' || $propuesta->pro_tipo == 'Tesis')
                                     @role('ESCUELA')
-                                        <x-button-icon class="px-2 h-7 bg-udh_3" wire:loading.attr="disabled"
-                                            wire:click="abrirModalEditar({{ $propuesta->pro_id }})">
-                                            <i class="fa-solid fa-pencil"></i>
+                                        <x-button-icon class="px-2 h-7 bg-udh_3"
+                                            wire:click="abrirModalEditar({{ $propuesta->pro_id }})"
+                                            wire:loading.attr="disabled"
+                                            wire:target="abrirModalEditar({{ $propuesta->pro_id }})">
+                                            <span wire:loading wire:target="abrirModalEditar({{ $propuesta->pro_id }})">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                            </span>
+                                            <span wire:loading.remove
+                                                wire:target="abrirModalEditar({{ $propuesta->pro_id }})">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </span>
                                         </x-button-icon>
                                         @elserole('VRI')
                                         <x-button-icon class="px-2 h-7 bg-gray-400 cursor-not-allowed">
@@ -66,9 +82,15 @@
                                         </x-button-icon>
                                     @endrole
                                 @endif
-                                <x-button-icon class="px-2 h-7 bg-udh_1" wire:loading.attr="disabled"
-                                    wire:click='abrirModalVer({{ $propuesta->pro_id }})'>
-                                    <i class="fas fa-eye text-white"></i>
+                                <x-button-icon class="px-2 h-7 bg-udh_1"
+                                    wire:click="abrirModalVer({{ $propuesta->pro_id }})" wire:loading.attr="disabled"
+                                    wire:target="abrirModalVer({{ $propuesta->pro_id }})">
+                                    <span wire:loading wire:target="abrirModalVer({{ $propuesta->pro_id }})">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span wire:loading.remove wire:target="abrirModalVer({{ $propuesta->pro_id }})">
+                                        <i class="fas fa-eye text-white"></i>
+                                    </span>
                                 </x-button-icon>
                             </td>
                         </tr>

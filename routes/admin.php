@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
+    'registro',
     'verified',
 ])->group(function () {
 
     Route::get('/panel', [PanelController::class, 'index'])->name('panel');
 
     Route::controller(NecesidadesController::class)->group(function () {
-        Route::get('/nec', 'index')->name('necesidades');
+        Route::get('/proyectos', 'index')->name('necesidades');
     });
     Route::controller(PropuestasController::class)->group(function () {
         Route::get('/propuestas', 'index')->name('propuestas');

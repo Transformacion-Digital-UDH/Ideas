@@ -67,11 +67,11 @@
                                     </a>
                                     <div>
                                         <a href="{{ route('documentos.ver', $doc->doc_file ?? '') }}" target="_blank"
-                                            class="ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white">
+                                            class="ml-2 px-2 py-1 bg-gray-500 rounded-md hover:bg-udh_3 text-white">
                                             Ver
                                         </a>
                                         <button
-                                            class="mt-1 ml-2 px-2 py-1 bg-gray-500 border rounded-md hover:bg-udh_3 text-white"
+                                            class="mt-1 ml-2 px-2 py-1 bg-gray-500 rounded-md hover:bg-udh_3 text-white"
                                             wire:click="descargar('{{ $doc->doc_file }}')">
                                             <i class="fa-solid fa-download"></i>
                                         </button>

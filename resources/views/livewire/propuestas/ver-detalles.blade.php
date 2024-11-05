@@ -1,12 +1,12 @@
 <div>
     <x-dialog-modal wire:model="showModal" maxWidth="4xl">
         <x-slot name="title">
-            <h2 class="text-xl">{{ $propuesta->pro_titulo }}</h2>
+            <h2 class="text-base">{{ $propuesta->pro_titulo }}</h2>
         </x-slot>
 
         <x-slot name="content">
             <div class="mb-7">
-                <p class="mt-1 text-gray-400 text-base">{{ $propuesta->pro_descripcion }}</p>
+                <p class="text-sm">{{ $propuesta->pro_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
                 <h3 class="font-bold mt-3 text-udh_1">Detalles de la propuesta</h3>
@@ -15,7 +15,8 @@
                         @if ($propuesta->pro_tipo == 'Curso' || $propuesta->pro_tipo == 'Tesis')
                             @if ($propuesta->pro_tipo == 'Curso')
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Lugar de aplicación</td>
+                                    <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Lugar de
+                                        aplicación</td>
                                     <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
                                         {{ $propuesta->pro_lugar }}
                                     </td>
@@ -92,7 +93,7 @@
                             <td class="px-6 py-4 whitespace-normal text-md font-medium text-gray-800">Fecha de
                                 publicación</td>
                             <td class="px-6 py-4 whitespace-normal text-md text-gray-600">
-                                {{ \Carbon\Carbon::parse($propuesta->pro_created)->format('d/m/Y \a \l\a\s H:i') }}
+                                {{ fechaHora($propuesta->pro_publicado) }}
                             </td>
                         </tr>
                     </tbody>
@@ -134,7 +135,7 @@
                                 @endif
                                 @if (!empty($responsable))
                                     <tr>
-                                        <td class="px-6 py-4 text-gray-800">Responsable
+                                        <td class="px-6 py-4 font-medium text-gray-800">Responsable
                                         </td>
                                         <td class="px-6 py-4 text-gray-600">
                                             <p class="font-bold">{{ $responsable->name }}</p>

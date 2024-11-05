@@ -14,7 +14,7 @@
             <h1 class="block text-2xl font-bold text-udh_3">Iniciar sesión</h1>
             <p class="mt-3 text-sm text-gray-600">
                 ¿Aún no tienes una cuenta?
-                <a class="text-udh_1 hover:underline decoration-2 font-bold" href="{{ route('register') }}">
+                <a class="text-udh_1 hover:underline decoration-2 font-semibold" href="{{ route('register') }}">
                     Registrate aquí
                 </a>
             </p>
@@ -47,7 +47,7 @@
             <div class="mt-4">
                 <div class="flex justify-between items-center">
                     <x-label for="password" value="{{ __('Password') }}" />
-                    <a class="text-sm text-udh_1 font-bold decoration-2 hover:underline"
+                    <a class="text-sm text-udh_1 font-semibold decoration-2 hover:underline"
                         href="{{ route('password.request') }}">¿Olvidó su contraseña?</a>
                 </div>
                 <div class="relative">

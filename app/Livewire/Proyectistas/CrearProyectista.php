@@ -21,13 +21,15 @@ class CrearProyectista extends Component
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'telefono' => ['required', 'string', 'max:9'],
-        'profesion' => ['required', 'string', 'max:255'],
+        'profesion' => ['string', 'max:255'],
         'descripcion' => ['nullable', 'string', 'max:255'],
         'password' => ['required', 'string', 'min:8'],
     ];
 
     public function abrirModal()
     {
+        $this->reset();
+        $this->resetValidation();
         $this->showModal = true;
     }
 
