@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+use Laravel\Fortify\Http\Requests\VerifyEmailRequest;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             }
         });
 
-        Request::macro('authorize', function () {
+        VerifyEmailRequest::macro('authorize', function () {
             $emailVerifying = strpos(URL::current(), '/email/verificar');
             if ($emailVerifying) {
                 return true;
