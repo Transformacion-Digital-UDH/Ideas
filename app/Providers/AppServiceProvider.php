@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,10 +31,13 @@ class AppServiceProvider extends ServiceProvider
         Request::macro('hasValidSignature', function () {
             $uploading = strpos(URL::current(), '/livewire/upload-file');
             $previewing = strpos(URL::current(), '/livewire/preview-file');
-            $emailVerifying = Str::contains(URL::current(), '/email/verificar/');
-            if ($uploading || $previewing || $emailVerifying) {
+            if ($uploading || $previewing) {
                 return true;
             }
         });
+
+        if (env('APP_ENV') !== 'local') {
+            URL::forceScheme('https');
+        }
     }
 }
