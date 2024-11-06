@@ -1,4 +1,4 @@
-name: Desplegar VPS de producción
+name: Desplegar a producción
 on:
   push:
     branches:
