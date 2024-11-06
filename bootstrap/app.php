@@ -17,7 +17,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'registro' => VerificarDatosCompletos::class,
 
         ]);
-        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
