@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
         Request::macro('hasValidSignature', function () {
             $uploading = strpos(URL::current(), '/livewire/upload-file');
             $previewing = strpos(URL::current(), '/livewire/preview-file');
-            if ($uploading || $previewing) {
+            $emailVerifying = Str::contains(URL::current(), '/email/verificar/');
+            if ($uploading || $previewing || $emailVerifying) {
                 return true;
             }
         });
