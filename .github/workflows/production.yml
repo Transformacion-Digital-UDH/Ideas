@@ -16,6 +16,7 @@ jobs:
           script: |
             php -v
             cd htdocs/ideas
+            git reset --hard HEAD
             git pull origin main
             composer install
             npm install
