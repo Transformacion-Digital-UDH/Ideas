@@ -5,7 +5,7 @@
                 <h1
                     class="mb-5 text-4xl font-bold !leading-[1.208] text-udh_3 sm:text-[42px] lg:text-[40px] xl:text-5xl dark:text-white">
                     Transformamos tus <br>
-                    IDEAS en Soluciones <br> Tecnologicas
+                    IDEAS en Soluciones <br> Tecnológicas
                 </h1>
                 <p class="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
                     Mediante investigación y proyectos
