@@ -42,8 +42,8 @@
                                                         Registrado el
                                                         {{ $necesidad->nec_created->format('d/m/Y') ?? '' }}</p>
                                                 </div>
-                                                <span class="text-sm font-medium mb-1 text-blue-950">Idea:</span>
-                                                <p class="text-gray-500 line-clamp-3 text-sm">
+                                                <span class="text-sm mb-1 text-gray-500">Idea:</span>
+                                                <p class="line-clamp-3 text-sm font-medium">
                                                     {{ $necesidad->nec_titulo }}
                                                 </p>
                                                 <div class="flex justify-between mt-2 items-center">
@@ -79,6 +79,7 @@
                                                         </x-button-icon>
                                                         <x-button-icon class="px-2 h-6 bg-gray-500 uppercase"
                                                             wire:loading.attr="disabled"
+                                                            wire:target="verPropuestas({{ $necesidad->nec_id }})"
                                                             wire:click='verPropuestas({{ $necesidad->nec_id }})'>
                                                             Propuestas
                                                         </x-button-icon>
@@ -123,9 +124,8 @@
                                                         Responsable:
                                                         {{ $post->propuesta->necesidad->responsable->name ?? 'POR DEFINIR' }}
                                                     </p>
-                                                    <p class="text-gray-400 text-xs font-bold hidden sm:block">
-                                                        Asignado el
-                                                        {{ $post->pos_created->format('d/m/Y') ?? '' }}</p>
+                                                    <p class="text-gray-400 text-sm font-medium hidden sm:block">
+                                                        {{ $post->propuesta->pro_tipo }}</p>
                                                 </div>
 
                                                 <p class="text-gray-500 line-clamp-3 text-sm pb-1">
@@ -160,6 +160,8 @@
                                                         </x-button-icon>
                                                         @if ($post->propuesta->pro_proceso != 'Postulación')
                                                             <x-button-icon class="px-2 h-6 bg-udh_3 uppercase"
+                                                                wire:target="reportarEstado({{ $post->propuesta->pro_id }})"
+                                                                wire:loading.attr="disabled"
                                                                 wire:click="reportarEstado({{ $post->propuesta->pro_id }})">
                                                                 Reportar
                                                             </x-button-icon>

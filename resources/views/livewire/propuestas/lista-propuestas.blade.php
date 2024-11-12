@@ -27,7 +27,7 @@
                                     </span>
                                 </x-secondary-button>
                                 @if (in_array($propuesta->pro_id, $postulaciones_ids))
-                                    <x-button-link class="ml-2 !bg-udh_1" href="{{ route('mis-postulaciones') }}">
+                                    <x-button-link class="ml-2 !bg-udh_1 px-3" href="{{ route('mis-postulaciones') }}">
                                         Seguimiento
                                     </x-button-link>
                                 @else
