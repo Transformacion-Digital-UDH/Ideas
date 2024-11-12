@@ -39,7 +39,7 @@ class ListaProyectos extends Component
     public function getMisProyectos()
     {
         $this->proyectos = Postulaciones::with(
-            'propuesta:pro_id,nec_id,pro_titulo,pro_proceso,es_oficial',
+            'propuesta:pro_id,nec_id,pro_titulo,pro_proceso,es_oficial,pro_tipo',
             'propuesta.necesidad:nec_id,nec_titulo,responsable_id',
             'propuesta.necesidad.responsable:id,name',
             'equipo:equ_id,equ_codigo,equ_nombre,equ_tipo',

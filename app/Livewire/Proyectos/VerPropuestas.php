@@ -31,6 +31,7 @@ class VerPropuestas extends Component
             ->each(function ($propuesta) {
                 $propuesta->postulante = $propuesta->postulaciones->where('pos_estado', 1)->where('pos_asignado', 1)->first()->postulante ?? null;
                 $propuesta->equipo = $propuesta->postulaciones->where('pos_estado', 1)->where('pos_asignado', 1)->first()->equipo ?? null;
+                $propuesta->semestre = $propuesta->postulaciones->where('pos_estado', 1)->where('pos_asignado', 1)->first()->pos_semestre ?? null;
                 $propuesta->seccion = $propuesta->postulaciones->where('pos_estado', 1)->where('pos_asignado', 1)->first()->pos_seccion ?? null;
             });
         $this->openModal();
