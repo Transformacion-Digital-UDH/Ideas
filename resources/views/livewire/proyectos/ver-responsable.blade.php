@@ -6,7 +6,7 @@
 
         <x-slot name="content">
             <div class="mb-7">
-                <p class="mt-1 text-sm text-gray-400">{{ $necesidad->nec_descripcion }}</p>
+                <p class="text-sm">{{ $necesidad->nec_descripcion }}</p>
             </div>
             <div class="overflow-x-auto">
                 <h3 class="font-bold text-md text-udh_1">Detalles de la idea</h3>
