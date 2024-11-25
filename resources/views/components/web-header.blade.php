@@ -20,7 +20,7 @@
                         class="absolute right-4 top-full w-full max-w-[200px] rounded-lg bg-white px-6 py-5 shadow transition-all lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none xl:ml-11 dark:bg-dark-2">
                         <ul class="block lg:flex">
                             <li>
-                                <a href="{{ route('welcome') }}"
+                                <a href="https://colipoto.udh.edu.pe"
                                     class="flex py-2 font-sm font-bold text-udh_3 hover:text-primary lg:ml-10 lg:inline-flex dark:text-white">
                                     Inicio
                                 </a>
