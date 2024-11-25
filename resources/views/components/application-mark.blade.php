@@ -1,1 +1,1 @@
-<img src="{{ asset('logo.webp') }}" width="140" alt="Logo">
+<img src="{{ asset('/recursos/COPILOTOlight.webp') }}" width="140" alt="Logo">
