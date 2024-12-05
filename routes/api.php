@@ -8,4 +8,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::get('/titulo', [ApisController::class, 'titulo']);
 Route::get('/titulo/{correo}', [ApisController::class, 'titulo'])->name('titulo');
