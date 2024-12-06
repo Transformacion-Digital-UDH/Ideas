@@ -12,6 +12,7 @@ class ListaNecesidades extends Component
 
     protected $listeners = [
         'guardado' => 'getNecesidades',
+        'actualizado' => 'getNecesidades',
     ];
 
     public function mount()
