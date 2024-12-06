@@ -15,6 +15,8 @@ class VerNecesidad extends Component
     public $necesidad;
     public $documentos = [];
 
+    public $mostrarConfirmacion = false;
+
     protected $listeners = ['ver'];
 
     public function mount()
@@ -57,5 +59,21 @@ class VerNecesidad extends Component
         $this->documentos = Documentos::where('doc_estado', 1)
             ->where('nec_id', $this->necesidad->nec_id)
             ->get();
+    }
+
+    public function noAplica(){
+        $this->mostrarConfirmacion = true;
+    }
+
+    public function xconfirmar(){
+        $this->mostrarConfirmacion = false;
+    }
+
+    public function confirmar()
+    {
+        $this->necesidad->nec_proceso = 'No Aplica';
+        $this->necesidad->save();
+        $this->dispatch('actualizado');
+        $this->closeModal();
     }
 }

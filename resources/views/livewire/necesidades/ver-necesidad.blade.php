@@ -123,9 +123,42 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
-                Cerrar
-            </x-secondary-button>
+            <div class="w-full flex items-center justify-between">
+                <div>
+                    @if ($necesidad->nec_proceso == 'En Espera')
+                        @if ($mostrarConfirmacion)
+                            <x-button-icon class="px-4 py-2 mr-2 bg-red-500 uppercase" wire:click="xconfirmar"
+                                wire:loading.attr="disabled" wire:target="xconfirmar">
+                                <span wire:loading wire:target="xconfirmar">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </span>
+                                <span wire:loading.remove wire:target="xconfirmar">
+                                    X
+                                </span>
+                            </x-button-icon>
+
+                            <x-button wire:click="confirmar" class="!bg-udh_1" wire:loading.attr="disabled">
+                                Confirmar
+                            </x-button>
+                        @else
+                            <x-button class="!bg-red-500" wire:click="noAplica" wire:loading.attr="disabled"
+                                wire:target="noAplica">
+                                <span wire:loading wire:target="noAplica">
+                                    <i class="fas fa-spinner fa-spin mr-1"></i>
+                                    Procesando...
+                                </span>
+                                <span wire:loading.remove wire:target="noAplica">
+                                    Marcar como No Aplica
+                                </span>
+                            </x-button>
+                        @endif
+                    @endif
+                </div>
+
+                <x-secondary-button wire:click="$set('showModal', false)" wire:loading.attr="disabled">
+                    Cerrar
+                </x-secondary-button>
+            </div>
         </x-slot>
     </x-dialog-modal>
 </div>
