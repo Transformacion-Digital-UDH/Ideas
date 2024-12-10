@@ -17,6 +17,6 @@ class Mensajes extends Model
 
     public function necesidades()
     {
-        return $this->belongsToMany(Necesidades::class, 'notificars', 'men_id', 'nec_id');
+        return $this->belongsTo(Necesidades::class, 'nec_id', 'nec_id');
     }
 }

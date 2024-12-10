@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('men_asunto', 200);
             $table->text('men_cuerpo')->nullable();
             $table->foreignId('emisor_id')->references('id')->on('users');
+            $table->foreignId('nec_id')->references('nec_id')->on('necesidades');
             $table->tinyInteger('men_estado')->unsigned()->default(1);
             $table->timestamp('men_created')->useCurrent();
             $table->timestamp('men_updated')->useCurrent()->useCurrentOnUpdate();
